@@ -49,21 +49,4 @@ const resetGame = (correct, author) => {
     }, 100)
 }
 
-// const test = () => {
-//     const url = new URL("http://server.seidman-ad.am:8008/game?pwd=pass1")
-//     fetch(url)
-//         .then(response => response.json())
-//         .then(json => {
-//             document.getElementById('card1').innerHTML = json.quote.quote.replaceAll('\r\n', '<br>') + '<br>'
-//             let buttonsText = []
-//             let i = 0
-//             json.options.forEach(x => {
-//                 buttonsText.push(`<button onclick="resetGame(${i++ === 0},'${json.options[0]}')">${x.trim()}</button><br>`)
-//             })
-//             shuffle(buttonsText)
-//             document.getElementById('card2').innerHTML = buttonsText.join('<br>')
-//         })
-// }
-
-
 setTimeout(loadQuotes, 100)
