@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
     <title>Quotes List</title>
+    <script src="../js/quotes.js"></script>
 </head>
 <body>
-    <div>Page</div>
+    <div class="row header justify-content-center">
+        <h1 class="title">Quotes Lists</h1>
+    </div>
+    <div>
+        <span id="quote"></span>
+    </div>
+    <script type="text/javascript">
+        getQuotes(1)
+            .then(quote => {
+                console.log(quote)
+                document.getElementById('quote').innerHTML = quote.quotes[0].quote.replaceAll('\n', '<br>')
+            })
+    </script>
+    <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

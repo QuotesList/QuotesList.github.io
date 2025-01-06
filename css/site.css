@@ -1,0 +1,41 @@
+:root {
+    --white: #F5F5F5;
+    --light-blue: #6F7FA6;
+    --dark-blue: #242C52;
+    --light-yellow: #E2912F;
+    --gold: #B26720;
+    --light-pink: #D65F6B;
+    --pink: #AA3A45;
+    --black: #1B1B1b;
+}
+
+body {
+    background-color: var(--light-blue) !important;
+    color: var(--white) !important;
+    font-family: "Atma", serif !important;
+    font-weight: 300;
+    font-size: 1.85rem !important;
+    overflow-x: hidden;
+}
+
+.title {
+    font-size: 3.5rem;
+}
+
+.header {
+    background-color: var(--light-pink);
+}
+
+.btn {
+    background-color: var(--light-yellow) !important;
+    margin-bottom: 20px;
+    font-size: 1.25rem !important;
+    &:hover {
+        background-color: var(--gold) !important;
+        color: var(--white) !important;
+    }
+}
+
+hr {
+    border: 1px solid var(--dark-blue) !important;
+}
