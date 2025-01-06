@@ -3,7 +3,7 @@ const serverPresent = () => {
 }
 
 const password = "pass2" // TODO
-const server = "https://api.adamseidman.com"
+const server = "https://quotes.adamseidman.com"
 
 const standardGET = (endpoint, query) => {
     if (query === undefined || typeof query != "string") {
