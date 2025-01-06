@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes List</title>
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
+    <script src="../js/quotes.js"></script>
+    <script src="./search.js"></script>
+</head>
+<body>
+    <div class="row header justify-content-center">
+        <h1 class="title">Quotes Lists</h1>
+    </div>
+    <div class="col-8 col-lg-8 offset-2 justify-content-center" id="content">
+        <div id="form-wrapper" class="mt-3">
+            <input id="searchInput" name="searchInput" placeholder="Type Search String..."><br><br>
+            <button type="button" id="submitSearch" onclick="runSearch()">Submit</button><br>
+        </div>
+        <div id="results-wrapper">
+            <!-- Results get populated here. -->
+        </div>
+    </div>
+    <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>
