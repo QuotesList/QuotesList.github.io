@@ -2,8 +2,9 @@ const serverPresent = () => {
     return true
 }
 
-const password = "pass2" // TODO
-const server = "https://quotes.adamseidman.com"
+var password = "pass2" // TODO
+var server = "https://quotes.adamseidman.com"
+var authLevel = 0
 // const server = "http://localhost:8008"
 
 const standardGET = (endpoint, query) => {
@@ -24,11 +25,23 @@ const standardGET = (endpoint, query) => {
     })
 }
 
+const stripPunctuation = str => {
+    return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s{2,}/g,' ');
+}
+
 const getQuotes = numQuotes => {
     if (typeof numQuotes == "number") {
         numQuotes = 1
     }
     return standardGET('quotes', `numQuotes=${numQuotes}`)
+}
+
+const getSearch = searchStr => {
+    if (typeof searchStr != 'string') {
+        searchStr = ""
+    }
+    searchStr = stripPunctuation(searchStr).replaceAll(' ', '').trim()
+    return standardGET('search', `str=${searchStr}`)
 }
 
 const getGame = () => standardGET('game')
@@ -61,4 +74,27 @@ const standardPOST = (endpoint, body, query) => {
 
 const postQuote = (quote, authors) => {
     standardPOST('quote', {quote, authors})
+}
+
+const setAuth = (ser, pass) => {
+    if (typeof ser != 'string' || typeof pass != 'string') {
+        return
+    }
+    server = ser
+    password = pass
+}
+
+const checkAuth = () => {
+    return new Promise((resolve, reject) => {
+        standardGET('perms')
+            .then(data => {
+                if (data.level !== undefined) {
+                    level = data.level
+                    resolve(level)
+                }
+                else {
+                    reject(level)
+                }
+            })
+    })
 }
