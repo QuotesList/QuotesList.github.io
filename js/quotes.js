@@ -40,7 +40,7 @@ const getSearch = searchStr => {
     if (typeof searchStr != 'string') {
         searchStr = ""
     }
-    searchStr = stripPunctuation(searchStr).replaceAll(' ', '').trim()
+    searchStr = stripPunctuation(searchStr).trim()
     return standardGET('search', `str=${searchStr}`)
 }
 
@@ -74,6 +74,13 @@ const standardPOST = (endpoint, body, query) => {
 
 const postQuote = (quote, authors) => {
     standardPOST('quote', {quote, authors})
+}
+
+const postVote = (good, bad) => {
+    standardPOST('vote', {
+        yesId: good,
+        noId: bad
+    })
 }
 
 const setAuth = (ser, pass) => {

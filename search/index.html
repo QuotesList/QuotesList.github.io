@@ -6,6 +6,9 @@
     <title>Quotes List</title>
     <link rel="stylesheet" type="text/css" href="../css/site.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="../js/quotes.js"></script>
     <script src="./search.js"></script>
 </head>
@@ -15,9 +18,10 @@
     </div>
     <div class="col-8 col-lg-8 offset-2 justify-content-center" id="content">
         <div id="form-wrapper" class="mt-3">
-            <input id="searchInput" name="searchInput" placeholder="Type Search String..."><br><br>
-            <button type="button" id="submitSearch" onclick="runSearch()">Submit</button><br>
+            <input class="mb-2" id="searchInput" name="searchInput" placeholder="Type Search String..."><br>
+            <button type="button" id="submitSearch" onclick="runSearch()" class="mb-4 btn btn-yellow">Submit</button><br>
         </div>
+        <h1 id="num-results"></h1>
         <div id="results-wrapper">
             <!-- Results get populated here. -->
         </div>
