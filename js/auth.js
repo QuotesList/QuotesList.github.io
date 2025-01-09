@@ -4,7 +4,8 @@ const LEVEL_HACKER = 0
 
 const MAX_AUTH_LEVELS = 3
 
-var USE_HTTPS = true // For dev purposes
+// For dev purposes
+var USE_HTTPS = true
 
 var gPass = 'X'
 var gServer = 'localhost:8008'
@@ -120,15 +121,26 @@ const deleteAuth = () => {
     gLevel = LEVEL_HACKER
 }
 
+
+const backToHome = () => {
+    if (STOP_REDIRECT !== undefined) {
+        window.location.href = "/"
+    }
+}
+
 let initAuth = decodeCookie()
 if (initAuth === undefined || initAuth.pass === undefined || initAuth.server === undefined) {
     console.log('No cookie data!')
+    backToHome()
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
         .then(data => {
             if (data !== undefined) {
                 console.log(`Permission level at ${initAuth.server}: ${data.level}`)
+                if (data.level <= LEVEL_HACKER || data.level >= MAX_AUTH_LEVELS) {
+                    backToHome()
+                }
             }
         })
         .catch(err => {
