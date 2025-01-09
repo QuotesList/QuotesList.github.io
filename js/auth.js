@@ -88,13 +88,13 @@ const tryAuth = (pass, server) => {
                     if (json === undefined || typeof json.level != 'number') {
                         reject({
                             level: LEVEL_HACKER,
-                            err: "Server Error (Bad Data)"
+                            err: "Invalid Server or Password"
                         })
                     }
                     else if (json.level <= LEVEL_HACKER || json.level >= MAX_AUTH_LEVELS) {
                         reject({
                             level: LEVEL_HACKER,
-                            err: "Server Returned Invalid Permission Level"
+                            err: "Invalid Server or Password"
                         })
                     }
                     else {
