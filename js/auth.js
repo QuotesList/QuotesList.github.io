@@ -109,7 +109,7 @@ const tryAuth = (pass, server) => {
                 console.error('Could not get permissions!', err)
                 reject({
                     level: LEVEL_HACKER,
-                    error: "Could Not Access Server"
+                    err: "Could Not Access Server"
                 })
             })
     })
