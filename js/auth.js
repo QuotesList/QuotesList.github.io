@@ -4,9 +4,11 @@ const LEVEL_HACKER = 0
 
 const MAX_AUTH_LEVELS = 3
 
+var USE_HTTPS = true // For dev purposes
+
 var gPass = 'X'
-var gServer = 'http://localhost:8008'
-var gLevel = 0
+var gServer = 'localhost:8008'
+var gLevel = LEVEL_HACKER
 
 const SERVER_KEY = 'server'
 const PASS_KEY = 'password'
@@ -68,7 +70,7 @@ const tryAuth = (pass, server) => {
     gLevel = LEVEL_HACKER
     encodeCookie()
     return new Promise((resolve, reject) => {
-        fetch(`https://${gServer}/perms?pwd=${gPass}`)
+        fetch(`http${USE_HTTPS? 's' : ''}://${gServer}/perms?pwd=${gPass}`)
             .then(async (data) => {
                 if (data === undefined || data.json === undefined) {
                     reject({
