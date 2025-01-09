@@ -30,11 +30,8 @@ const submitCredentials = () => {
 }
 
 const onPermsLoaded = () => {
-    populatePage(gLevel)
+    console.log(111) // TODO remove
+    setTimeout(() => {
+        populatePage(gLevel)
+    }, 50)
 }
-
-// setTimeout(() => {
-//     if (gLevel > 0 && gLevel < 3) {
-
-//     }
-// }, 50)

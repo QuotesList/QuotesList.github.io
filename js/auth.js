@@ -139,9 +139,6 @@ if (initAuth === undefined || initAuth.pass === undefined || initAuth.server ===
     if (typeof onPermsLoad === 'function') {
         onPermsLoaded(data.level)
     }
-    else {
-        alert(typeof onPermsLoaded) // TODO remove
-    }
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
@@ -153,9 +150,6 @@ else {
                 }
                 else if (typeof onPermsLoad === 'function') {
                     onPermsLoaded(data.level)
-                }
-                else {
-                    alert(typeof onPermsLoaded) // TODO remove
                 }
             }
         })
