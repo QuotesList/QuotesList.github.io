@@ -1,4 +1,7 @@
 const populatePage = level => {
+    if (level === undefined) {
+        level = gLevel
+    }
     if (level <= 0 || level >= 3) {
         document.getElementById('password-wrapper').classList.remove("hidden")
         document.getElementById('general-buttons').classList.add("hidden")
@@ -33,15 +36,15 @@ const submitCredentials = () => {
 
 window.addEventListener('load', () => {
     onPermsLoaded()
-    setTimeout(populatePage, 500)
+    setTimeout(() => populatePage(gLevel), 500)
 }, false)
 
 window.addEventListener('onload', () => {
     onPermsLoaded()
-    setTimeout(populatePage, 500)
+    setTimeout(() => populatePage(gLevel), 500)
 })
 
 const onPermsLoaded = () => {
     populatePage(gLevel)
-    setTimeout(populatePage, 300)
+    setTimeout(() => populatePage(gLevel), 300)
 }
