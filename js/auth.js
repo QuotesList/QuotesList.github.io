@@ -132,6 +132,10 @@ const backToHome = () => {
     }
 }
 
+const requiresHigherAuth = () => {
+    return window.location.href.toLowerCase().includes('submit')
+}
+
 let initAuth = decodeCookie()
 if (initAuth === undefined || initAuth.pass === undefined || initAuth.server === undefined) {
     console.log('No cookie data!')
@@ -146,6 +150,9 @@ else {
             if (data !== undefined) {
                 console.log(`Permission level at ${initAuth.server}: ${data.level}`)
                 if (data.level <= LEVEL_HACKER || data.level >= MAX_AUTH_LEVELS) {
+                    backToHome()
+                }
+                else if (requiresHigherAuth() && data.level !== LEVEL_ADMIN) {
                     backToHome()
                 }
                 else if (typeof onPermsLoad === 'function') {
