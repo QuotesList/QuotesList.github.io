@@ -141,6 +141,9 @@ else {
                 if (data.level <= LEVEL_HACKER || data.level >= MAX_AUTH_LEVELS) {
                     backToHome()
                 }
+                else if (typeof onPermsLoad !== 'undefined') {
+                    onPermsLoaded(data.level)
+                }
             }
         })
         .catch(err => {

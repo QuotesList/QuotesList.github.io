@@ -9,6 +9,7 @@
     <script>
         const STOP_REDIRECT = true
     </script>
+    <script src="./js/main.js"></script>
     <script src="./js/auth.js"></script>
     <script src="./js/quotes.js"></script>
 </head>
@@ -21,6 +22,17 @@
             <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br>
             <input id="passwordInput" name="passwordInput" type="password" placeholder="Enter Password..."><br>
             <button type="button" id="submitPass" onclick="submitCredentials()">Submit</button>
+        </div>
+        <div id="general-buttons" class="hidden">
+            <button type="button" id="gameBtn" onclick="window.location.href='/game'">Game</button><br>
+            <button type="button" id="leaderboardBtn" onclick="window.location.href='/leaderboard'">Leaderboard</button><br>
+            <button type="button" id="randomBtn" onclick="window.location.href='/random'">Random Quote</button><br>
+            <button type="button" id="searchBtn" onclick="window.location.href='/search'">Search</button><br>
+            <button type="button" id="voteBtn" onclick="window.location.href='/vote'">Vote</button><br>
+            <div id="admin-buttons" class="hidden">
+                <hr>
+                <button type="button" id="submit" onclick="window.location.href='/submit'">Submit New Quote</button>
+            </div>
         </div>
     </div>
     <script type="text/javascript" href="./js/bootstrap/bootstrap.min.js"></script>
