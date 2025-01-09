@@ -5,6 +5,8 @@ const populatePage = level => {
         document.getElementById('admin-buttons').classList.add('hidden')
     }
     else {
+        let pass = document.getElementById('passwordInput').value = ""
+        let server = document.getElementById('serverInput').value = ""
         document.getElementById('password-wrapper').classList.add("hidden")
         document.getElementById('general-buttons').classList.remove("hidden")
         if (level > 1) {
@@ -29,9 +31,10 @@ const submitCredentials = () => {
         })
 }
 
+window.addEventListener('load', () => {
+    onPermsLoaded()
+}, false)
+
 const onPermsLoaded = () => {
-    console.log(111) // TODO remove
-    setTimeout(() => {
-        populatePage(gLevel)
-    }, 50)
+    populatePage(gLevel)
 }
