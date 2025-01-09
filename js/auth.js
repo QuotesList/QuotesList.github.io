@@ -87,7 +87,7 @@ const tryAuth = (pass, server) => {
                             err: "Server Error (Bad Data)"
                         })
                     }
-                    else if (json.level < LEVEL_HACKER || json.level >= MAX_AUTH_LEVELS) {
+                    else if (json.level <= LEVEL_HACKER || json.level >= MAX_AUTH_LEVELS) {
                         reject({
                             level: LEVEL_HACKER,
                             err: "Server Returned Invalid Permission Level"
@@ -141,7 +141,7 @@ else {
                 if (data.level <= LEVEL_HACKER || data.level >= MAX_AUTH_LEVELS) {
                     backToHome()
                 }
-                else if (typeof onPermsLoad !== 'undefined') {
+                else if (typeof onPermsLoad === 'function') {
                     onPermsLoaded(data.level)
                 }
             }
