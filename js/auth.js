@@ -123,7 +123,7 @@ const deleteAuth = () => {
 }
 
 const backToHome = () => {
-    if (typeof STOP_REDIRECT !== 'undefined') {
+    if (typeof STOP_REDIRECT === 'undefined') {
         window.location.href = "/"
     }
 }
