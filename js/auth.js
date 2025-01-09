@@ -136,6 +136,12 @@ let initAuth = decodeCookie()
 if (initAuth === undefined || initAuth.pass === undefined || initAuth.server === undefined) {
     console.log('No cookie data!')
     backToHome()
+    if (typeof onPermsLoad === 'function') {
+        onPermsLoaded(data.level)
+    }
+    else {
+        alert(typeof onPermsLoaded) // TODO remove
+    }
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
@@ -147,6 +153,9 @@ else {
                 }
                 else if (typeof onPermsLoad === 'function') {
                     onPermsLoaded(data.level)
+                }
+                else {
+                    alert(typeof onPermsLoaded) // TODO remove
                 }
             }
         })
