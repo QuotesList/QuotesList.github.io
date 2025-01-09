@@ -1,19 +1,10 @@
-const serverPresent = () => {
-    return true
-}
-
-var password = "pass2" // TODO
-var server = "https://quotes.adamseidman.com"
-var authLevel = 0
-// const server = "http://localhost:8008"
-
 const standardGET = (endpoint, query) => {
     if (query === undefined || typeof query != "string") {
         query = ""
     } else {
         query = `&${query}`
     }
-    const url = new URL(`${server}/${endpoint}?pwd=${password}${query}`)
+    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url)
@@ -54,7 +45,7 @@ const standardPOST = (endpoint, body, query) => {
     } else {
         query = `&${query}`
     }
-    const url = new URL(`${server}/${endpoint}?pwd=${password}${query}`)
+    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url, {
@@ -80,28 +71,5 @@ const postVote = (good, bad) => {
     standardPOST('vote', {
         yesId: good,
         noId: bad
-    })
-}
-
-const setAuth = (ser, pass) => {
-    if (typeof ser != 'string' || typeof pass != 'string') {
-        return
-    }
-    server = ser
-    password = pass
-}
-
-const checkAuth = () => {
-    return new Promise((resolve, reject) => {
-        standardGET('perms')
-            .then(data => {
-                if (data.level !== undefined) {
-                    level = data.level
-                    resolve(level)
-                }
-                else {
-                    reject(level)
-                }
-            })
     })
 }
