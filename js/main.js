@@ -33,8 +33,10 @@ const submitCredentials = () => {
 
 window.addEventListener('load', () => {
     onPermsLoaded()
+    setTimeout(populatePage, 500)
 }, false)
 
 const onPermsLoaded = () => {
     populatePage(gLevel)
+    setTimeout(populatePage, 300)
 }
