@@ -54,17 +54,21 @@ const deleteCookie = () => {
 const tryAuth = (pass, server) => {
     if (typeof pass != 'string' || typeof server != 'string') {
         gLevel = LEVEL_HACKER
-        return {
-            level: LEVEL_HACKER,
-            err: "Internal Error"
-        }
+        return new Promise(resolve => {
+            resolve({
+                level: LEVEL_HACKER,
+                err: "Internal Error"
+            })
+        })
     }
     if (`${pass}${server}`.includes(';') || `${pass}${server}`.includes('=')) {
         gLevel = LEVEL_HACKER
-        return {
-            level: LEVEL_HACKER,
-            err: "Cannot use ';' or '=' in your password."
-        }
+        return new Promise(resolve => {
+            resolve({
+                level: LEVEL_HACKER,
+                err: "Cannot use ';' or '=' in your password."
+            })
+        })
     }
     gServer = server
     gPass = pass

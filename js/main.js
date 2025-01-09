@@ -1,6 +1,6 @@
 const submitCredentials = () => {
-    let pass = document.getElementById('passwordInput')
-    let server = document.getElementById('serverInput')
+    let pass = document.getElementById('passwordInput').value
+    let server = document.getElementById('serverInput').value
     tryAuth(pass, server)
         .then(data => {
             document.getElementById('password-wrapper').classList.add("hidden")
