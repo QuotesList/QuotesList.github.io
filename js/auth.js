@@ -119,11 +119,11 @@ const deleteAuth = () => {
     gServer = ""
     gPass = ""
     gLevel = LEVEL_HACKER
+    deleteCookie()
 }
 
-
 const backToHome = () => {
-    if (STOP_REDIRECT !== undefined) {
+    if (typeof STOP_REDIRECT !== 'undefined') {
         window.location.href = "/"
     }
 }
