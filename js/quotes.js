@@ -27,11 +27,11 @@ const getQuotes = numQuotes => {
     return standardGET('quotes', `numQuotes=${numQuotes}`)
 }
 
-const getSearch = searchStr => {
-    if (typeof searchStr != 'string') {
-        searchStr = ""
+const getSearch = searchList => {
+    if (!Array.isArray(searchStr)) {
+        searchList = []
     }
-    searchStr = stripPunctuation(searchStr).trim()
+    let searchStr = searchList.join(',').replaceAll('?', '').replaceAll('&', '').trim()
     return standardGET('search', `str=${searchStr}`)
 }
 
