@@ -30,7 +30,7 @@ body {
     background-color: var(--light-yellow) !important;
     margin-bottom: 20px;
     font-size: 1.25rem !important;
-    &:hover {
+    &:hover:not(:disabled) {
         background-color: var(--gold) !important;
         color: var(--white) !important;
     }
