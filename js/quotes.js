@@ -28,7 +28,7 @@ const getQuotes = numQuotes => {
 }
 
 const getSearch = searchList => {
-    if (!Array.isArray(searchStr)) {
+    if (!Array.isArray(searchList)) {
         searchList = []
     }
     let searchStr = searchList.join(',').replaceAll('?', '').replaceAll('&', '').trim()
