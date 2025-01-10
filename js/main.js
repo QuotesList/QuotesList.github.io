@@ -24,6 +24,10 @@ const populatePage = level => {
 const submitCredentials = () => {
     let pass = document.getElementById('passwordInput').value
     let server = document.getElementById('serverInput').value
+    if (pass.trim().length < 1 || server.trim().length < 1) {
+        alert("Please provide a server URL and password!")
+        return
+    }
     tryAuth(pass, server)
         .then(data => {
             populatePage(data.level)
@@ -47,4 +51,10 @@ window.addEventListener('onload', () => {
 const onPermsLoaded = () => {
     populatePage(gLevel)
     setTimeout(() => populatePage(gLevel), 300)
+}
+
+const logOut = () => {
+    deleteAuth()
+    gLevel = 0
+    populatePage(gLevel)
 }
