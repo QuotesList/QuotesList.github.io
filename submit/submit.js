@@ -92,7 +92,7 @@ const submitForm = () => {
         return
     }
     let authors = suggestAuthors(isGroup, quote)
-    getSearch(authors)
+    getNameGuesses(authors)
         .then(suggestions => {
             console.log(suggestions) //
             alert(JSON.stringify(suggestions)) // TODO
