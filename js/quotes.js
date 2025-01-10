@@ -40,7 +40,7 @@ const getNameGuesses = searchList => {
         searchList = []
     }
     let searchStr = searchList.join(',').replaceAll('?', '').replaceAll('&', '').trim()
-    return standardGET('search', `str=${searchStr}`)
+    return standardGET('guess', `names=${searchStr}`)
 }
 
 const getGame = () => standardGET('game')
