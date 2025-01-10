@@ -80,7 +80,8 @@ const suggestAuthors = (isGroup, quote) => {
     }
 }
 
-const submitForm = () => {
+const submitParseForm = () => {
+    document.getElementById('parse-btn').disabled = true
     let quote = document.getElementById('qtext').value
     if (typeof quote != 'string' || quote.trim().length < 2) {
         alert('You must provide a quote!')
@@ -94,13 +95,10 @@ const submitForm = () => {
     let authors = suggestAuthors(isGroup, quote)
     getNameGuesses(authors)
         .then(suggestions => {
-            console.log(suggestions) //
-            alert(JSON.stringify(suggestions)) // TODO
+            console.log(suggestions) // TODO generate modal
         })
         .catch(err => {
             console.error('Could not get search results.', err)
             alert('Could not get speaker suggestions!')
         })
-
-    //     postQuote(quote, names)
 }
