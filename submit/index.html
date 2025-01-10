@@ -43,10 +43,18 @@
                     <label for="isGroup">Is Group?</label>
                     <br>
                     <div id="authorList"></div>
+                    <br>
+                    <div id="addPeoplePanel">
+                        <button type="button" class="btn people-search" id="searchPersonBtn" onclick="searchForPerson()">
+                            Search Person <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn people-add" id="addPersonBtn" onclick="addNewPerson()">
+                            New Person <i class="fa fa-add" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="submit-btn" onclick="submitQuoteForm()" disabled>Submit</button>
-                    <!--button type="button" class="btn btn-secondary" onclick="$('#submitModal').hide()">Close</button-->
                 </div>
             </div>
         </div>

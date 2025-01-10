@@ -97,7 +97,7 @@ const updateAuthorList = authorList => {
     authorList.forEach((author, idx) => {
         if (Array.isArray(author)) {
             author = author[0]
-            // TODO This means its a new author
+            // TODO This means its a new author. It will need some kind of symbol
         }
         authors += `<li class="clearfix"><span class="authorName">${author}&ensp;</span>`
         authors += `<div class="name-btn-div float-right"><button class="name-btn name-edit-btn" data-toggle="modal" dataTarget="#editModal${idx}"> \
@@ -111,10 +111,7 @@ const updateAuthorList = authorList => {
             <button type="button" class="btn btn-default float-right" id="edit${idx}" data-dismiss="modal" onclick="editName(this, ${author})">Save</button> \
             </div></div></div></div>\n`
     })
-    authors += '<li><input id="add-name"> \
-        <button class="name-btn name-input-btn float-right" id="add-name" data-toggle="modal" data-target="#addModal" onclick="openAddModal()"> \
-        <i class="fa fa-plus" aria-hidden="true"></i></button></li>\n'
-    // TODO: authors += (add modal)
+    authors += '</li>\n'
     document.getElementById('authorList').innerHTML = authors
 }
 
@@ -151,4 +148,13 @@ const submitQuoteForm = () => {
     document.getElementById('qtext').value = ""
     alert('Quote Submitted! (kind of)') // TODO
     document.getElementById('parse-btn').disabled = false
+}
+
+// TODO
+const searchForPerson = () => {
+    alert(1)
+}
+
+const addNewPerson = () => {
+    alert(2)
 }
