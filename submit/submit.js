@@ -103,7 +103,7 @@ const updateAuthorList = authorList => {
             // TODO This means its a new author. It will need some kind of symbol
         }
         authors += `<li class="clearfix"><span class="authorName">${author}&ensp;</span>`
-        authors += `<div class="name-btn-div float-right"><button class="name-btn name-edit-btn" data-toggle="modal" dataTarget="#editModal${idx}"> \
+        authors += `<div class="name-btn-div float-right"><button class="name-btn name-edit-btn" onclick="editName('${author}')"> \
             <i class="fa fa-pencil" aria-hidden="true"></i></button> \
             <button class="name-btn name-delete-btn" onclick="deleteName('${author}')"> \
             <i class="fa fa-trash" aria-hidden="true"></i></button></li></div>\n`
@@ -158,11 +158,34 @@ const searchForPerson = () => {
     let person = prompt('Enter search term:')
     getNameGuesses(person, true)
         .then(data => {
-
+            alert(JSON.stringify(data)) // TODO
         })
+}
+
+const deleteName = (name) => {
+    gAuthorList = gAuthorList.filter(x => {
+        let item = x
+        if (Array.isArray(x)) {
+            item = x[0]
+        }
+        return (item.trim() !== name.trim())
+    })
+    updateAuthorList(gAuthorList)
 }
 
 const addNewPerson = () => {
     let person = prompt('Enter person\'s name:')
     updateAuthorList([...gAuthorList, [person]])
+}
+
+const editName = (originalName) => {
+    let person = prompt('Enter updated name:', originalName)
+    updateAuthorList(gAuthorList.map(x => {
+        if (x.trim() === originalName.trim()) {
+            return person
+        }
+        else {
+            return x
+        }
+    }))
 }
