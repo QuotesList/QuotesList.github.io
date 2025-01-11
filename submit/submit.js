@@ -156,7 +156,7 @@ const submitQuoteForm = () => {
 // TODO
 const searchForPerson = () => {
     let person = prompt('Enter search term:')
-    getNameGuesses(person, true)
+    getNameGuesses([person], true)
         .then(data => {
             let el = document.getElementById('dropdown-options')
             el.innerHTML = ''
