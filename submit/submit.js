@@ -181,8 +181,12 @@ const addNewPerson = () => {
 const editName = (originalName) => {
     let person = prompt('Enter updated name:', originalName)
     updateAuthorList(gAuthorList.map(x => {
-        if (x.trim() === originalName.trim()) {
-            return person
+        let item = x
+        if (Array.isArray(x)) {
+            item = x[0]
+        }
+        if (item.trim() === originalName.trim()) {
+            return [person]
         }
         else {
             return x
