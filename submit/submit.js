@@ -158,13 +158,30 @@ const searchForPerson = () => {
     let person = prompt('Enter search term:')
     getNameGuesses([person], true)
         .then(data => {
-            let el = document.getElementById('dropdown-options')
+            document.getElementById('submit-btn').disabled = true
+            document.getElementById('searchPersonBtn').disabled = true
+            document.getElementById('addPersonBtn').disabled = true
+            let el = document.getElementById('searchOptions')
             el.innerHTML = ''
             data.allGuesses.forEach(x => {
-                el.innerHTML += `<a class="dropdown-item" href="#">${x}</a>`
+                el.innerHTML += `<option value="${x}">${x}</option>`
+                // el.innerHTML += `<a class="dropdown-item" href="#">${x}</a>`
             })
-            $('#searchModal').show()
+            el.value = data.best
+            document.getElementById('dropdownWrapper').classList.remove('hidden')
         })
+}
+
+const submitSearchResult = () => {
+    let person = document.getElementById('searchOptions').value
+    person = person.trim()
+    document.getElementById('dropdownWrapper').classList.add('hidden')
+    document.getElementById('submit-btn').disabled = false
+    document.getElementById('searchPersonBtn').disabled = false
+    document.getElementById('addPersonBtn').disabled = false
+    if (person.length > 0 && !gAuthorList.includes(person)) {
+        updateAuthorList([...gAuthorList, person])
+    }
 }
 
 const deleteName = (name) => {

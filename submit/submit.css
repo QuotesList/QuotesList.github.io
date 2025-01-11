@@ -1,3 +1,7 @@
 #submitModal * {
     color: black;
 }
+
+.hidden {
+    display: none;
+}

@@ -43,6 +43,10 @@
                     <label for="isGroup">Is Group?</label>
                     <br>
                     <div id="authorList"></div>
+                    <div id="dropdownWrapper" class="hidden">
+                        <select name="searchOptions" id="searchOptions"></select>
+                        <button type="button" class="btn" id="submitSearchResult" onclick="submitSearchResult()">Pick</button>
+                    </div>
                     <br>
                     <div id="addPeoplePanel">
                         <button type="button" class="btn people-search" id="searchPersonBtn" onclick="searchForPerson()">
@@ -55,35 +59,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="submit-btn" onclick="submitQuoteForm()" disabled>Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" tabindex="-1" role="dialog" id="searchModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Found Names</h5>
-                    <button type="button" class="close" data-dismiss="modal" arai-label="Close" onclick="$('#searchModal').hide()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <span>Pick result:</span>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-options">
-                            <!-- <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="search-submit-btn" onclick="submitSearchName()">Submit</button>
                 </div>
             </div>
         </div>
