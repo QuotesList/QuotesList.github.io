@@ -5,3 +5,7 @@
 .hidden {
     display: none;
 }
+
+.fa-user-plus {
+    color: grey !important;
+}

@@ -98,11 +98,15 @@ const updateAuthorList = authorList => {
     gAuthorList = JSON.parse(JSON.stringify(authorList))
     let authors = ''
     authorList.forEach((author, idx) => {
+        let isNew = false
         if (Array.isArray(author)) {
             author = author[0]
-            // TODO This means its a new author. It will need some kind of symbol
+            isNew = true
         }
         authors += `<li class="clearfix"><span class="authorName">${author}&ensp;</span>`
+        if (isNew) {
+            authors += '<i class="fa fa-user-plus" aria-hidden="true"></i>'
+        }
         authors += `<div class="name-btn-div float-right"><button class="name-btn name-edit-btn" onclick="editName('${author}')"> \
             <i class="fa fa-pencil" aria-hidden="true"></i></button> \
             <button class="name-btn name-delete-btn" onclick="deleteName('${author}')"> \
