@@ -76,7 +76,7 @@ const standardPOST = (endpoint, body, query) => {
 }
 
 const postQuote = (quote, authors) => {
-    standardPOST('quote', {quote, authors})
+    return standardPOST('quote', {quote, authors})
 }
 
 const postVote = (good, bad) => {

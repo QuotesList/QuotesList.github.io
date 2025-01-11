@@ -146,11 +146,31 @@ const submitParseForm = () => {
 }
 
 const submitQuoteForm = () => {
+    if (gAuthorList.length < 1) {
+        alert('At least one speaker is required!')
+        return
+    }
     document.getElementById('submit-btn').disabled = true
-    $('#submitModal').hide()
-    document.getElementById('qtext').value = ""
-    alert('Quote Submitted! (kind of)') // TODO
-    document.getElementById('parse-btn').disabled = false
+    let authorList = JSON.parse(JSON.stringify(gAuthorList));
+    authorList = authorList.map(x => {
+        if (Array.isArray(x)) {
+            return x[0]
+        }
+        return x
+    })
+    let qEl = document.getElementById('qtext')
+    postQuote(qEl.value, authorList)
+        .then(() => {
+            $('#submitModal').hide()
+            qEl.value = ""
+            alert('Quote Submitted!')
+            document.getElementById('parse-btn').disabled = false
+        })
+        .catch(err => {
+            alert('Failed to submit quote!')
+            console.error('Submission failed!', err)
+            document.getElementById('submit-btn').disabled = false
+        })
 }
 
 // TODO
@@ -165,7 +185,6 @@ const searchForPerson = () => {
             el.innerHTML = ''
             data.allGuesses.forEach(x => {
                 el.innerHTML += `<option value="${x}">${x}</option>`
-                // el.innerHTML += `<a class="dropdown-item" href="#">${x}</a>`
             })
             el.value = data.best
             document.getElementById('dropdownWrapper').classList.remove('hidden')
