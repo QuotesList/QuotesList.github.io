@@ -158,7 +158,12 @@ const searchForPerson = () => {
     let person = prompt('Enter search term:')
     getNameGuesses(person, true)
         .then(data => {
-            alert(JSON.stringify(data)) // TODO
+            let el = document.getElementById('dropdown-options')
+            el.innerHTML = ''
+            data.allGuesses.forEach(x => {
+                el.innerHTML += `<a class="dropdown-item" href="#">${x}</a>`
+            })
+            $('#searchModal').show()
         })
 }
 
