@@ -35,12 +35,16 @@ const getSearch = searchStr => {
     return standardGET('search', `str=${searchStr}`)
 }
 
-const getNameGuesses = searchList => {
+const getNameGuesses = (searchList, verbose) => {
     if (!Array.isArray(searchList)) {
         searchList = []
     }
     let searchStr = searchList.join(',').replaceAll('?', '').replaceAll('&', '').trim()
-    return standardGET('guess', `names=${searchStr}`)
+    if (verbose) {
+        return standardGET('guess', `names=${searchStr}&verbose=true`)
+    } else {
+        return standardGET('guess', `names=${searchStr}`)
+    }
 }
 
 const getGame = () => standardGET('game')

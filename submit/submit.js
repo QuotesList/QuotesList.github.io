@@ -1,3 +1,5 @@
+var gAuthorList = []
+
 const isCharacter = (char, charList) => {
     if (typeof char != 'string') return false
     if (char.length < 1) return false
@@ -93,6 +95,7 @@ const updateAuthorList = authorList => {
     if (!Array.isArray(authorList)) {
         return
     }
+    gAuthorList = JSON.parse(JSON.stringify(authorList))
     let authors = ''
     authorList.forEach((author, idx) => {
         if (Array.isArray(author)) {
@@ -152,9 +155,14 @@ const submitQuoteForm = () => {
 
 // TODO
 const searchForPerson = () => {
-    alert(1)
+    let person = prompt('Enter search term:')
+    getNameGuesses(person, true)
+        .then(data => {
+
+        })
 }
 
 const addNewPerson = () => {
-    alert(2)
+    let person = prompt('Enter person\'s name:')
+    updateAuthorList([...gAuthorList, [person]])
 }
