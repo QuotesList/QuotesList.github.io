@@ -1,85 +1,31 @@
+var gQuoteList = []
 var gAuthorList = []
 
-const isCharacter = (char, charList) => {
-    if (typeof char != 'string') return false
-    if (char.length < 1) return false
-    if (char.length > 1) {
-        char = char.charAt(0)
-    }
-    if (typeof charList != 'string' && !Array.isArray(charList)) {
-        return false
-    }
-    if (!Array.isArray(charList)) {
-        charList = [charList]
-    }
-    return charList.includes(char)
-}
+getSearch("")
+    .then(data => {
+        gQuoteList = JSON.parse(JSON.stringify(data.quotes))
+        gQuoteList.sort((a, b) => (b.id - a.id))
+        let list = ''
+        gQuoteList.forEach(quote => {
+            list += `<div class="quote"><span class="quote">${escapeText(quote.quote).replaceAll('\n', '<br>')}</span> \
+                    <button type="button" class="btn editBtn" onclick="editClicked(${quote.id})"> \
+                    <i class="fa fa-pencil" aria-hidden="true"></i></button></div><br>\n`
+        })
+        document.getElementById('quoteList').innerHTML = list
+    })
+    .catch(err => {
+        alert('Could not load quotes!')
+        console.error('Error loading quote list', err)
+    })
 
-const isQuote = char => {
-    return isCharacter(char, '"')
-}
-
-const isHypen = char => {
-    return isCharacter(char, ['-', '~'])
-}
-
-const isColon = char => {
-    return isCharacter(char, ':')
-}
-
-const isGroupQuote = quote => {
-    if (typeof quote != 'string' || quote.trim().length < 3) {
+const editClicked = (id) => {
+    let quote = gQuoteList.find(x => x.id === id)
+    if (quote === undefined) {
+        console.error(`Could not find quote "${id}"`)
         return
     }
-    for (let i = quote.length - 2; i > 0; i--) {
-        let char = quote.charAt(i)
-        if (isHypen(char)) {
-            return false
-        }
-        else if (isQuote(char) || isColon(char)) {
-            break
-        }
-    }
-    for (let i = 0; i < (quote.length - 1); i++) {
-        let char = quote.charAt(i)
-        if (isQuote(char)) {
-            return false
-        }
-        else if (isColon(char)) {
-            return true
-        }
-    }
-    return false
-}
-
-const suggestAuthors = (isGroup, quote) => {
-    if (isGroup) {
-        let authorMap = {}
-        let lines = quote.replaceAll(',', '').split('\n')
-        lines.forEach(line => {
-            if (line.includes(':')) {
-                let author = line.split(':')[0].trim()
-                if (authorMap[author.toLowerCase()] === undefined) {
-                    authorMap[author.toLowerCase()] = author
-                }
-            }
-        })
-        return Object.values(authorMap)
-    }
-    else {
-        let delim = '~'
-        if (!quote.includes(delim)) {
-            delim = '-'
-            if (!quote.includes(delim)) {
-                return []
-            }
-        }
-        let pieces = quote.split(delim)
-        if (pieces.length < 2) {
-            return []
-        }
-        return [pieces.pop()]
-    }
+    document.getElementById('qtext').value = quote.quote
+    $('#editModal').show()
 }
 
 const updateAuthorList = authorList => {
@@ -111,33 +57,6 @@ const updateAuthorList = authorList => {
     })
     authors += '</li>\n'
     document.getElementById('authorList').innerHTML = authors
-}
-
-const submitParseForm = () => {
-    document.getElementById('parse-btn').disabled = true
-    let quote = document.getElementById('qtext').value
-    if (typeof quote != 'string' || quote.trim().length < 2) {
-        alert('You must provide a quote!')
-        return
-    }
-    let isGroup = isGroupQuote(quote)
-    if (typeof isGroup != 'boolean') {
-        alert('Could not read quote!')
-        return
-    }
-    let authors = suggestAuthors(isGroup, quote)
-    getNameGuesses(authors)
-        .then(suggestions => {
-            document.getElementById('submit-btn').disabled = false
-            document.getElementById('quoteToSubmit').innerHTML = escapeText(quote).replaceAll('\n', '<br>')
-            document.getElementById('isGroupCheckbox').checked = isGroup
-            updateAuthorList(Object.values(suggestions))
-            $('#submitModal').show()
-        })
-        .catch(err => {
-            console.error('Could not get search results.', err)
-            alert('Could not get speaker suggestions!')
-        })
 }
 
 const submitQuoteForm = () => {

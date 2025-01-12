@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotes List</title>
     <link rel="stylesheet" type="text/css" href="../css/site.css">
-    <link rel="stylesheet" type="text/css" href="./submit.css">
+    <link rel="stylesheet" type="text/css" href="./edit.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
     <title>Quotes List</title>
     <script src="../js/utils.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/quotes.js"></script>
-    <script src="./submit.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
 </head>
@@ -19,27 +17,21 @@
     <div class="row header justify-content-center">
         <h1 class="title">Quotes Lists</h1>
     </div>
-    <div id="content" class="row justify-content-center h-100">
-        <div class="col-10 col-lg-8 text-center main-content">
-            <form id="quoteForm">
-                <span>Enter Quote</span><br>
-                <textarea id="qtext" class="col-lg-12 col-12" rows="5"></textarea><br>
-                <button class="btn" type="button" id="parse-btn" onclick="submitParseForm()">Parse</button>
-            </form>
-        </div>
+    <div class="listWrapper">
+        <div id="quoteList"></div>
     </div>
-    
-    <div class="modal" tabindex="-1" role="dialog" id="submitModal">
+
+    <div class="modal" tabindex="-1" role="dialog" id="editModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Submit Quote</h5>
+                    <h5 class="modal-title">Edit Quote</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#submitModal').hide()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="quoteToSubmit"></div>
+                    <textarea id="qtext" class="col-lg-12 col-12" rows="3"></textarea><br>
                     <input type="checkbox" id="isGroupCheckbox" name="isGroup" />
                     <label for="isGroup">Is Group?</label>
                     <br>
@@ -65,6 +57,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" href="../js/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="./edit.js"></script>
 </body>
 </html>
