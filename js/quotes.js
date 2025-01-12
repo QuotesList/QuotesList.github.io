@@ -21,7 +21,7 @@ const stripPunctuation = str => {
 }
 
 const getQuotes = numQuotes => {
-    if (typeof numQuotes == "number") {
+    if (typeof numQuotes != "number") {
         numQuotes = 1
     }
     return standardGET('quotes', `numQuotes=${numQuotes}`)

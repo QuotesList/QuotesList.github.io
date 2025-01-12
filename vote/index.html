@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../js/utils.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/quotes.js"></script>
     <script src="./vote.js"></script>
@@ -20,11 +21,13 @@
     <div class="col-8 col-lg-8 offset-2 justify-content-center" id="content">
         <div class="quote-card mt-4">
             <span id="quote-card-1">Quote 1</span>
-            <button type="button" onclick="vote(1)">Vote</button>
+            <br>
+            <button type="button" class="voteButton" onclick="vote(1)" disabled>Vote</button>
         </div><br>
         <div class="quote-card mt-4">
             <span id="quote-card-2">Quote 2</span>
-            <button type="button" onclick="vote(2)">Vote</button>
+            <br>
+            <button type="button" class="voteButton" onclick="vote(2)" disabled>Vote</button>
         </div>
     </div>
     <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
