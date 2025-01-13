@@ -13,3 +13,11 @@ var escapeText = function escape (htmlStr) {
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#39;");        
 }
+
+const getRandomInt = (max) => {
+    return Math.floor(Math.random() * max);
+}
+
+const copyObject = (obj) => {
+    return JSON.parse(JSON.stringify(obj))
+}
