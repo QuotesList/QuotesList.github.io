@@ -3,7 +3,7 @@ var gAuthorList = []
 
 getSearch("")
     .then(data => {
-        gQuoteList = JSON.parse(JSON.stringify(data.quotes))
+        gQuoteList = copyObject(data.quotes)
         gQuoteList.sort((a, b) => (b.id - a.id))
         let list = ''
         gQuoteList.forEach(quote => {
@@ -28,11 +28,11 @@ const editClicked = (id) => {
     $('#editModal').show()
 }
 
-const updateAuthorList = authorList => {
+const updateAuthorList = (authorList) => {
     if (!Array.isArray(authorList)) {
         return
     }
-    gAuthorList = JSON.parse(JSON.stringify(authorList))
+    gAuthorList = copyObject(authorList)
     let authors = ''
     authorList.forEach((author, idx) => {
         let isNew = false
@@ -65,7 +65,7 @@ const submitQuoteForm = () => {
         return
     }
     document.getElementById('submit-btn').disabled = true
-    let authorList = JSON.parse(JSON.stringify(gAuthorList));
+    let authorList = copyObject(gAuthorList)
     authorList = authorList.map(x => {
         if (Array.isArray(x)) {
             return x[0]

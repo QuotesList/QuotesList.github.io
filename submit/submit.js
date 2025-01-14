@@ -86,7 +86,7 @@ const updateAuthorList = authorList => {
     if (!Array.isArray(authorList)) {
         return
     }
-    gAuthorList = JSON.parse(JSON.stringify(authorList))
+    gAuthorList = copyObject(authorList)
     let authors = ''
     authorList.forEach((author, idx) => {
         let isNew = false
@@ -146,7 +146,7 @@ const submitQuoteForm = () => {
         return
     }
     document.getElementById('submit-btn').disabled = true
-    let authorList = JSON.parse(JSON.stringify(gAuthorList));
+    let authorList = copyObject(gAuthorList)
     authorList = authorList.map(x => {
         if (Array.isArray(x)) {
             return x[0]
