@@ -133,7 +133,8 @@ const backToHome = () => {
 }
 
 const requiresHigherAuth = () => {
-    return window.location.href.toLowerCase().includes('submit')
+    let pages = ['submit', 'edit'].filter(x => window.location.href.toLowerCase().includes(x.toLowerCase()))
+    return (pages.length > 0)
 }
 
 let initAuth = decodeCookie()
