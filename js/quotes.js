@@ -50,6 +50,7 @@ const getNameGuesses = (searchList, verbose) => {
 const getGame = () => standardGET('game')
 const getLeaderboard = () => standardGET('leaderboard')
 const getAttributions = () => standardGET('attributions')
+const getAllQuotes = () => standardGET('all')
 
 const standardPOST = (endpoint, body, query) => {
     if (query === undefined || typeof query != "string") {
