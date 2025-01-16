@@ -13,7 +13,10 @@ const navItems = [
 /* Make Nav Bar */
 if (isDesktop()) { // TODO Something more robust than this, obviously
     const navBar = document.createElement('nav')
-    navBar.className = 'header text-center justify-content-center'
+    navBar.className = 'header text-center justify-content-center onload-needs-auth'
+    if (navItems.map(x => x.href.slice(1)).filter(x => window.location.href.toLowerCase().includes(x)).length < 1) {
+        navBar.classList.add('hidden')
+    }
     let navButtons = navItems.map(x => `<button type="button" onclick="window.location.href='${x.href}'"${
         x.requiresPriveleges? ' class="hidden"' : ''}>${x.text}</button>`).join('\n')
     navBar.innerHTML = `${navButtons}\n<button type="button" onclick="logOut()">Log Out</button>\n`
