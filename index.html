@@ -6,11 +6,27 @@
     <title>Quotes List</title>
     <link rel="stylesheet" type="text/css" href="./css/site.css">
     <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.css">
+    <script src="./js/lib/jquery.min.js"></script>
     <script>
         const STOP_REDIRECT = true
+
+        const submitCredentials = () => {
+            let pass = document.getElementById('passwordInput').value
+            let server = document.getElementById('serverInput').value
+            if (pass.trim().length < 1 || server.trim().length < 1) {
+                alert("Please provide a server URL and password!")
+                return
+            }
+            tryAuth(pass, server)
+                .then(data => {
+                    onLoaded(data.level)
+                })
+                .catch(err => {
+                    console.error(err)
+                    alert(err.err)
+                })
+        }
     </script>
-    <script src="./js/lib/jquery.min.js"></script>
-    <script src="./js/home.js"></script>
     <script src="./js/auth.js"></script>
     <script src="./js/quotes.js"></script>
     <script src="./js/utils.js"></script>
