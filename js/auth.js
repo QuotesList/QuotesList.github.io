@@ -166,6 +166,9 @@ if (initAuth === undefined || initAuth.pass === undefined || initAuth.server ===
     console.log('No cookie data!')
     backToHome()
     onLoaded(gLevel)
+    setTimeout(() => {
+        onLoaded(gLevel)
+    }, 100)
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
