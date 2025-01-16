@@ -1,25 +1,26 @@
-const populatePage = level => {
-    if (level === undefined) {
-        level = gLevel
-    }
-    if (level <= 0 || level >= 3) {
-        document.getElementById('password-wrapper').classList.remove("hidden")
-        document.getElementById('general-buttons').classList.add("hidden")
-        document.getElementById('admin-buttons').classList.add('hidden')
-    }
-    else {
-        document.getElementById('passwordInput').value = ""
-        document.getElementById('serverInput').value = ""
-        document.getElementById('password-wrapper').classList.add("hidden")
-        document.getElementById('general-buttons').classList.remove("hidden")
-        if (level > 1) {
-            document.getElementById('admin-buttons').classList.remove('hidden')
-        }
-        else {
-            document.getElementById('admin-buttons').classList.add('hidden')
-        }
-    }
-}
+// const populatePage = level => {
+//     if (level === undefined) {
+//         level = gLevel
+//     }
+//     if (level <= 0 || level >= 3) {
+//         document.getElementById('password-wrapper').classList.remove("hidden")
+//         document.getElementById('general-buttons').classList.add("hidden")
+//         document.getElementById('admin-buttons').classList.add('hidden')
+//     }
+//     else {
+//         document.getElementById('passwordInput').value = ""
+//         document.getElementById('serverInput').value = ""
+//         document.getElementById('password-wrapper').classList.add("hidden")
+//         document.getElementById('general-buttons').classList.remove("hidden")
+//         if (level > 1) {
+//             document.getElementById('admin-buttons').classList.remove('hidden')
+//         }
+//         else {
+//             document.getElementById('admin-buttons').classList.add('hidden')
+//         }
+//     }
+//     onLoaded(level)
+// }
 
 const submitCredentials = () => {
     let pass = document.getElementById('passwordInput').value
@@ -30,7 +31,7 @@ const submitCredentials = () => {
     }
     tryAuth(pass, server)
         .then(data => {
-            populatePage(data.level)
+            // populatePage(data.level)
         })
         .catch(err => {
             console.error(err)
