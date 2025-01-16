@@ -43,5 +43,7 @@ const logOut = () => {
     gLevel = 0
     if (typeof populatePage !== 'undefined') {
         populatePage(gLevel)
+    } else {
+        window.location.href = '/'
     }
 }
