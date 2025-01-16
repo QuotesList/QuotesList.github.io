@@ -138,6 +138,9 @@ const requiresHigherAuth = () => {
 }
 
 const onLoaded = (level) => {
+    if (level === undefined) {
+        level = gLevel
+    }
     Array.from(document.getElementsByClassName('onload-no-auth')).forEach(el => {
         if (level <= LEVEL_HACKER) {
             el.classList.remove('hidden')
