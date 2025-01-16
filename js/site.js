@@ -1,7 +1,7 @@
 /* Make Nav Bar */
 const navBar = document.createElement('div')
 navBar.className = 'row header justify-content-center'
-navBar.innerHTML = '<h1 class="title">Quotes Lists</h1>'
+navBar.innerHTML = '<h1 class="title"><a href="/">Quotes Lists</a></h1>'
 document.body.insertBefore(navBar, document.body.firstChild)
 /* Add Standard Bootstrap to Main Content (if blank) */
 var content = document.getElementById('content')

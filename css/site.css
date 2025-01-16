@@ -43,3 +43,8 @@ hr {
 .hidden {
     display: none;
 }
+
+h1 > a { 
+    color: inherit !important;
+    text-decoration: inherit !important;
+}
