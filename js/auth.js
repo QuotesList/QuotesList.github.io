@@ -137,13 +137,35 @@ const requiresHigherAuth = () => {
     return (pages.length > 0)
 }
 
+const onLoaded = (level) => {
+    Array.from(document.getElementsByClassName('onload-no-auth')).forEach(el => {
+        if (level <= LEVEL_HACKER) {
+            el.classList.remove('hidden')
+        } else if (!Array.from(el.classList).includes('hidden')) {
+            el.classList.add('hidden')
+        }
+    })
+    Array.from(document.getElementsByClassName('onload-needs-auth')).forEach(el => {
+        if (level === LEVEL_GENERAL || level === LEVEL_ADMIN) {
+            el.classList.remove('hidden')
+        } else if (!Array.from(el.classList).includes('hidden')) {
+            el.classList.add('hidden')
+        }
+    })
+    Array.from(document.getElementsByClassName('onload-needs-admin')).forEach(el => {
+        if (level === LEVEL_ADMIN) {
+            el.classList.remove('hidden')
+        } else if (!Array.from(el.classList).includes('hidden')) {
+            el.classList.add('hidden')
+        }
+    })
+}
+
 let initAuth = decodeCookie()
 if (initAuth === undefined || initAuth.pass === undefined || initAuth.server === undefined) {
     console.log('No cookie data!')
     backToHome()
-    if (typeof onPermsLoad === 'function') {
-        onPermsLoaded(data.level)
-    }
+    onLoaded(data.level)
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
@@ -156,8 +178,8 @@ else {
                 else if (requiresHigherAuth() && data.level !== LEVEL_ADMIN) {
                     backToHome()
                 }
-                else if (typeof onPermsLoad === 'function') {
-                    onPermsLoaded(data.level)
+                else {
+                    onLoaded(data.level)
                 }
             }
         })
