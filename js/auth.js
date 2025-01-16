@@ -165,7 +165,7 @@ let initAuth = decodeCookie()
 if (initAuth === undefined || initAuth.pass === undefined || initAuth.server === undefined) {
     console.log('No cookie data!')
     backToHome()
-    onLoaded(data.level)
+    onLoaded(gLevel)
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
