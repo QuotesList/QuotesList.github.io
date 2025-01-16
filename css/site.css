@@ -5,7 +5,7 @@
     --light-yellow: #E2912F;
     --gold: #B26720;
     --light-pink: #D65F6B;
-    --pink: #AA3A45;
+    --dark-pink: #AA3A45;
     --black: #1B1B1b;
 }
 
@@ -24,6 +24,19 @@ body {
 
 .header {
     background-color: var(--light-pink);
+}
+
+nav {
+    button {
+        color: var(--dark-blue);
+        background-color: var(--light-pink);
+        border: none;
+        &:hover {
+            color: var(--white);
+            background-color: var(--dark-pink);
+            transition: 0.35s;
+        }
+    }
 }
 
 .btn {
