@@ -37,9 +37,3 @@ const submitCredentials = () => {
             alert(err.err)
         })
 }
-
-const logOut = () => {
-    deleteAuth()
-    gLevel = 0
-    populatePage(gLevel)
-}

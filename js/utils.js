@@ -37,3 +37,11 @@ var isMobile = function () {
 var isDesktop = function () {
     return !isTablet() && !isMobile();
 }
+
+const logOut = () => {
+    deleteAuth()
+    gLevel = 0
+    if (typeof populatePage !== 'undefined') {
+        populatePage(gLevel)
+    }
+}
