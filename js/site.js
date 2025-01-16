@@ -44,7 +44,7 @@ const setPriveligedNavItemsShown = (shown) => {
         if (privelegedButtons.includes(btn.innerHTML.trim())) {
             if (shown) {
                 btn.classList.remove('hidden')
-            } else if (!btn.classList.includes('hidden')) {
+            } else if (!Array.from(btn.classList).includes('hidden')) {
                 btn.classList.add('hidden')
             }
         }

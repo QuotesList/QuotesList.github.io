@@ -38,21 +38,6 @@ const submitCredentials = () => {
         })
 }
 
-window.addEventListener('load', () => {
-    onPermsLoaded()
-    setTimeout(() => populatePage(gLevel), 500)
-}, false)
-
-window.addEventListener('onload', () => {
-    onPermsLoaded()
-    setTimeout(() => populatePage(gLevel), 500)
-})
-
-const onPermsLoaded = () => {
-    populatePage(gLevel)
-    setTimeout(() => populatePage(gLevel), 300)
-}
-
 const logOut = () => {
     deleteAuth()
     gLevel = 0

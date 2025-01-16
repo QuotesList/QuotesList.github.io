@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.css">
     <script>
         const STOP_REDIRECT = true
+        const HAS_LOAD_CALLBACK = true
     </script>
     <script src="./js/lib/jquery.min.js"></script>
     <script src="./js/home.js"></script>
@@ -17,12 +18,12 @@
 </head>
 <body>
     <div id="content">
-        <div id="password-wrapper" class="hidden">
+        <div id="password-wrapper" class="hidden onload-no-auth">
             <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br>
             <input id="passwordInput" name="passwordInput" type="password" placeholder="Enter Password..." onkeypress="return keyWrapper(event, submitCredentials)"><br>
             <button type="button" id="submitPass" onclick="submitCredentials()">Submit</button>
         </div>
-        <div id="general-buttons" class="hidden">
+        <div id="general-buttons" class="hidden onload-needs-auth">
             <button type="button" id="allBtn" onclick="window.location.href='/all'">All Quotes</button><br>
             <button type="button" id="leaderboardBtn" onclick="window.location.href='/leaderboard'">Leaderboard</button><br>
             <button type="button" id="gameBtn" onclick="window.location.href='/game'">Game</button><br>
