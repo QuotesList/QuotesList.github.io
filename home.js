@@ -19,7 +19,7 @@ const onLoadCallback = (level) => {
     if (level === 0) {
         return
     }
-    if ((isDesktop() || isTablet()) && WordCloud.isSupported) {
+    if (isDesktop() && WordCloud.isSupported) {
         let list = []
         const randomWeight = (min, max) => {
             return Math.floor(Math.random() * (35-10+1)) + 10;
@@ -49,12 +49,8 @@ const onLoadCallback = (level) => {
             })
         })
     }
-    else if (isMobile() || !WordCloud.isSupported) {
-        document.getElementById('general-buttons').classList.remove('hidden')
-    }
     else {
         document.getElementById('general-buttons').classList.remove('hidden')
-        console.error('Unknown user agent?', getUserAgent())
     }
 }
 
