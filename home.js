@@ -22,22 +22,30 @@ const onLoadCallback = (level) => {
     if ((isDesktop() || isTablet()) && WordCloud.isSupported) {
         let list = []
         const randomWeight = (min, max) => {
-            return Math.floor(Math.random() * (30-10+1)) + 10;
+            return Math.floor(Math.random() * (35-10+1)) + 10;
         }
         getAllQuotes().then(data => {
             data.quotes.forEach(quote => {
                 if (!quote.isGroup && !quote.quote.trim().includes('\n')) {
-                    console.log(quote.quote)
-                    list.push([quote.quote.trim(), randomWeight()])
+                    let text = quote.quote
+                    if (text.includes('~')) {
+                        text = text.slice(0, text.indexOf('~'))
+                    } else if (text.includes('-')) {
+                        text = text.slice(0, text.indexOf('-'))
+                    }
+                    list.push([text.trim(), randomWeight(), quote])
                 }
             })
             shuffleArray(list)
-            console.log(list)
             WordCloud(document.getElementById('quoteCanvas'), {
                 list,
                 shuffle: true,
-                minRotation: -20,
-                maxRotation: 20
+                minRotation: -1,
+                maxRotation: 1,
+                rotateRatio: 0.6,
+                click: (item, dim, evt) => {
+                    alert(`${item[0]}\nSpeaker: ${item[2].authors}\nQuote ${item[2].id} / ${data.numQuotes}`)
+                }
             })
         })
     }
