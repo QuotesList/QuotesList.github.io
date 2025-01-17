@@ -47,3 +47,10 @@ const logOut = () => {
         window.location.href = '/'
     }
 }
+
+const randomArrayItem = (arr) => {
+    if (arr === undefined || !Array.isArray(arr) || arr.length <= 1) {
+        return
+    }
+    return arr[Math.floor(Math.random() * arr.length)]
+}
