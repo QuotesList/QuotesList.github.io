@@ -1,0 +1,26 @@
+div#quoteCanvas {
+    height: 110vh !important;
+    width: 110vw !important;
+    background: #0000 !important;
+    position: absolute;
+    margin-left: -5vw;
+}
+
+div#quoteCanvas span {
+    cursor: default;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+body {
+    overflow-x: hidden;
+}
+
+body:not(.is-mobile) {
+    overflow-y: hidden;
+}

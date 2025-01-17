@@ -162,6 +162,9 @@ const onLoaded = (level) => {
             el.classList.add('hidden')
         }
     })
+    if (typeof onLoadCallback == 'function') {
+        onLoadCallback(level)
+    }
 }
 
 let initAuth = decodeCookie()
