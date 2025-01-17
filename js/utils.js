@@ -54,3 +54,15 @@ const randomArrayItem = (arr) => {
     }
     return arr[Math.floor(Math.random() * arr.length)]
 }
+
+const shuffleArray = (arr) => {
+    if (!Array.isArray(arr) || arr.length < 2) {
+        return
+    }
+    let currentIndex = arr.length
+    while (currentIndex != 0) {
+        let randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex--
+        [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]]
+    }
+}
