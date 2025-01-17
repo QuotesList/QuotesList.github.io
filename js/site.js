@@ -1,12 +1,12 @@
 /* Nav Bar Constants */
 const navItems = [
     { href: "/all", text: 'All Quotes' },
-    { href: "/leaderboard", text: 'Leaderboard' },
-    { href: "/game", text: 'Game' },
     { href: "/random", text: 'Random Quote' },
-    { href: "/analytics", text: 'Fun Charts' },
     { href: "/search", text: 'Search' },
     { href: "/vote", text: 'Vote' },
+    { href: "/game", text: 'Game' },
+    { href: "/leaderboard", text: 'Leaderboard' },
+    { href: "/analytics", text: 'Fun Charts' },
     { href: '/submit', text: 'Submit New Quote', requiresPriveleges: true },
     { href: '/edit', text: 'Edit Quotes', requiresPriveleges: true }
 ]
