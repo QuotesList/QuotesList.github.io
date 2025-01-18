@@ -2,40 +2,16 @@ var gId1 = -1
 var gId2 = -1
 
 const filterHighQuotes = (quotes) => {
-    let quotesCopy = copyObject(quotes)
-    quotes = copyObject(quotes)
+    if (quotes.length < 30) {
+        return quotes
+    }
     const total = (quote) => {
         return (quote.adminYesCount + quote.adminNoCount + quote.generalYesCount + quote.generalNoCount)
     }
-    let goodCount = 0
-    let numAtMin = 0
-    let min = total(quotes[0])
-    quotes.forEach(quote => {
-        let count = total(quote)
-        if (count < min) {
-            goodCount = numAtMin + 1
-            numAtMin = 1
-            min = total(quote)
-        }
-        else if (count == min) {
-            numAtMin += 1
-            goodCount += 1
-        }
-        else if (count < (min + 2)) {
-            goodCount += 1
-        }
+    quotes = copyObject(quotes).sort((a, b) => {
+        return (total(a) - total(b))
     })
-    if (numAtMin > 20) {
-        return quotes.filter(x => total(x) === min)
-    }
-    else if (goodCount > 10) {
-        return quotes.filter(x => total(x) < (min + 2))
-    }
-    else if (quotes.length > 10) {
-        return quotes
-    } else {
-        return quotesCopy
-    }
+    return quotes.slice(0, Math.ceil(quotes.length / 10))
 }
 
 const setUpVote = () => {
@@ -45,7 +21,7 @@ const setUpVote = () => {
                 alert('Could not find enough quotes!')
                 return
             }
-            let quotes = copyObject(data.quotes) // TODO fix filterHighQuotes(data.quotes)
+            let quotes = filterHighQuotes(data.quotes)
             if (quotes === undefined || quotes.length < 3) {
                 alert('Error reading quote data!')
                 return
