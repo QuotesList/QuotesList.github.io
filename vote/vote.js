@@ -1,18 +1,67 @@
 var gId1 = -1
 var gId2 = -1
 
+const filterHighQuotes = (quotes) => {
+    quotes = copyObject(quotes)
+    const total = (quote) => {
+        return (quote.adminYesCount + quote.adminNoCount + quote.generalYesCount + quote.generalNoCount)
+    }
+    let goodCount = 0
+    let numAtMin = 0
+    let min = total(quotes[0])
+    quotes.forEach(quote => {
+        let count = total(quote)
+        if (count < min) {
+            goodCount = numAtMin + 1
+            numAtMin = 1
+            min = total(quote)
+        }
+        else if (count == min) {
+            numAtMin += 1
+            goodCount += 1
+        }
+        else if (count < (min + 2)) {
+            goodCount += 1
+        }
+    })
+    if (numAtMin > 20) {
+        return quotes.filter(x => total(x) === min)
+    }
+    else if (goodCount > 10) {
+        return quotes.filter(x => total(x) < (min + 2))
+    }
+    else {
+        return quotes
+    }
+}
+
 const setUpVote = () => {
-    getQuotes(2)
+    getAllQuotes()
         .then(data => {
-            if (data.numQuotes !== 2 || !Array.isArray(data.quotes)) {
-                alert('Could not get valid quotes!')
+            if (data.numQuotes < 3) {
+                alert('Could not find enough quotes!')
                 return
             }
-            gId1 = data.quotes[0].id
-            gId2 = data.quotes[1].id
-            document.getElementById('quote-card-1').innerHTML = escapeText(data.quotes[0].quote).replaceAll('\n', '<br>')
-            document.getElementById('quote-card-2').innerHTML = escapeText(data.quotes[1].quote).replaceAll('\n', '<br>')
-            Array.from(document.getElementsByClassName('voteButton')).forEach(x => {
+            let quotes = filterHighQuotes(data.quotes)
+            if (quotes === undefined || quotes.length < 3) {
+                alert('Error reading quote data!')
+                return
+            }
+            let quote1 = randomArrayItem(quotes)
+            let quote2 = randomArrayItem(quotes)
+            let count = 0
+            while (quote2.id === quote1.id) {
+                quote2 = randomArrayItem(quotes)
+                if ((++count) > 1000) {
+                    alert('Error. Infinite loop detected!')
+                    return
+                }
+            }
+            gId1 = quote1.id
+            gId2 = quote2.id
+            document.getElementById('quote-card-1').innerHTML = escapeText(quote1.quote).replaceAll('\n', '<br>')
+            document.getElementById('quote-card-2').innerHTML = escapeText(quote2.quote).replaceAll('\n', '<br>')
+            Array.from(document.getElementsByClassName(('voteButton'))).forEach(x => {
                 x.disabled = false
             })
         })
