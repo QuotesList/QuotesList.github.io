@@ -21,7 +21,7 @@ const onLoadCallback = (level) => {
     }
     if (isDesktop() && WordCloud.isSupported) {
         let list = []
-        const randomWeight = (min, max) => {
+        const randomWeight = () => {
             return Math.floor(Math.random() * (35-10+1)) + 10;
         }
         getAllQuotes().then(data => {
