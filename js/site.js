@@ -18,7 +18,7 @@ if (isDesktop()) { // TODO Something more robust than this, obviously
         navBar.classList.add('hidden')
     }
     let navButtons = navItems.map(x => `<button type="button" onclick="window.location.href='${x.href}'"${
-        x.requiresPriveleges? ' class="hidden"' : ''}>${x.text}</button>`).join('\n')
+        x.requiresPriveleges? ' class="hidden onload-needs-admin"' : ''}>${x.text}</button>`).join('\n')
     navBar.innerHTML = `${navButtons}\n<button type="button" onclick="logOut()">Log Out</button>\n`
     document.body.insertBefore(navBar, document.body.firstChild)
 }
