@@ -45,7 +45,7 @@ const setUpVote = () => {
                 alert('Could not find enough quotes!')
                 return
             }
-            let quotes = coppyObject(quotes) // TODO fix filterHighQuotes(data.quotes)
+            let quotes = coppyObject(data.quotes) // TODO fix filterHighQuotes(data.quotes)
             if (quotes === undefined || quotes.length < 3) {
                 alert('Error reading quote data!')
                 return
