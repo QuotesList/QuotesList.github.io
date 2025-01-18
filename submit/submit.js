@@ -118,11 +118,13 @@ const submitParseForm = () => {
     let quote = document.getElementById('qtext').value
     if (typeof quote != 'string' || quote.trim().length < 2) {
         alert('You must provide a quote!')
+        document.getElementById('parse-btn').disabled = false
         return
     }
     let isGroup = isGroupQuote(quote)
     if (typeof isGroup != 'boolean') {
         alert('Could not read quote!')
+        document.getElementById('parse-btn').disabled = false
         return
     }
     let authors = suggestAuthors(isGroup, quote)
@@ -137,6 +139,7 @@ const submitParseForm = () => {
         .catch(err => {
             console.error('Could not get search results.', err)
             alert('Could not get speaker suggestions!')
+            document.getElementById('parse-btn').disabled = false
         })
 }
 
@@ -170,6 +173,9 @@ const submitQuoteForm = () => {
 
 const searchForPerson = () => {
     let person = prompt('Enter search term:')
+    if (person === null) {
+        return
+    }
     getNameGuesses([person], true)
         .then(data => {
             document.getElementById('submit-btn').disabled = true
@@ -210,11 +216,17 @@ const deleteName = (name) => {
 
 const addNewPerson = () => {
     let person = prompt('Enter person\'s name:')
+    if (person === null) {
+        return
+    }
     updateAuthorList([...gAuthorList, [person]])
 }
 
 const editName = (originalName) => {
     let person = prompt('Enter updated name:', originalName)
+    if (person === null) {
+        return
+    }
     updateAuthorList(gAuthorList.map(x => {
         let item = x
         if (Array.isArray(x)) {
@@ -227,4 +239,9 @@ const editName = (originalName) => {
             return x
         }
     }))
+}
+
+const closeModal = () => {
+    $('#submitModal').hide()
+    document.getElementById('parse-btn').disabled = false
 }
