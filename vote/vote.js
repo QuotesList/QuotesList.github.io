@@ -2,6 +2,7 @@ var gId1 = -1
 var gId2 = -1
 
 const filterHighQuotes = (quotes) => {
+    let quotesCopy = copyObject(quotes)
     quotes = copyObject(quotes)
     const total = (quote) => {
         return (quote.adminYesCount + quote.adminNoCount + quote.generalYesCount + quote.generalNoCount)
@@ -30,8 +31,10 @@ const filterHighQuotes = (quotes) => {
     else if (goodCount > 10) {
         return quotes.filter(x => total(x) < (min + 2))
     }
-    else {
+    else if (quotes.length > 10) {
         return quotes
+    } else {
+        return quotesCopy
     }
 }
 
