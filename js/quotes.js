@@ -80,6 +80,10 @@ const postQuote = (quote, authors) => {
     return standardPOST('quote', {quote, authors})
 }
 
+const postEdit = (quote, id) => {
+    return standardPOST('edit', {quote, id})
+}
+
 const postVote = (good, bad) => {
     standardPOST('vote', {
         yesId: good,
