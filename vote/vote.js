@@ -2,14 +2,11 @@ var gId1 = -1
 var gId2 = -1
 
 const filterHighQuotes = (quotes) => {
-    if (quotes.length < 30) {
+    if (quotes.length < 40) {
         return quotes
     }
-    const total = (quote) => {
-        return (quote.adminYesCount + quote.adminNoCount + quote.generalYesCount + quote.generalNoCount)
-    }
     quotes = copyObject(quotes).sort((a, b) => {
-        return (total(a) - total(b))
+        return (a.numVotes - b.numVotes)
     })
     return quotes.slice(0, Math.ceil(quotes.length / 10))
 }
