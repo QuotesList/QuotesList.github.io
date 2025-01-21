@@ -17,6 +17,10 @@ div#quoteCanvas span {
                                     supported by Chrome, Edge, Opera and Firefox */
 }
 
+body.is-mobile div#quoteCanvas {
+    display: none;
+}
+
 div#quoteCanvas span:hover {
     text-shadow: #FC0 1px 0 10px;
 }
