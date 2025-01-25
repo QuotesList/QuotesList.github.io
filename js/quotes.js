@@ -4,7 +4,7 @@ const standardGET = (endpoint, query) => {
     } else {
         query = `&${query}`
     }
-    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/${endpoint}?pwd=${gPass}${query}`)
+    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url)
@@ -58,7 +58,7 @@ const standardPOST = (endpoint, body, query) => {
     } else {
         query = `&${query}`
     }
-    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/${endpoint}?pwd=${gPass}${query}`)
+    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url, {
