@@ -25,7 +25,7 @@ if (isDesktop()) { // TODO Something more robust than this, obviously
 /* Make Title Bar */
 const titleBar = document.createElement('div')
 titleBar.className = 'row header justify-content-center'
-titleBar.innerHTML = '<h1 class="title"><a href="/">Quotes Lists</a></h1>'
+titleBar.innerHTML = '<h1 class="title"><a href="/">Quotes List</a></h1>'
 document.body.insertBefore(titleBar, document.body.firstChild)
 /* Add Standard Bootstrap to Main Content (if blank) */
 var content = document.getElementById('content')
