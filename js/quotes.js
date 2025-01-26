@@ -4,7 +4,7 @@ const standardGET = (endpoint, query) => {
     } else {
         query = `&${query}`
     }
-    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/${endpoint}?pwd=${gPass}${query}`)
+    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url)
@@ -51,6 +51,7 @@ const getGame = () => standardGET('game')
 const getLeaderboard = () => standardGET('leaderboard')
 const getAttributions = () => standardGET('attributions')
 const getAllQuotes = () => standardGET('all')
+const getWordMap = () => standardGET('words')
 
 const standardPOST = (endpoint, body, query) => {
     if (query === undefined || typeof query != "string") {
@@ -58,7 +59,7 @@ const standardPOST = (endpoint, body, query) => {
     } else {
         query = `&${query}`
     }
-    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/${endpoint}?pwd=${gPass}${query}`)
+    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url, {

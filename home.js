@@ -57,3 +57,11 @@ const onLoadCallback = (level) => {
 if (isMobile()) {
     document.getElementById('bodyPanel').classList.add('is-mobile')
 }
+
+if (isRealSite()) {
+    gServer = MAIN_SITE_URL
+    let input = document.getElementById('serverInput')
+    input.classList.add('hidden')
+    input.value = MAIN_SITE_URL
+    document.getElementById('input-break').classList.add('hidden')
+}

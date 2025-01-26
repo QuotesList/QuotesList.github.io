@@ -21,7 +21,7 @@
 <body id="bodyPanel">
     <div id="content" class="justify-content-center">
         <div id="password-wrapper" class="hidden onload-no-auth">
-            <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br>
+            <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br id="input-break">
             <input id="passwordInput" name="passwordInput" type="password" placeholder="Enter Password..." onkeypress="return keyWrapper(event, submitCredentials)"><br>
             <button type="button" id="submitPass" onclick="submitCredentials()">Submit</button>
         </div>

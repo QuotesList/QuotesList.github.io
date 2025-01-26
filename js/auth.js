@@ -7,6 +7,8 @@ const MAX_AUTH_LEVELS = 3
 // For dev purposes
 var USE_HTTPS = true
 
+const MAIN_SITE_URL = 'thequoteslist.com'
+
 var gPass = 'X'
 var gServer = 'localhost:8008'
 var gLevel = LEVEL_HACKER
@@ -137,6 +139,10 @@ const requiresHigherAuth = () => {
     return (pages.length > 0)
 }
 
+const isRealSite = () => {
+    return (window.location.href.includes(MAIN_SITE_URL))
+}
+
 const onLoaded = (level) => {
     if (level === undefined) {
         level = gLevel
@@ -188,7 +194,9 @@ else {
                     backToHome()
                 }
                 else {
-                    onLoaded(data.level)
+                    setTimeout(() => {
+                        onLoaded(gLevel)
+                    }, 100)
                 }
             }
         })
