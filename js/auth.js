@@ -181,6 +181,12 @@ if (initAuth === undefined || initAuth.pass === undefined || initAuth.server ===
     setTimeout(() => {
         onLoaded(gLevel)
     }, 100)
+    setTimeout(() => {
+        onLoaded(gLevel)
+    }, 500)
+    setTimeout(() => {
+        onLoaded(gLevel)
+    }, 1500)
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
