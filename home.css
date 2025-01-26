@@ -32,3 +32,15 @@ body {
 body:not(.is-mobile) {
     overflow-y: hidden;
 }
+
+#general-buttons {
+    margin-top: 25px;
+    button {
+        background-color: var(--light-yellow) !important;
+        font-size: 1.25rem !important;
+        &:hover:not(:disabled) {
+            background-color: var(--gold) !important;
+            color: var(--white) !important;
+        }
+    }
+}
