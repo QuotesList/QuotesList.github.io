@@ -194,13 +194,9 @@ else {
                     backToHome()
                 }
                 else {
-                    onLoaded(data.level)
                     setTimeout(() => {
                         onLoaded(gLevel)
                     }, 100)
-                    setTimeout(() => {
-                        onLoaded(gLevel)
-                    }, 500)
                 }
             }
         })
