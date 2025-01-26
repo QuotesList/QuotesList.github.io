@@ -48,5 +48,5 @@ getAllQuotes()
     })
     .then(leaderboard => {
         let el = document.getElementById('leaderboard')
-        el.innerHTML = leaderboard.join('<br>')
+        el.innerHTML = leaderboard.join('<br>\n')
     })
