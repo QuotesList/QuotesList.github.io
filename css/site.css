@@ -27,6 +27,8 @@ body {
 }
 
 nav {
+    width: 102vw;
+    margin-left: -1vw;
     button {
         color: var(--dark-blue);
         background-color: var(--light-pink);

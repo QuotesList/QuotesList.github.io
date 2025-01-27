@@ -43,6 +43,7 @@ const onLoadCallback = (level) => {
                 minRotation: -1,
                 maxRotation: 1,
                 rotateRatio: 0.6,
+                color: "random-dark",
                 click: (item, dim, evt) => {
                     alert(`${item[0]}\nSpeaker: ${item[2].authors}\nQuote ${item[2].id} / ${data.numQuotes}`)
                 }
