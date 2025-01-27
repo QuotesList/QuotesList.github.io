@@ -31,17 +31,14 @@ getAllQuotes()
             let place = 0
             let sum = Object.values(indexCounts).map(x => parseInt(x)).reduce((a, b) => a + b, 0)
             if (countedIndexes.includes(count)) {
-                console.log('a')
                 sum -= indexCounts[count]
                 indexCounts[count] += 1
                 place = sum
             } else {
                 countedIndexes.push(count)
-                console.log('b')
                 place = sum
                 indexCounts[count] = 1
             }
-            // return `${n + 1}. ${x} (${count} quote${(count > 1)? 's' : ''})`
             return `${place}. ${x} (${count} quote${(count > 1)? 's' : ''})`
         })
         return matches.join('<br>\n')

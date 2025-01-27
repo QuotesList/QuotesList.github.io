@@ -157,13 +157,7 @@ const getInfo = () => {
 }
 
 (async () => {
-
-    // dataset = await fetch(
-    //     'https://demo-live-data.highcharts.com/population.json'
-    // ).then(response => response.json());
-
     dataset = await getInfo()
-    // console.log(dataset)
 
     chart = Highcharts.chart('container', {
         chart: {
