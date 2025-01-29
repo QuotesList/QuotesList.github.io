@@ -29,6 +29,9 @@ body {
 nav {
     width: 102vw;
     margin-left: -1vw;
+    @media only screen and (max-width: 768px) {
+        margin-left: 0;
+    }
     button {
         color: var(--dark-blue);
         background-color: var(--light-pink);
