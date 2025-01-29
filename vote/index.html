@@ -6,6 +6,7 @@
     <title>The Quote Vote</title>
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="./vote.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,19 +18,27 @@
     <script src="./vote.js"></script>
 </head>
 <body>
-    <div id="content">
-        <div class="quote-card mt-4">
-            <span id="quote-card-1">Quote 1</span>
-            <br>
-            <button type="button" class="voteButton" onclick="vote(1)" disabled>Vote</button>
-        </div><br>
-        <div class="quote-card mt-4">
-            <span id="quote-card-2">Quote 2</span>
-            <br>
-            <button type="button" class="voteButton" onclick="vote(2)" disabled>Vote</button>
+    <div class="container">
+        <div class="row text-center no-mobile">
+            <div class="col-12">
+                <h1 class="mt-4 mb-2">Vote!</h1>
+            </div>
         </div>
+        <div class="row justify-content-center" id="content">
+            <a class="quote-card col-lg-5" href="#" onclick="vote(1)">
+                <span id="quote-card-1">Quote 1</span>
+            </a>
+            <div class="mobile-only">
+                <br>
+                <span>OR</span>
+                <br>
+            </div>
+            <a class="quote-card col-lg-5" href="#" onclick="vote(2)">
+                <span id="quote-card-2">Quote 2</span>
+            </a>
+        </div>
+        <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
+        <script src="../js/site.js"></script>
     </div>
-    <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
-    <script src="../js/site.js"></script>
 </body>
 </html>

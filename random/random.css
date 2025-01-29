@@ -1,0 +1,28 @@
+#quote {
+    font-size: 3.25rem;
+    align-content: center;
+    @media only screen and (max-width: 768px) {
+        font-size: 1.75rem;
+    }
+}
+
+.row-tall {
+    height: 80vh;
+}
+
+.center-align {
+    align-items: center;
+    align-content: center;
+    margin-top: 5vh;
+    @media only screen and (max-width: 768px) {
+        align-content: normal;
+    }
+}
+
+.btn {
+    font-size: 1.75rem !important;
+    margin-top: 5vh;
+    @media only screen and (max-width: 768px) {
+        font-size: 1.25rem !important;
+    }
+}

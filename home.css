@@ -1,5 +1,5 @@
 div#quoteCanvas {
-    height: 110vh !important;
+    height: 110vw !important;
     width: 110vw !important;
     background: #0000 !important;
     position: absolute;
@@ -15,6 +15,7 @@ div#quoteCanvas span {
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
+    text-shadow: #8998be 0px 0px 3px;
 }
 
 body.is-mobile div#quoteCanvas {
@@ -31,4 +32,18 @@ body {
 
 body:not(.is-mobile) {
     overflow-y: hidden;
+}
+
+#general-buttons {
+    margin-top: 25px;
+    button {
+        background-color: var(--light-yellow) !important;
+        font-size: 1.75rem !important;
+        margin-bottom: 10px;
+        width: 55%;
+        &:hover:not(:disabled) {
+            background-color: var(--gold) !important;
+            color: var(--white) !important;
+        }
+    }
 }

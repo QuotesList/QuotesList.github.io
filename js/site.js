@@ -30,7 +30,7 @@ document.body.insertBefore(titleBar, document.body.firstChild)
 /* Add Standard Bootstrap to Main Content (if blank) */
 var content = document.getElementById('content')
 if (content !== null && content.className.trim().length < 1) {
-    content.className = "col-8 col-lg-8 offset-2 justify-content-center"
+    content.className = "col-10 col-lg-8 offset-lg-2 justify-content-center"
 }
 /* Function to Re-size Nav Buttons */
 const resizeNavButtons = () => {
@@ -56,3 +56,7 @@ const setPriveligedNavItemsShown = (shown) => {
 }
 /* Re-size Nav Items to Current Page */
 resizeNavButtons()
+/* Add Mobile Tag to body, if needed */
+if (isMobile()) {
+    document.body.classList.add('is-mobile')
+}

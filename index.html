@@ -18,7 +18,7 @@
     <script src="./js/quotes.js"></script>
     <script src="./js/utils.js"></script>
 </head>
-<body id="bodyPanel">
+<body>
     <div id="content" class="justify-content-center">
         <div id="password-wrapper" class="hidden onload-no-auth">
             <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br id="input-break">
@@ -26,16 +26,16 @@
             <button type="button" id="submitPass" onclick="submitCredentials()">Submit</button>
         </div>
         
-        <div id="quoteCanvas" class="onload-needs-auth">&ensp;</div>
+        <div id="quoteCanvas" class="onload-needs-auth no-mobile">&ensp;</div>
 
-        <div id="general-buttons" class="hidden">
+        <div id="general-buttons" class="hidden text-center">
             <button type="button" id="allBtn" onclick="window.location.href='/all'">All Quotes</button><br>
-            <button type="button" id="leaderboardBtn" onclick="window.location.href='/leaderboard'">Leaderboard</button><br>
-            <button type="button" id="gameBtn" onclick="window.location.href='/game'">Game</button><br>
             <button type="button" id="randomBtn" onclick="window.location.href='/random'">Random Quote</button><br>
-            <button type="button" id="statsBtn" onclick="window.location.href='/analytics'">Fun Charts</button><br>
             <button type="button" id="searchBtn" onclick="window.location.href='/search'">Search</button><br>
             <button type="button" id="voteBtn" onclick="window.location.href='/vote'">Vote</button><br>
+            <button type="button" id="gameBtn" onclick="window.location.href='/game'">Game</button><br>
+            <button type="button" id="leaderboardBtn" onclick="window.location.href='/leaderboard'">Leaderboard</button><br>
+            <button type="button" id="statsBtn" onclick="window.location.href='/analytics'">Fun Charts</button><br>
             <div id="admin-buttons" class="hidden onload-needs-admin">
                 <hr>
                 <button type="button" id="submit" onclick="window.location.href='/submit'">Submit New Quote</button>

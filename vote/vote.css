@@ -1,0 +1,22 @@
+.quote-card {
+    background-color: var(--light-yellow) !important;
+    color: var(--dark-blue);
+    margin: 10px;
+    padding: 10px;
+    font-size: 2.25rem !important;
+    &:hover:not(:disabled) {
+        background-color: var(--gold) !important;
+        color: var(--white) !important;
+        text-decoration: none;
+    }
+    margin-bottom: 5px;
+    border-radius: 15px;
+    @media only screen and (max-width: 768px) {
+        font-size: 1.75rem !important;
+        margin-top: 35px !important;
+    }
+}
+
+body {
+    overflow-y: hidden;
+}
