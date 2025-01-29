@@ -11,4 +11,8 @@
     }
     margin-bottom: 5px;
     border-radius: 15px;
+    @media only screen and (max-width: 768px) {
+        font-size: 1.75rem !important;
+        margin-top: 35px !important;
+    }
 }
