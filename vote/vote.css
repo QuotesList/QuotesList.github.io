@@ -16,3 +16,8 @@
         margin-top: 35px !important;
     }
 }
+
+body {
+    overflow-y: hidden;
+    /* height: 500vh !important; */
+}
