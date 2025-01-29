@@ -18,7 +18,7 @@
     <script src="./js/quotes.js"></script>
     <script src="./js/utils.js"></script>
 </head>
-<body id="bodyPanel">
+<body>
     <div id="content" class="justify-content-center">
         <div id="password-wrapper" class="hidden onload-no-auth">
             <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br id="input-break">
@@ -26,7 +26,7 @@
             <button type="button" id="submitPass" onclick="submitCredentials()">Submit</button>
         </div>
         
-        <div id="quoteCanvas" class="onload-needs-auth">&ensp;</div>
+        <div id="quoteCanvas" class="onload-needs-auth no-mobile">&ensp;</div>
 
         <div id="general-buttons" class="hidden text-center">
             <button type="button" id="allBtn" onclick="window.location.href='/all'">All Quotes</button><br>

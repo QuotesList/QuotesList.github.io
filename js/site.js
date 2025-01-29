@@ -56,3 +56,7 @@ const setPriveligedNavItemsShown = (shown) => {
 }
 /* Re-size Nav Items to Current Page */
 resizeNavButtons()
+/* Add Mobile Tag to body, if needed */
+if (isMobile()) {
+    document.body.classList.add('is-mobile')
+}
