@@ -143,11 +143,11 @@ let submit = () => {
         document.getElementById('maxScore').innerHTML = maxScore
         document.getElementById('scoreAdjustment').innerHTML = `&nbsp; (+${guessScore})`
 
-        input.value = ''
         quote.innerHTML = `${currentQuote.html}`
         submitBtn.innerHTML = 'Refresh &nbsp; <i class="fa fa-refresh"></i>'
     } else {
         document.getElementById('scoreAdjustment').innerHTML = ''
+        input.value = ''
         setupGame()
         submitBtn.innerHTML = 'Submit'
     }
