@@ -145,12 +145,15 @@ let submit = () => {
 
         quote.innerHTML = `${currentQuote.html}`
         submitBtn.innerHTML = 'Refresh &nbsp; <i class="fa fa-refresh"></i>'
+        submitBtn.disabled = false
+        submitBtn.focus()
     } else {
         document.getElementById('scoreAdjustment').innerHTML = ''
         input.value = ''
         setupGame()
         submitBtn.innerHTML = 'Submit'
+        submitBtn.disabled = false
+        input.focus()
     }
     inGame = !inGame
-    submitBtn.disabled = false
 }
