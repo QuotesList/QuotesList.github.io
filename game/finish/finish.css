@@ -1,0 +1,11 @@
+input:disabled {
+    opacity: 0.4;
+}
+
+span#scoreAdjustment {
+    font-size: 0.6em;
+    font-weight: bold;
+    opacity: 0.9;
+    vertical-align: 0.3em;
+    position: absolute;
+}

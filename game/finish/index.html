@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finish the Quote</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./finish.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../../js/lib/jquery.min.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/quotes.js"></script>
+    <script src="./finish.js"></script>
+    <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="row justify-content-center h-100">
+        <div class="col-10 col-lg-8 text-center main-content">
+            <h1 class="mt-5 mb-2">Finish the Quote!</h1><hr>
+            <div class="game-space mt-5">
+                <strong>
+                    Score: &nbsp;<span id="totalScore">-</span>/<span id="maxScore">-</span>
+                    <span id="scoreAdjustment"></span>
+                    <br>
+                </strong><br>
+                <span id="quote"></span><br><br>
+                <input type="text" id="game-entry" onkeypress="return keyWrapper(event, submit)"><br>
+                <button id="submitBtn" class="btn btn-yellow mt-4" onclick="submit()" disabled>Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" href="../../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../js/site.js"></script>
+</body>
+</html>
