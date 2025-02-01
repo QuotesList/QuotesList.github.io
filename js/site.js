@@ -4,7 +4,7 @@ const navItems = [
     { href: "/random", text: 'Random Quote' },
     { href: "/search", text: 'Search' },
     { href: "/vote", text: 'Vote' },
-    { href: "/game", text: 'Game' },
+    { href: "/game", text: 'Games' },
     { href: "/leaderboard", text: 'Leaderboard' },
     { href: "/analytics", text: 'Fun Charts' },
     { href: '/submit', text: 'Submit New Quote', requiresPriveleges: true },
