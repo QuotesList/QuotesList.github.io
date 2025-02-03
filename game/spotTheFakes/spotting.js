@@ -1,5 +1,6 @@
 let posMap = {}
 let potentialAttributions = []
+let attributionMap = {}
 let ourQuotes = []
 
 let currentKey = 'original'
@@ -48,6 +49,7 @@ getAllQuotes()
                     let authorText = quote.quote.slice(quote.quote.indexOf('~')).trim()
                     if (!potentialAttributions.includes(authorText)) {
                         potentialAttributions.push(authorText)
+                        attributionMap[authorText] = quote.authors
                     }
                 }
             })
@@ -99,19 +101,21 @@ getAllQuotes()
                 })
                 let article = (quote.quote.includes('"'))? '"' : ''
                 let subAuthor = authorText
-                while (subAuthor === authorText) {
+                while (subAuthor === authorText || attributionMap[subAuthor] === attributionMap[authorText]) {
                     subAuthor = randomArrayItem(potentialAttributions)
                 }
                 builder = builder.join(' ')
-                goodQuotes.push({
-                    options: {
-                        original: quote.quote,
-                        replacement: `${article}${builder}${article} ${authorText}`,
-                        misattributed: `${article}${text}${article} ${subAuthor}`,
-                        bothBad: `${article}${builder}${article} ${subAuthor}`,
-                    },
-                    id: quote.id
-                })
+                if (quote.quote.replace(/[^a-zA-Z0-9 ~]/g, '').toLowerCase().trim() !== `${builder} ${authorText}`.replace(/[^a-zA-Z0-9 ~]/g, '').toLowerCase().trim()) {
+                    goodQuotes.push({
+                        options: {
+                            original: quote.quote,
+                            replacement: `${article}${builder}${article} ${authorText}`,
+                            misattributed: `${article}${text}${article} ${subAuthor}`,
+                            bothBad: `${article}${builder}${article} ${subAuthor}`,
+                        },
+                        id: quote.id
+                    })
+                }
             }
         })
         ourQuotes = copyObject(goodQuotes)
@@ -129,6 +133,11 @@ const submitGuess = (el) => {
     total += 1
     document.getElementById('score').innerHTML = score
     document.getElementById('total').innerHTML = total
-    alert(`${correct? 'Correct!' : 'Incorrect :('}\n\nAnswer was: ${currentKey}`)
+    let message = 'Correct!'
+    if (!correct) {
+        message = `Incorrect :(\n\nAnswer was: ${document.getElementById(currentKey).innerHTML}`
+    }
+    message += `\n\n${currentQuote.options.original.trim()}`
+    alert(message)
     setup()
 }
