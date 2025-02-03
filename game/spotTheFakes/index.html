@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finish the Quote</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./finish.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../../js/lib/jquery.min.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/quotes.js"></script>
+    <script src="./spotting.js"></script>
+    <script src="../../js/lib/compromise.js"></script>
+</head>
+<body>
+    <div class="row justify-content-center h-100">
+        <div class="col-10 col-lg-8 text-center main-content">
+            <h1 class="mt-3 mb-2">Spot the Fakes!</h1><br>
+            <div class="mb-5">Score: <span id="score">-</span>/<span id="total">-</span></div>
+            <div id="quote" class="mt-3"></div><br>
+            <div class="game-space row justify-content-center">
+                <div class="col-lg-2">
+                    <button class="gameBtn btn btn-yellow w-100" id="original" onclick="submitGuess(this)" disabled>Fully Correct</button>
+                </div><br>
+                <div class="col-lg-2">
+                    <button class="gameBtn btn btn-yellow w-100" id="misattributed" onclick="submitGuess(this)" disabled>Incorrect Author</button>
+                </div><br>
+                <div class="col-lg-2">
+                    <button class="gameBtn btn btn-yellow w-100" id="replacement" onclick="submitGuess(this)" disabled>Fake Quote</button>
+                </div><br>
+                <div class="col-lg-2">
+                    <button class="gameBtn btn btn-yellow w-100" id="bothBad" onclick="submitGuess(this)" disabled>Fully Fake</button>
+                </div><br>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" href="../../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../js/site.js"></script>
+</body>
+</html>
