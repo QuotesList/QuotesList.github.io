@@ -129,6 +129,6 @@ const submitGuess = (el) => {
     total += 1
     document.getElementById('score').innerHTML = score
     document.getElementById('total').innerHTML = total
-    alert(`${correct? 'Correct!' : 'Incorrect :('}\nAnswer was: ${currentKey}`)
+    alert(`${correct? 'Correct!' : 'Incorrect :('}\n\nAnswer was: ${currentKey}`)
     setup()
 }
