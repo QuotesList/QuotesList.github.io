@@ -80,32 +80,49 @@ getAllQuotes()
                 let authorText = quote.quote.slice(quote.quote.indexOf('~')).trim()
                 let text = quote.quote.slice(0, quote.quote.indexOf('~')).replaceAll('"', '').replaceAll('  ', ' ').trim()
                 let potentialTags = tagPOS(text)
-                let builder = []
                 let probability = 1.0
-                text.split(' ').forEach(word => {
-                    let pos = potentialTags[word]
-                    if (Math.random() <= probability && word.length > 3 && pos !== undefined && typeof pos.join == 'function' && posMap[pos.join('|')] !== undefined) {
-                        probability = 0.2
-                        let tag = pos.join('|')
-                        let item = randomArrayItem(posMap[tag])
-                        if (item === undefined) {
-                            builder.push(word)
-                        } else {
-                            if (item.trim().toLowerCase() === word.trim().toLowerCase()) {
-                                probability -= 0.2
-                            }
-                            builder.push(item)
-                        }
-                    } else {
-                        builder.push(word)
+                let cacheMap = {}
+
+                const preserveCaseAndPunctuation = (original, replacement) => {
+                    if (original[0] === original[0].toUpperCase()) {
+                        replacement = replacement[0].toUpperCase() + replacement.slice(1);
                     }
+                    return replacement;
+                }
+
+                let builder = text.replace(/\b\w+['’]?\w*\b|\w+/g, (word) => {
+                    let lowerWord = word.toLowerCase().trim();
+                    let cachedReplacement = cacheMap[lowerWord];
+                    
+                    if (cachedReplacement !== undefined) {
+                        found = true
+                        return preserveCaseAndPunctuation(word, cachedReplacement);
+                    }
+                
+                    let pos = potentialTags[word];
+                    if (
+                        word.length > 3 &&
+                        pos !== undefined &&
+                        typeof pos.join === 'function' &&
+                        posMap[pos.join('|')] !== undefined &&
+                        (Math.random() <= probability || probability === 1.0)
+                    ) {
+                        let tag = pos.join('|')
+                        let replacement = randomArrayItem(posMap[tag])
+                        if (replacement !== undefined) {
+                            cacheMap[lowerWord] = replacement.toLowerCase()
+                            probability *= 0.25
+                            return preserveCaseAndPunctuation(word, replacement)
+                        }
+                    }
+                    return word
                 })
+
                 let article = (quote.quote.includes('"'))? '"' : ''
                 let subAuthor = authorText
                 while (subAuthor === authorText || attributionMap[subAuthor] === attributionMap[authorText]) {
                     subAuthor = randomArrayItem(potentialAttributions)
                 }
-                builder = builder.join(' ')
                 if (quote.quote.replace(/[^a-zA-Z0-9 ~]/g, '').toLowerCase().trim() !== `${builder} ${authorText}`.replace(/[^a-zA-Z0-9 ~]/g, '').toLowerCase().trim()) {
                     goodQuotes.push({
                         options: {
