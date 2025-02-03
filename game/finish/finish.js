@@ -98,27 +98,42 @@ const getPhraseSimilarity = (phrase1, phrase2) => {
     let words2 = phrase2.split(' ')
 
     if (phrase1 === phrase2) return 10
-    if (words1.length !== words2.length) return 0
 
     let totalScore = 0
+    let numFullyCorrect = 0
+    let numWords = Math.max(words1.length, words2.length)
 
-    for (let i = 0; i < words1.length; i++) {
+    for (let i = 0; i < numWords; i++) {
         let word1 = words1[i]
         let word2 = words2[i]
 
+        if (word1 === undefined || word2 === undefined) {
+            continue
+        }
+
         if (word1 === word2) {
             totalScore += 1
+            numFullyCorrect += 1
         } else {
             let levDist = levenshteinDistance(word1, word2)
             let letterScore = letterMatchScore(word1, word2)
 
-            let typoPenalty = 1 - (levDist / Math.max(word1.length, word2.length))
-            let wordSimilarity = Math.max(typoPenalty, letterScore)
+            let typoPenalty = 1 - (levDist / numWords)
+            let wordSimilarity = (typoPenalty + letterScore) / 2
 
             totalScore += wordSimilarity
         }
     }
-    return Math.round((totalScore / words1.length) * 10.0)
+
+    totalScore = Math.round((totalScore / numWords) * 10.0)
+    if (totalScore === 10 && numFullyCorrect !== numWords) {
+        return 9
+    } else if (totalScore === 0 && numFullyCorrect > 0) {
+        return 1
+    } else if (totalScore < 0) {
+        return 0
+    }
+    return totalScore
 }
 
 let submit = () => {
