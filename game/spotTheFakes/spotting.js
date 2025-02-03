@@ -76,6 +76,7 @@ getAllQuotes()
         let goodQuotes = []
         data.quotes.forEach(quote => {
             if (!quote.isGroup && !quote.quote.trim().includes('\n') && quote.quote.includes('~')) {
+                quote.quote = quote.quote.trim().replace(/\s+/g, ' ')
                 let authorText = quote.quote.slice(quote.quote.indexOf('~')).trim()
                 let text = quote.quote.slice(0, quote.quote.indexOf('~')).replaceAll('"', '').replaceAll('  ', ' ').trim()
                 let potentialTags = tagPOS(text)
