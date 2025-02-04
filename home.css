@@ -39,8 +39,10 @@ body:not(.is-mobile) {
     button {
         background-color: var(--light-yellow) !important;
         font-size: 1.75rem !important;
-        margin-bottom: 10px;
+        margin-bottom: 9px;
         width: 55%;
+        border-radius: 5px;
+        border: 2px solid var(--black);
         &:hover:not(:disabled) {
             background-color: var(--gold) !important;
             color: var(--white) !important;
