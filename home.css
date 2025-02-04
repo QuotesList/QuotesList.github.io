@@ -42,7 +42,7 @@ body:not(.is-mobile) {
         margin-bottom: 9px;
         width: 55%;
         border-radius: 5px;
-        border: 2px solid var(--black);
+        border: 1px solid var(--black);
         &:hover:not(:disabled) {
             background-color: var(--gold) !important;
             color: var(--white) !important;
