@@ -48,7 +48,11 @@ nav {
     background-color: var(--light-yellow) !important;
     margin-bottom: 20px;
     font-size: 1.25rem !important;
-    &:hover:not(:disabled) {
+}
+
+@media (hover: hover) {
+    .btn:hover:not(:disabled) {
+        /* Prevent buttons from having the sticky effect on mobile */
         background-color: var(--gold) !important;
         color: var(--white) !important;
     }
