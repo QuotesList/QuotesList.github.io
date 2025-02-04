@@ -142,18 +142,30 @@ getAllQuotes()
         setup()
     })
 
+const adjacentMap = {
+    original: ['replacement', 'misattributed'],
+    replacement: ['original', 'bothBad'],
+    misattributed: ['original', 'bothBad'],
+    bothBad: ['replacment', 'misattributed']
+}
+
 const submitGuess = (el) => {
     setAllButtonsEnabled(false)
-    let correct = (el.id === currentKey)
-    if (correct) {
-        score += 1
+    let numPoints = 0
+    let message = 'Incorrect :('
+    if (el.id === currentKey) {
+        numPoints = 1
+        message = 'Correct!'
+    } else if (adjacentMap[currentKey].includes(el.id)) {
+        numPoints = 0.5
+        message = 'Half Correct  (+0.5)'
     }
     total += 1
+    score += numPoints
     document.getElementById('score').innerHTML = score
     document.getElementById('total').innerHTML = total
-    let message = 'Correct!'
-    if (!correct) {
-        message = `Incorrect :(\n\nAnswer was: ${document.getElementById(currentKey).innerHTML}`
+    if (numPoints < 1) {
+        message += `\n\nAnswer was: ${document.getElementById(currentKey).innerHTML}`
     }
     message += `\n\n${currentQuote.options.original.trim()}`
     alert(message)
