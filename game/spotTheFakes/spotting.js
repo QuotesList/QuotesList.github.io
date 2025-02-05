@@ -146,7 +146,7 @@ const adjacentMap = {
     original: ['replacement', 'misattributed'],
     replacement: ['original', 'bothBad'],
     misattributed: ['original', 'bothBad'],
-    bothBad: ['replacment', 'misattributed']
+    bothBad: ['replacement', 'misattributed']
 }
 
 const submitGuess = (el) => {
