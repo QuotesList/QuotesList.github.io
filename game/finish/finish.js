@@ -1,5 +1,7 @@
 let allQuotes = []
 let currentQuote = { id: -1 }
+let gameScore = new GameScore(FINISH_THE_QUOTE)
+
 let score = 0
 let maxScore = 0
 let inGame = true
@@ -120,6 +122,7 @@ const getPhraseSimilarity = (phrase1, phrase2) => {
 
             let typoPenalty = 1 - (levDist / numWords)
             let wordSimilarity = (typoPenalty + letterScore) / 2
+            wordSimilarity = Math.min(0, Math.max(1, wordSimilarity))
 
             totalScore += wordSimilarity
         }
@@ -151,11 +154,10 @@ let submit = () => {
         let guessText = input.value.replace(/\s+/g, ' ').trim().replace(/[^a-zA-Z\s]/g, '').toLowerCase()
 
         let guessScore = getPhraseSimilarity(guessText, currentQuote.missingWords)
-        score += guessScore
-        maxScore += 10
+        gameScore.addScore(guessScore, 10)
 
-        document.getElementById('totalScore').innerHTML = score
-        document.getElementById('maxScore').innerHTML = maxScore
+        document.getElementById('totalScore').innerHTML = gameScore.currentPoints
+        document.getElementById('maxScore').innerHTML = gameScore.possiblePoints
         document.getElementById('scoreAdjustment').innerHTML = `&nbsp; (+${guessScore})`
 
         quote.innerHTML = `${currentQuote.html}`
