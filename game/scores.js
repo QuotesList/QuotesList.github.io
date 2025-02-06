@@ -62,8 +62,10 @@ class GameScore {
 }
 
 const clearAllScores = () => {
-    ALL_GAME_KEYS.forEach(key => {
-        let score = GameScore(key)
-        score.clearScore()
-    })
+    if (confirm('Are you sure you want to erase all game scores?') == true) {
+        ALL_GAME_KEYS.forEach(key => {
+            let score = GameScore(key)
+            score.clearScore()
+        })
+    }
 }
