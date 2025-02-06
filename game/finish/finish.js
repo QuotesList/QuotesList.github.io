@@ -1,10 +1,12 @@
 let allQuotes = []
 let currentQuote = { id: -1 }
+let inGame = true
 let gameScore = new GameScore(FINISH_THE_QUOTE)
 
-let score = 0
-let maxScore = 0
-let inGame = true
+if (gameScore.possiblePoints > 0) {
+    document.getElementById('totalScore').innerHTML = gameScore.currentPoints
+    document.getElementById('maxScore').innerHTML = gameScore.possiblePoints
+}
 
 const MIN_WORDS = 7
 
