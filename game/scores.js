@@ -17,11 +17,21 @@ class GameScore {
         this.#key = `${key}`
         let total = getCookieItem(`game_${key}_total`)
         if (total) {
-            this.#total = total
+            try {
+                total = parseInt(total)
+                this.#total = total
+            } catch (err) {
+                console.warn(err)
+            }
         }
         let score = getCookieItem(`game_${key}_score`)
         if (score) {
-            this.#score = score
+            try {
+                score = parseInt(score)
+                this.#score = score
+            } catch (err) {
+                console.warn(err)
+            }
         }
     }
 
