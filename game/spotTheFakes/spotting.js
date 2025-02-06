@@ -6,8 +6,19 @@ let ourQuotes = []
 let currentKey = 'original'
 let currentQuote = { id: -1, options: {} }
 
-let score = 0
-let total = 0
+let gameScore = new GameScore(SPOT_THE_FAKES)
+
+let updateScores = (numPoints) => {
+    if (typeof numPoints == 'number') {
+        gameScore.addScore(numPoints, 1)
+    }
+    $('#score').text(gameScore.currentPoints)
+    $('#total').text(gameScore.possiblePoints)
+}
+
+if (gameScore.possiblePoints > 0) {
+    updateScores()
+}
 
 const setAllButtonsEnabled = (enabled) => {
     Array.from(document.getElementsByClassName('gameBtn')).forEach(el => {
@@ -160,10 +171,7 @@ const submitGuess = (el) => {
         numPoints = 0.5
         message = 'Half Correct  (+0.5)'
     }
-    total += 1
-    score += numPoints
-    document.getElementById('score').innerHTML = score
-    document.getElementById('total').innerHTML = total
+    updateScores(numPoints)
     if (numPoints < 1) {
         message += `\n\nAnswer was: ${document.getElementById(currentKey).innerHTML}`
     }
