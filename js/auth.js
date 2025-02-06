@@ -192,6 +192,12 @@ else {
                 else if (requiresHigherAuth() && data.level !== LEVEL_ADMIN) {
                     backToHome()
                 }
+                else {
+                    onLoaded(gLevel)
+                    $(document).ready(() => {
+                        onLoaded(gLevel)
+                    })
+                }
             }
         })
         .catch(err => {
