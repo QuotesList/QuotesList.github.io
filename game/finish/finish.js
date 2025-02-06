@@ -4,8 +4,10 @@ let inGame = true
 let gameScore = new GameScore(FINISH_THE_QUOTE)
 
 if (gameScore.possiblePoints > 0) {
-    document.getElementById('totalScore').innerHTML = gameScore.currentPoints
-    document.getElementById('maxScore').innerHTML = gameScore.possiblePoints
+    $(document).ready(() => {
+        $('#totalScore').text(gameScore.currentPoints)
+        $('#maxScore').text(gameScore.possiblePoints)
+    })
 }
 
 const MIN_WORDS = 7
