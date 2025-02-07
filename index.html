@@ -20,15 +20,15 @@
 </head>
 <body>
     <div id="content" class="justify-content-center">
-        <div id="password-wrapper" class="hidden onload-no-auth">
+        <div id="password-wrapper" class="requires-logged-out-explicit">
             <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br id="input-break">
             <input id="passwordInput" name="passwordInput" type="password" placeholder="Enter Password..." onkeypress="return keyWrapper(event, submitCredentials)"><br>
             <button type="button" id="submitPass" onclick="submitCredentials()">Submit</button>
         </div>
         
-        <div id="quoteCanvas" class="onload-needs-auth no-mobile">&ensp;</div>
+        <div id="quoteCanvas" class="requires-login no-mobile">&ensp;</div>
 
-        <div id="general-buttons" class="hidden text-center">
+        <div id="general-buttons" class="mobile-only requires-login">
             <button type="button" id="allBtn" onclick="window.location.href='/all'">All Quotes</button><br>
             <button type="button" id="randomBtn" onclick="window.location.href='/random'">Random Quote</button><br>
             <button type="button" id="searchBtn" onclick="window.location.href='/search'">Search</button><br>
@@ -36,7 +36,7 @@
             <button type="button" id="gamesBtn" onclick="window.location.href='/game'">Games</button><br>
             <button type="button" id="leaderboardBtn" onclick="window.location.href='/leaderboard'">Leaderboard</button><br>
             <button type="button" id="statsBtn" onclick="window.location.href='/analytics'">Fun Charts</button><br>
-            <div id="admin-buttons" class="hidden onload-needs-admin">
+            <div id="admin-buttons" class="requires-admin">
                 <hr>
                 <button type="button" id="submit" onclick="window.location.href='/submit'">Submit New Quote</button>
                 <button type="button" id="editBtn" onclick="window.location.href='/edit'">Edit Quotes</button>

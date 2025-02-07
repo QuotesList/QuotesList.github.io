@@ -13,12 +13,9 @@ const navItems = [
 /* Make Nav Bar */
 if (isDesktop()) { // TODO Something more robust than this, obviously
     const navBar = document.createElement('nav')
-    navBar.className = 'header text-center justify-content-center onload-needs-auth'
-    if (navItems.map(x => x.href.slice(1)).filter(x => window.location.href.toLowerCase().includes(x)).length < 1) {
-        navBar.classList.add('hidden')
-    }
+    navBar.className = 'header text-center justify-content-center requires-login'
     let navButtons = navItems.map(x => `<button type="button" onclick="window.location.href='${x.href}'"${
-        x.requiresPriveleges? ' class="hidden onload-needs-admin"' : ''}>${x.text}</button>`).join('\n')
+        x.requiresPriveleges? ' class="requires-admin"' : ''}>${x.text}</button>`).join('\n')
     navBar.innerHTML = `${navButtons}\n<button type="button" onclick="logOut()">Log Out</button>\n`
     document.body.insertBefore(navBar, document.body.firstChild)
 }
@@ -34,8 +31,14 @@ if (content !== null && content.className.trim().length < 1) {
 }
 /* Function to Re-size Nav Buttons */
 const resizeNavButtons = () => {
-    let buttonsList = document.querySelectorAll('nav button:not(.hidden)')
-    let buttonWidth = ($(document).width() / buttonsList.length) - 20
+    let buttonsList = document.querySelectorAll('nav button')
+    let length = buttonsList.length
+    Array.from(buttonsList).forEach(el => {
+        if (Array.from(el.classList).includes('requires-admin') && gLevel != 2) {
+            length -= 1
+        }
+    })
+    let buttonWidth = ($(document).width() / length) - 20
     Array.from(buttonsList).forEach(el => {
         el.style.width = `${buttonWidth}px`
     })

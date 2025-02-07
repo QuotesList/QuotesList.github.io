@@ -6,8 +6,11 @@ const submitCredentials = () => {
         return
     }
     tryAuth(pass, server)
-        .then(data => {
-            onLoaded(data.level)
+        .then(() => {
+            assignBodyClasses()
+            if (typeof onLoadCallback == 'function') {
+                onLoadCallback(gLevel)
+            }
         })
         .catch(err => {
             console.error(err)
