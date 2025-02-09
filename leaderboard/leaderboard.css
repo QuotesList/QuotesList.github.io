@@ -1,0 +1,37 @@
+/* .modal {
+    cursor: pointer;
+} */
+
+.modal * {
+    color: var(--black);
+    cursor: text;
+}
+
+.modal div.modal-header,
+.modal div.modal-header * {
+    background-color: var(--dark-pink);
+}
+
+.modal div.modal-body,
+.modal div.modal-body * {
+    background-color: #e1e1e1;
+}
+
+div.modal-body {
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+span.leaderboard-slot {
+    cursor: pointer;
+}
+
+span.close-btn {
+    color: black;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+h5 {
+    word-wrap: normal;
+}

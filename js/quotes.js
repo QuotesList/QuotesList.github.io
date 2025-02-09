@@ -47,10 +47,17 @@ const getNameGuesses = (searchList, verbose) => {
     }
 }
 
+const getAllQuotes = (includeStats) => {
+    let query = undefined
+    if (includeStats) {
+        query = 'includeStats=true'
+    }
+    return standardGET('all', query)
+}
+
 const getGame = () => standardGET('game')
 const getLeaderboard = () => standardGET('leaderboard')
 const getAttributions = () => standardGET('attributions')
-const getAllQuotes = () => standardGET('all')
 const getWordMap = () => standardGET('words')
 
 const standardPOST = (endpoint, body, query) => {
