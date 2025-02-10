@@ -22,10 +22,6 @@ div.modal-body {
     border-bottom-right-radius: 0.3rem;
 }
 
-span.leaderboard-slot {
-    cursor: pointer;
-}
-
 span.close-btn {
     color: black;
     font-size: 2.5rem;
@@ -34,4 +30,20 @@ span.close-btn {
 
 h5 {
     word-wrap: normal;
+}
+
+tbody tr {
+    cursor: pointer;
+}
+
+.gold {
+    color: gold;
+}
+  
+.silver {
+    color: silver;
+}
+  
+.bronze {
+    color: #cd7f32;
 }

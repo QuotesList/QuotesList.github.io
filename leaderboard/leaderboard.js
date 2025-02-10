@@ -92,7 +92,7 @@ getAllQuotes(true)
         stats = copyObject(data.stats)
         people.sort((a, b) => (data.stats[a].currentLeaderboardPosition - data.stats[b].currentLeaderboardPosition))
         $(document).ready(() => {
-            people.forEach(person => {
+            people.forEach((person, n) => {
                 let stats = data.stats[person]
                 let modalId = `modal_${person.toLowerCase().trim().replaceAll(' ', '_')}`
                 let numTotalWords = 0
@@ -105,11 +105,14 @@ getAllQuotes(true)
                         mostSpokenWord = word.slice(0, 1).toUpperCase() + word.slice(1)
                     }
                 })
-                $('#leaderboard').append(`
-                    <span id="open_${modalId}" class="leaderboard-slot">
-                        ${stats.currentLeaderboardPosition}. ${person} (${stats.numQuotes} quotes, ${stats.numSolo} solo)
-                    </span>
-                    <br>
+                $('#leaderboard-content').append(`
+                    <tr id="open_${modalId}">
+                        <td id="leaderboard-pos-${n + 1}">${n + 1}</td>
+                        <td>${person}</td>
+                        <td>(${stats.numQuotes} quotes, ${stats.numSolo} solo)</td>
+                    </tr>`
+                )
+                $('#leaderboard-modals').append(`
                     <div class="modal" tabindex="-1" role="dialog" id="${modalId}">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -138,6 +141,14 @@ getAllQuotes(true)
                     openModal(evt, modalId)
                 })
             })
+            Array.from(['gold', 'silver', 'bronze']).forEach((color, n) => {
+                let el = $(`#leaderboard-pos-${n + 1}`)
+                if (el.length > 0) {
+                    el.append(`&ensp;<i class="fa-solid fa-trophy ${color}"></i>`)
+                    console.log(1)
+                }
+            })
+
             Array.from(document.getElementsByClassName('modal-content')).forEach(modal => {
                 modal.addEventListener('click', (evt) => {
                     evt.stopPropagation()
