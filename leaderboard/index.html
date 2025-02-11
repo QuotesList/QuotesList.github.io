@@ -28,7 +28,16 @@
                     <th>Name
                         <i id="order-by-name" class="fa-solid fa-arrow-down-a-z order-by-icon"></i>
                     </th>
-                    <th>Number of Quotes</th>
+                    <th>Number of Quotes
+                        <div class="dropdown d-inline-block float-right dropleft">
+                            <i class="fa-solid fa-ellipsis-vertical order-by-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                            <div class="dropdown-menu dropdown-menu-left dropleft" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item">Ordery by Best Rank</a>
+                                <a class="dropdown-item">Other</a>
+                                <a class="dropdown-item">Other again</a>
+                            </div>
+                        </div>
+                    </th>
                 </tr>
             </thead>
             <tbody id="leaderboard-content"></tbody>
@@ -36,7 +45,8 @@
          <span id="leaderboard-modals"></span>
     </div>
     <script src="./leaderboard.js"></script>
-    <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/site.js"></script>
 </body>
 </html>

@@ -28,6 +28,10 @@ span.close-btn {
     cursor: pointer;
 }
 
+i.fa-ellipsis-vertical {
+    padding: 0px 15px;
+}
+
 h5 {
     word-wrap: normal;
 }
