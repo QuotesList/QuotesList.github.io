@@ -32,8 +32,13 @@ h5 {
     word-wrap: normal;
 }
 
-tbody tr {
+tbody tr,
+i.order-by-icon {
     cursor: pointer;
+}
+
+i.order-by-icon:hover:not(hover:hover) {
+    color: black;
 }
 
 .gold {
@@ -46,4 +51,8 @@ tbody tr {
   
 .bronze {
     color: #cd7f32;
+}
+
+.order-chosen {
+    text-shadow: #FFF 0px 0 2px;
 }

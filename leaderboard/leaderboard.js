@@ -106,7 +106,7 @@ getAllQuotes(true)
                     }
                 })
                 $('#leaderboard-content').append(`
-                    <tr id="open_${modalId}">
+                    <tr id="open_${modalId}" data-rank="${n + 1}" data-name="${person}" class="leaderboard-person">
                         <td id="leaderboard-pos-${n + 1}">${n + 1}</td>
                         <td>${person}</td>
                         <td>(${stats.numQuotes} quotes, ${stats.numSolo} solo)</td>
@@ -145,7 +145,6 @@ getAllQuotes(true)
                 let el = $(`#leaderboard-pos-${n + 1}`)
                 if (el.length > 0) {
                     el.append(`&ensp;<i class="fa-solid fa-trophy ${color}"></i>`)
-                    console.log(1)
                 }
             })
 
@@ -156,6 +155,36 @@ getAllQuotes(true)
             })
             $('body').click(() => {
                 closeModal()
+            })
+            
+            $('#order-by-rank').click((evt) => {
+                let el = $(evt.target)
+                if (el.hasClass('order-chosen')) {
+                    el.toggleClass('fa-arrow-down-1-9')
+                    el.toggleClass('fa-arrow-up-9-1')
+                }
+                el.toggleClass('order-chosen', true)
+                $('#order-by-name').toggleClass('order-chosen', false)
+                let rankFn = (a, b) => parseInt($(b).data('rank')) - parseInt($(a).data('rank'))
+                if (el.hasClass('fa-arrow-down-1-9')) {
+                    rankFn = (a, b) => parseInt($(a).data('rank')) - parseInt($(b).data('rank'))
+                }
+                $('#leaderboard-content').html($('tr.leaderboard-person').sort(rankFn))
+            })
+            $('#order-by-name').click((evt) => {
+                let el = $(evt.target)
+                if (el.hasClass('order-chosen')) {
+                    el.toggleClass('fa-arrow-down-a-z')
+                    el.toggleClass('fa-arrow-up-z-a')
+                }
+                el.toggleClass('order-chosen', true)
+                $('#order-by-rank').toggleClass('order-chosen', false)
+                let rankFn = (a, b) => $(a).data('name').localeCompare($(b).data('name'))
+                if (el.hasClass('fa-arrow-up-z-a')) {
+                    rankFn = (a, b) => $(b).data('name').localeCompare($(a).data('name'))
+                }
+                $('#leaderboard-content').html($('tr.leaderboard-person').sort(rankFn))
+
             })
         })
     })
