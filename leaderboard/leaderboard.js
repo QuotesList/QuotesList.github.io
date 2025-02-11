@@ -70,9 +70,10 @@ function preventArrowKeys(event) {
     }
 }
 
-const openModal = (evt, id) => {
-    evt.stopPropagation();
+const openModal = (evt) => {
+    evt.stopPropagation()
     if (openModalId === undefined) {
+        let id = `modal_${$(evt.target).parent().data('name').replaceAll(' ', '_').toLowerCase()}`
         $(`#${id}`).show()
         openModalId = id
         updateMostUniqueWord(id)
@@ -84,6 +85,10 @@ const closeModal = () => {
     $(`#${openModalId}`).hide()
     openModalId = undefined
     enableScrolling()
+}
+
+const addModalClicks = () => {
+    $('tr.leaderboard-person').click(openModal)
 }
 
 getAllQuotes(true)
@@ -137,10 +142,8 @@ getAllQuotes(true)
                         </div>
                     </div>`
                 )
-                $(`#open_${modalId}`).click(evt => {
-                    openModal(evt, modalId)
-                })
             })
+            addModalClicks()
             Array.from(['gold', 'silver', 'bronze']).forEach((color, n) => {
                 let el = $(`#leaderboard-pos-${n + 1}`)
                 if (el.length > 0) {
@@ -170,6 +173,7 @@ getAllQuotes(true)
                     rankFn = (a, b) => parseInt($(a).data('rank')) - parseInt($(b).data('rank'))
                 }
                 $('#leaderboard-content').html($('tr.leaderboard-person').sort(rankFn))
+                addModalClicks()
             })
             $('#order-by-name').click((evt) => {
                 let el = $(evt.target)
@@ -184,7 +188,7 @@ getAllQuotes(true)
                     rankFn = (a, b) => $(b).data('name').localeCompare($(a).data('name'))
                 }
                 $('#leaderboard-content').html($('tr.leaderboard-person').sort(rankFn))
-
+                addModalClicks()
             })
         })
     })
