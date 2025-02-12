@@ -208,6 +208,15 @@ getAllQuotes(true)
                 })
                 addModalClicks()
             })
+            $('.original-order-by').click((evt) => {
+                $('.order-by-icon').toggleClass('order-chosen', false)
+                let evtTarget = $(evt.target)
+                let targetEl = $(`i#${evtTarget.data('ref-id')}`)
+                if (!targetEl.hasClass(evtTarget.data('icon'))) {
+                    targetEl.toggleClass('order-chosen')
+                }
+                targetEl.trigger('click')
+            })
 
             $('#order-by-rank').click((evt) => {
                 let el = $(evt.target)
