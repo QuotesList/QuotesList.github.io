@@ -91,6 +91,30 @@ const addModalClicks = () => {
     $('tr.leaderboard-person').click(openModal)
 }
 
+const sortByElo = (isAvg, a, b) => {
+    let eloA = a.totalElo
+    let eloB = b.totalElo
+    if (isAvg) {
+        eloA /= a.numQuotes
+        eloB /= b.numQuotes
+    }
+    return eloA - eloB
+}
+
+var kebabSortFunctions = {
+    bestRank: (a, b) => {
+        if (a.highestLeaderboardPosition === b.highestLeaderboardPosition) {
+            return b.firstQuoteId - a.firstQuoteId
+        }
+        return a.highestLeaderboardPosition - b.highestLeaderboardPosition
+    },
+    avgEloAsc: (a, b) => sortByElo(true, a, b),
+    avgEloDesc: (a, b) => sortByElo(true, b, a),
+    totalEloAsc: (a, b) => sortByElo(false, a, b),
+    totalEloDesc: (a, b) => sortByElo(false, b, a),
+    groupQuotes: (a, b) => b.numGroup - a.numGroup
+}
+
 getAllQuotes(true)
     .then(data => {
         people = Object.keys(data.stats)
@@ -160,14 +184,35 @@ getAllQuotes(true)
                 closeModal()
             })
             
+            $('.extra-order-by').click((evt) => {
+                let el = $(evt.target)
+                $('.order-by-icon').toggleClass('order-chosen', false)
+                $('i.fa-ellipsis-vertical').toggleClass('order-chosen')
+                let rankFn = kebabSortFunctions[$(el).data('sort-type')]
+                if (typeof rankFn !== 'function') {
+                    alert('Unknown Ordering Option!')
+                    return
+                }
+                $('#leaderboard-content').html($('tr.leaderboard-person').sort((a, b) => {
+                    let statsA = stats[$(a).data('name')]
+                    let statsB = stats[$(b).data('name')]
+                    if (statsA === undefined || statsB === undefined) {
+                        console.error('Could not sort!', statsA, statsB)
+                        return 0
+                    }
+                    return rankFn(a, b)
+                }))
+                addModalClicks()
+            })
+
             $('#order-by-rank').click((evt) => {
                 let el = $(evt.target)
                 if (el.hasClass('order-chosen')) {
                     el.toggleClass('fa-arrow-down-1-9')
                     el.toggleClass('fa-arrow-up-9-1')
                 }
-                el.toggleClass('order-chosen', true)
-                $('#order-by-name').toggleClass('order-chosen', false)
+                $('.order-by-icon').toggleClass('order-chosen', false)
+                el.toggleClass('order-chosen')
                 let rankFn = (a, b) => parseInt($(b).data('rank')) - parseInt($(a).data('rank'))
                 if (el.hasClass('fa-arrow-down-1-9')) {
                     rankFn = (a, b) => parseInt($(a).data('rank')) - parseInt($(b).data('rank'))
@@ -181,8 +226,8 @@ getAllQuotes(true)
                     el.toggleClass('fa-arrow-down-a-z')
                     el.toggleClass('fa-arrow-up-z-a')
                 }
-                el.toggleClass('order-chosen', true)
-                $('#order-by-rank').toggleClass('order-chosen', false)
+                $('.order-by-icon').toggleClass('order-chosen', false)
+                el.toggleClass('order-chosen')
                 let rankFn = (a, b) => $(a).data('name').localeCompare($(b).data('name'))
                 if (el.hasClass('fa-arrow-up-z-a')) {
                     rankFn = (a, b) => $(b).data('name').localeCompare($(a).data('name'))

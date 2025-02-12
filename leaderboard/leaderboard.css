@@ -37,7 +37,8 @@ h5 {
 }
 
 tbody tr,
-i.order-by-icon {
+i.order-by-icon,
+a.extra-order-by {
     cursor: pointer;
 }
 
@@ -58,5 +59,5 @@ i.order-by-icon:hover:not(hover:hover) {
 }
 
 .order-chosen {
-    text-shadow: #FFF 0px 0 2px;
+    text-shadow: #FFF 0px 0 3px;
 }
