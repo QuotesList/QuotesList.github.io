@@ -17,53 +17,55 @@
     <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="content">
-        <h1 class="mt-3 font-weight-bold text-center">Leaderboard</h1>
-         <table class="table table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th>Rank
-                        <i id="order-by-rank" class="order-chosen fa-solid fa-arrow-down-1-9 order-by-icon"></i>
-                    </th>
-                    <th>Name
-                        <i id="order-by-name" class="fa-solid fa-arrow-down-a-z order-by-icon"></i>
-                    </th>
-                    <th>Number of Quotes</th>
-                    <th>
-                        <div class="dropdown d-inline-block float-right dropleft">
-                            <i class="fa-solid fa-ellipsis-vertical order-by-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                            <div class="dropdown-menu dropdown-menu-left dropleft" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item extra-order-by" data-sort-type="bestRank">Order by Best Rank</a>
-                                <a class="dropdown-item extra-order-by" data-sort-type="avgEloAsc">Order by Average Elo (Asc.)</a>
-                                <a class="dropdown-item extra-order-by" data-sort-type="avgEloDesc">Order by Average Elo (Desc.)</a>
-                                <a class="dropdown-item extra-order-by" data-sort-type="totalEloAsc">Order by Total Elo (Asc.)</a>
-                                <a class="dropdown-item extra-order-by" data-sort-type="totalEloDesc">Order by Total Elo (Desc.)</a>
-                                <a class="dropdown-item extra-order-by" data-sort-type="groupQuotes">Order by # of Group Quotes</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item original-order-by" data-ref-id="order-by-name" data-icon="fa-arrow-down-a-z">
-                                    Order Alphabetically (Asc.)
-                                </a>
-                                <a class="dropdown-item original-order-by" data-ref-id="order-by-name" data-icon="fa-arrow-up-z-a">
-                                    Order Alphabetically (Desc.)
-                                </a>
-                                <a class="dropdown-item original-order-by" data-ref-id="order-by-rank" data-icon="fa-arrow-down-1-9">
-                                    Order by Rank (Asc.)
-                                </a>
-                                <a class="dropdown-item original-order-by" data-ref-id="order-by-rank" data-icon="fa-arrow-up-9-1">
-                                    Order by Rank (Desc.)
-                                </a>
+    <div class="row justify-content-center">
+        <div class="col-10 col-lg-8">
+            <h1 class="mt-3 font-weight-bold text-center">Leaderboard</h1>
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Rank
+                            <i id="order-by-rank" class="order-chosen fa-solid fa-arrow-down-1-9 order-by-icon no-mobile"></i>
+                        </th>
+                        <th>Name
+                            <i id="order-by-name" class="fa-solid fa-arrow-down-a-z order-by-icon no-mobile"></i>
+                        </th>
+                        <th class="no-mobile">Number of Quotes</th>
+                        <th>
+                            <div class="dropdown d-inline-block float-right dropleft">
+                                <i class="fa-solid fa-ellipsis-vertical order-by-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <div class="dropdown-menu dropdown-menu-left dropleft" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item extra-order-by" data-sort-type="bestRank">Order by Best Rank</a>
+                                    <a class="dropdown-item extra-order-by" data-sort-type="avgEloAsc">Order by Average Elo (Asc.)</a>
+                                    <a class="dropdown-item extra-order-by" data-sort-type="avgEloDesc">Order by Average Elo (Desc.)</a>
+                                    <a class="dropdown-item extra-order-by" data-sort-type="totalEloAsc">Order by Total Elo (Asc.)</a>
+                                    <a class="dropdown-item extra-order-by" data-sort-type="totalEloDesc">Order by Total Elo (Desc.)</a>
+                                    <a class="dropdown-item extra-order-by" data-sort-type="groupQuotes">Order by # of Group Quotes</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item original-order-by" data-ref-id="order-by-name" data-icon="fa-arrow-down-a-z">
+                                        Order Alphabetically (Asc.)
+                                    </a>
+                                    <a class="dropdown-item original-order-by" data-ref-id="order-by-name" data-icon="fa-arrow-up-z-a">
+                                        Order Alphabetically (Desc.)
+                                    </a>
+                                    <a class="dropdown-item original-order-by" data-ref-id="order-by-rank" data-icon="fa-arrow-down-1-9">
+                                        Order by Rank (Asc.)
+                                    </a>
+                                    <a class="dropdown-item original-order-by" data-ref-id="order-by-rank" data-icon="fa-arrow-up-9-1">
+                                        Order by Rank (Desc.)
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody id="leaderboard-content"></tbody>
-         </table>
-         <span id="leaderboard-modals"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-content"></tbody>
+            </table>
+            <span id="leaderboard-modals"></span>
+        </div>
+        <script src="./leaderboard.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="../js/bootstrap/bootstrap.min.js"></script>
+        <script src="../js/site.js"></script>
     </div>
-    <script src="./leaderboard.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
-    <script src="../js/site.js"></script>
 </body>
 </html>

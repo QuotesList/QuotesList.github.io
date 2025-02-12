@@ -138,7 +138,7 @@ getAllQuotes(true)
                     <tr id="open_${modalId}" data-rank="${n + 1}" data-name="${person}" class="leaderboard-person">
                         <td id="leaderboard-pos-${n + 1}">${n + 1}</td>
                         <td>${person}</td>
-                        <td>(${stats.numQuotes} quotes, ${stats.numSolo} solo)</td>
+                        <td class="no-mobile">(${stats.numQuotes} quotes, ${stats.numSolo} solo)</td>
                         <td class="extra-data text-right" data-name="${person}"></td>
                     </tr>`
                 )
