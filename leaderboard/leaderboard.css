@@ -38,7 +38,8 @@ h5 {
 
 tbody tr,
 i.order-by-icon,
-a.extra-order-by {
+a.extra-order-by,
+a.original-order-by {
     cursor: pointer;
 }
 
