@@ -139,6 +139,7 @@ getAllQuotes(true)
                         <td id="leaderboard-pos-${n + 1}">${n + 1}</td>
                         <td>${person}</td>
                         <td>(${stats.numQuotes} quotes, ${stats.numSolo} solo)</td>
+                        <td class="extra-data text-right" data-name="${person}"></td>
                     </tr>`
                 )
                 $('#leaderboard-modals').append(`
@@ -200,8 +201,11 @@ getAllQuotes(true)
                         console.error('Could not sort!', statsA, statsB)
                         return 0
                     }
-                    return rankFn(a, b)
+                    return rankFn(statsA, statsB)
                 }))
+                $('td.extra-data').each((n, el) => {
+                    $(el).text(`(${n + 1})`)
+                })
                 addModalClicks()
             })
 
@@ -219,6 +223,7 @@ getAllQuotes(true)
                 }
                 $('#leaderboard-content').html($('tr.leaderboard-person').sort(rankFn))
                 addModalClicks()
+                $('td.extra-data').text('')
             })
             $('#order-by-name').click((evt) => {
                 let el = $(evt.target)
@@ -234,6 +239,7 @@ getAllQuotes(true)
                 }
                 $('#leaderboard-content').html($('tr.leaderboard-person').sort(rankFn))
                 addModalClicks()
+                $('td.extra-data').text('')
             })
         })
     })
