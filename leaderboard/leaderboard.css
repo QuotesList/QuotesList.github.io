@@ -1,6 +1,7 @@
-/* .modal {
-    cursor: pointer;
-} */
+.modal {
+    margin-top: 90px;
+    margin-right: 5px;
+}
 
 .modal * {
     color: var(--black);
@@ -41,6 +42,16 @@ i.order-by-icon,
 a.extra-order-by,
 a.original-order-by {
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    th {
+        font-size: 1.5rem;
+    }
+
+    tr {
+        font-size: 1.25rem;
+    }
 }
 
 i.order-by-icon:hover:not(hover:hover) {
