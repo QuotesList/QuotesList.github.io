@@ -2,6 +2,9 @@ var openModalId = undefined
 var stats = {}
 var people = []
 
+const MEDALS_INCLUDE_TROPHIED = true
+const NUM_MEDAL_SPOTS = 10 // Top Ten People
+
 const updateMostUniqueWord = (id) => {
     let uniqueWord = $(`span#unique_word_${id}`).text()
     if (uniqueWord.trim().length < 1) {
@@ -175,6 +178,12 @@ getAllQuotes(true)
                     el.append(`&ensp;<i class="fa-solid fa-trophy ${color}"></i>`)
                 }
             })
+            for (let i = (MEDALS_INCLUDE_TROPHIED? 1 : 4); i <= NUM_MEDAL_SPOTS; i++) {
+                let el = $('#leaderboard-pos-' + i)
+                if (el.length > 0) {
+                    el.next().append('&nbsp;<i class="fa-solid fa-medal"></i>')
+                }
+            }
 
             Array.from(document.getElementsByClassName('modal-content')).forEach(modal => {
                 modal.addEventListener('click', (evt) => {
