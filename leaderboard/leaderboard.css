@@ -1,3 +1,7 @@
+div.row {
+    margin-inline: 0;
+}
+
 .modal {
     margin-top: 90px;
     margin-right: 5px;
