@@ -87,5 +87,9 @@ i.fa-medal {
     color: var(--dark-blue);
     font-size: 0.5em;
     position: absolute;
-    margin-top: 12px;
+    margin-top: 11px;
+}
+
+span.nice-text {
+    font-size: 0.3em;
 }

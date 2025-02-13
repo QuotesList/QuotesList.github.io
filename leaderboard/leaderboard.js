@@ -169,7 +169,9 @@ getAllQuotes(true)
                     <tr id="open_${modalId}" data-rank="${n + 1}" data-name="${person}" class="leaderboard-person">
                         <td id="leaderboard-pos-${n + 1}">${n + 1}</td>
                         <td>${person}</td>
-                        <td class="no-mobile">(${stats.numQuotes} quotes, ${stats.numSolo} solo)</td>
+                        <td class="no-mobile num-quotes-slot">(${stats.numQuotes} quotes, ${stats.numSolo} solo)
+                            ${(stats.numQuotes === 69 || stats.numSolo === 69)? '<span class="nice-text">Nice.</span>' : ''}
+                        </td>
                         <td class="extra-data text-right" data-name="${person}"></td>
                     </tr>`
                 )
