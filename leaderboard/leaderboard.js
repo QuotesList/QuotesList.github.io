@@ -1,6 +1,8 @@
 var openModalId = undefined
 var stats = {}
 var people = []
+var attributions = []
+var attributionCache = {}
 
 const MEDALS_INCLUDE_TROPHIED = true
 const NUM_MEDAL_SPOTS = 10 // Top Ten People
@@ -104,6 +106,25 @@ const sortByElo = (isAvg, a, b) => {
     return eloA - eloB
 }
 
+const sortByVelocity = (a, b, granularity) => {
+    attributionCache = {}
+    const getVelocity = (stats) => {
+        let numRecentQuotes = attributionCache[stats.name]
+        if (numRecentQuotes === undefined) {
+            numRecentQuotes = attributions.slice(-granularity)
+                .filter(attr => (attr.map(x => x.trim().toLowerCase()).includes(stats.name.trim().toLowerCase()))).length
+            attributionCache[stats.name] = numRecentQuotes
+        }
+        return numRecentQuotes
+    }
+    let velocityA = getVelocity(a)
+    let velocityB = getVelocity(b)
+    if (velocityA === velocityB) {
+        return b.lastQuoteId - a.lastQuoteId
+    }
+    return velocityB - velocityA
+}
+
 var kebabSortFunctions = {
     bestRank: (a, b) => {
         if (a.highestLeaderboardPosition === b.highestLeaderboardPosition) {
@@ -115,13 +136,20 @@ var kebabSortFunctions = {
     avgEloDesc: (a, b) => sortByElo(true, b, a),
     totalEloAsc: (a, b) => sortByElo(false, a, b),
     totalEloDesc: (a, b) => sortByElo(false, b, a),
-    groupQuotes: (a, b) => b.numGroup - a.numGroup
+    groupQuotes: (a, b) => b.numGroup - a.numGroup,
+    velocityFine: (a, b) => sortByVelocity(a, b, 100),
+    velocityMed: (a, b) => sortByVelocity(a, b, 200),
+    velocityCoarse: (a, b) => sortByVelocity(a, b, 400),
+    velocityExtra: (a, b) => sortByVelocity(a, b, 800)
 }
 
 getAllQuotes(true)
     .then(data => {
         people = Object.keys(data.stats)
         stats = copyObject(data.stats)
+        attributions = copyObject(data.quotes)
+        attributions.sort((a, b) => a.id - b.id)
+        attributions = attributions.map(x => x.authors.trim().split(',').map(y => y.trim()))
         people.sort((a, b) => (data.stats[a].currentLeaderboardPosition - data.stats[b].currentLeaderboardPosition))
         $(document).ready(() => {
             people.forEach((person, n) => {
@@ -197,7 +225,9 @@ getAllQuotes(true)
             $('.extra-order-by').click((evt) => {
                 let el = $(evt.target)
                 $('.order-by-icon').toggleClass('order-chosen', false)
-                $('i.fa-ellipsis-vertical').toggleClass('order-chosen')
+                if (typeof isDesktop !== 'function' || isDesktop()) {
+                    $('i.fa-ellipsis-vertical').toggleClass('order-chosen')
+                }
                 let rankFn = kebabSortFunctions[$(el).data('sort-type')]
                 if (typeof rankFn !== 'function') {
                     alert('Unknown Ordering Option!')
@@ -226,8 +256,13 @@ getAllQuotes(true)
                 }
                 targetEl.trigger('click')
             })
+            $('.dropdown-item').click((evt) => {
+                $('.dropdown-item').toggleClass('active', false)
+                $(evt.target).toggleClass('active')
+            })
 
             $('#order-by-rank').click((evt) => {
+                $('.dropdown-item').toggleClass('active', false)
                 let el = $(evt.target)
                 if (el.hasClass('order-chosen')) {
                     el.toggleClass('fa-arrow-down-1-9')
@@ -244,6 +279,7 @@ getAllQuotes(true)
                 $('td.extra-data').text('')
             })
             $('#order-by-name').click((evt) => {
+                $('.dropdown-item').toggleClass('active', false)
                 let el = $(evt.target)
                 if (el.hasClass('order-chosen')) {
                     el.toggleClass('fa-arrow-down-a-z')
