@@ -1,6 +1,7 @@
 var openModalId = undefined
 var stats = {}
 var people = []
+var eloMap = {}
 var attributions = []
 var attributionCache = {}
 
@@ -125,6 +126,12 @@ const sortByVelocity = (a, b, granularity) => {
     return velocityB - velocityA
 }
 
+const sortByQuoteElo = (a, b, first) => {
+    let eloA = eloMap[(first? a.firstQuoteId : a.lastQuoteId)]
+    let eloB = eloMap[(first? b.firstQuoteId : b.lastQuoteId)]
+    return eloB - eloA
+}
+
 var kebabSortFunctions = {
     bestRank: (a, b) => {
         if (a.highestLeaderboardPosition === b.highestLeaderboardPosition) {
@@ -140,7 +147,9 @@ var kebabSortFunctions = {
     velocityFine: (a, b) => sortByVelocity(a, b, 100),
     velocityMed: (a, b) => sortByVelocity(a, b, 200),
     velocityCoarse: (a, b) => sortByVelocity(a, b, 400),
-    velocityExtra: (a, b) => sortByVelocity(a, b, 800)
+    velocityExtra: (a, b) => sortByVelocity(a, b, 800),
+    firstElo: (a, b) => sortByQuoteElo(a, b, true),
+    lastElo: (a, b) => sortByQuoteElo(a, b, false)
 }
 
 getAllQuotes(true)
@@ -150,6 +159,9 @@ getAllQuotes(true)
         attributions = copyObject(data.quotes)
         attributions.sort((a, b) => a.id - b.id)
         attributions = attributions.map(x => x.authors.trim().split(',').map(y => y.trim()))
+        data.quotes.forEach(quote => {
+            eloMap[quote.id] = quote.elo
+        })
         people.sort((a, b) => (data.stats[a].currentLeaderboardPosition - data.stats[b].currentLeaderboardPosition))
         $(document).ready(() => {
             people.forEach((person, n) => {
@@ -246,7 +258,7 @@ getAllQuotes(true)
                     return rankFn(statsA, statsB)
                 }))
                 $('td.extra-data').each((n, el) => {
-                    $(el).text(`(${n + 1})`)
+                    $(el).html(`(${n + 1})${(n === 68)? '<span class="nice-text">Nice.</span>' : ''}`)
                 })
                 addModalClicks()
             })

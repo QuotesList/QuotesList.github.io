@@ -93,3 +93,9 @@ i.fa-medal {
 span.nice-text {
     font-size: 0.3em;
 }
+
+td.extra-data span.nice-text {
+    position: absolute;
+    margin: 3em 1em;
+    transform: scale(1.35);
+}
