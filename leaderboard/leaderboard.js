@@ -227,6 +227,7 @@ getAllQuotes(true)
                     el.next().append('&nbsp;<i class="fa-solid fa-medal"></i>')
                 }
             }
+            $('#leaderboard-pos-69').append('<span class="nice-text">&nbsp;Nice.</span>')
 
             Array.from(document.getElementsByClassName('modal-content')).forEach(modal => {
                 modal.addEventListener('click', (evt) => {
