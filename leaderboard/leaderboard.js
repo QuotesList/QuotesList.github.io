@@ -221,12 +221,12 @@ getAllQuotes(true)
                     el.append(`&ensp;<i class="fa-solid fa-trophy ${color}"></i>`)
                 }
             })
-            for (let i = (MEDALS_INCLUDE_TROPHIED? 1 : 4); i <= NUM_MEDAL_SPOTS; i++) {
+            /*for (let i = (MEDALS_INCLUDE_TROPHIED? 1 : 4); i <= NUM_MEDAL_SPOTS; i++) {
                 let el = $('#leaderboard-pos-' + i)
                 if (el.length > 0) {
                     el.next().append('&nbsp;<i class="fa-solid fa-medal"></i>')
                 }
-            }
+            }*/
             $('#leaderboard-pos-69').append('<span class="nice-text">&nbsp;Nice.</span>')
 
             Array.from(document.getElementsByClassName('modal-content')).forEach(modal => {
