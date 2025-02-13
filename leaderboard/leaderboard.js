@@ -187,6 +187,7 @@ getAllQuotes(true)
                                 </div>
                                 <div class="modal-body">
                                     <h5>Number of Quotes: ${stats.numQuotes}</h5>
+                                    <h5 class="mobile-only">Numer of Solo Quotes: ${stats.numSolo}</h5>
                                     <h5>Number of Words Spoken: ${numTotalWords}</h5>
                                     <h5>Number of Unique Words Spoken: ${Object.keys(stats.wordsSpoken).length}</h5>
                                     <!--h5>Most Spoken Word: "${mostSpokenWord}"</h5-->
