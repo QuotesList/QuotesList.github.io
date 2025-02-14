@@ -157,6 +157,12 @@ const backToHome = () => {
     }
 }
 
+const logOut = () => {
+    deleteAuth()
+    gLevel = 0
+    window.location.href = '/'
+}
+
 const requiresHigherAuth = () => {
     let pages = ['submit', 'edit'].filter(x => window.location.href.toLowerCase().includes(x.toLowerCase()))
     return (pages.length > 0)

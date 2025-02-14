@@ -24,16 +24,6 @@ const copyObject = (obj) => {
 
 var isDesktop = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches
 
-const logOut = () => {
-    deleteAuth()
-    gLevel = 0
-    if (typeof populatePage !== 'undefined') {
-        populatePage(gLevel)
-    } else {
-        window.location.href = '/'
-    }
-}
-
 const randomArrayItem = (arr) => {
     if (arr === undefined || !Array.isArray(arr) || arr.length <= 1) {
         return
