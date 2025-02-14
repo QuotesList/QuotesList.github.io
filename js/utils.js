@@ -22,21 +22,7 @@ const copyObject = (obj) => {
     return JSON.parse(JSON.stringify(obj))
 }
 
-var getUserAgent = function() {
-    return navigator.userAgent;
-}
-
-var isTablet = function () {
-    return /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(getUserAgent());
-}
-
-var isMobile = function () {
-    return /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(getUserAgent());
-}
-
-var isDesktop = function () {
-    return !isTablet() && !isMobile();
-}
+var isDesktop = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches
 
 const logOut = () => {
     deleteAuth()
