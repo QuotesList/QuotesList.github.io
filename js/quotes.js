@@ -16,15 +16,11 @@ const standardGET = (endpoint, query) => {
     })
 }
 
-const stripPunctuation = str => {
-    return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s{2,}/g,' ');
-}
-
 const getSearch = searchStr => {
     if (typeof searchStr != 'string') {
         searchStr = ""
     }
-    searchStr = stripPunctuation(searchStr).trim()
+    searchStr = searchStr.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s{2,}/g,' ')
     return standardGET('search', `str=${searchStr}`)
 }
 
@@ -49,7 +45,6 @@ const getAllQuotes = (includeStats) => {
 }
 
 const getGame = () => standardGET('game')
-const getLeaderboard = () => standardGET('leaderboard')
 const getAttributions = () => standardGET('attributions')
 const getWordMap = () => standardGET('words')
 
