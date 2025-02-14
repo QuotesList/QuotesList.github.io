@@ -20,13 +20,6 @@ const stripPunctuation = str => {
     return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s{2,}/g,' ');
 }
 
-const getQuotes = numQuotes => {
-    if (typeof numQuotes != "number") {
-        numQuotes = 1
-    }
-    return standardGET('quotes', `numQuotes=${numQuotes}`)
-}
-
 const getSearch = searchStr => {
     if (typeof searchStr != 'string') {
         searchStr = ""
