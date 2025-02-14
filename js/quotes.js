@@ -44,7 +44,6 @@ const getAllQuotes = (includeStats) => {
     return standardGET('all', query)
 }
 
-const getGame = () => standardGET('game')
 const getWordMap = () => standardGET('words')
 
 const getAttributions = () => {
