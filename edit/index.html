@@ -6,7 +6,6 @@
     <title>Quotes List</title>
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../css/site.css">
-    <link rel="stylesheet" type="text/css" href="./edit.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="../js/lib/jquery.min.js"></script>
@@ -21,12 +20,12 @@
         <div id="quoteList"></div>
     </div>
 
-    <div class="modal" tabindex="-1" role="dialog" id="editModal">
+    <div class="modal" tabindex="-1" role="dialog" id="edit-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="color: black;">
                     <h5 class="modal-title">Edit Quote <span id="quoteId"></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#editModal').hide()">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#edit-modal').hide()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -40,7 +39,7 @@
         </div>
     </div>
 
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" href="../js/bootstrap/bootstrap.min.js"></script>
     <script src="./edit.js"></script>
     <script src="../js/site.js"></script>
 </body>
