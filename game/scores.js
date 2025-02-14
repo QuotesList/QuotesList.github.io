@@ -1,6 +1,7 @@
 const FINISH_THE_QUOTE = 'finish'
 const GUESS_THE_SPEAKER = 'guess'
 const SPOT_THE_FAKES = 'spotFakes'
+const WHICH_DID_THEY_SAY = 'whichQuote'
 
 const ALL_GAME_KEYS = [
     FINISH_THE_QUOTE,
