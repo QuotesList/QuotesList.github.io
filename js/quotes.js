@@ -45,8 +45,22 @@ const getAllQuotes = (includeStats) => {
 }
 
 const getGame = () => standardGET('game')
-const getAttributions = () => standardGET('attributions')
 const getWordMap = () => standardGET('words')
+
+const getAttributions = () => {
+    return new Promise((resolve, reject) => {
+        getAllQuotes()
+            .then(data => {
+                let quotes = JSON.parse(JSON.stringify(data.quotes))
+                quotes.sort((a, b) => a.id - b.id)
+                quotes = quotes.map(x => x.authors.split(','))
+                resolve({
+                    orderedAuthors: quotes
+                })
+            })
+            .catch(reject)
+    })
+}
 
 const standardPOST = (endpoint, body, query) => {
     if (query === undefined || typeof query != "string") {
