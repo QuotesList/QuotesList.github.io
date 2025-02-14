@@ -4,9 +4,6 @@ const LEVEL_HACKER = 0
 
 const MAX_AUTH_LEVELS = 3
 
-// For dev purposes
-var USE_HTTPS = true
-
 const MAIN_SITE_URL = 'thequoteslist.com'
 
 var gPass = 'X'
@@ -103,7 +100,7 @@ const tryAuth = (pass, server) => {
     gLevel = LEVEL_HACKER
     encodeCookie()
     return new Promise((resolve, reject) => {
-        fetch(`http${USE_HTTPS? 's' : ''}://${gServer}/perms?pwd=${gPass}`)
+        fetch(`https://${gServer}/perms?pwd=${gPass}`)
             .then(async (data) => {
                 if (data === undefined || data.json === undefined) {
                     reject({
