@@ -4,7 +4,7 @@ const standardGET = (endpoint, query) => {
     } else {
         query = `&${query}`
     }
-    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
+    const url = new URL(`https://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url)
@@ -16,22 +16,11 @@ const standardGET = (endpoint, query) => {
     })
 }
 
-const stripPunctuation = str => {
-    return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s{2,}/g,' ');
-}
-
-const getQuotes = numQuotes => {
-    if (typeof numQuotes != "number") {
-        numQuotes = 1
-    }
-    return standardGET('quotes', `numQuotes=${numQuotes}`)
-}
-
 const getSearch = searchStr => {
     if (typeof searchStr != 'string') {
         searchStr = ""
     }
-    searchStr = stripPunctuation(searchStr).trim()
+    searchStr = searchStr.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s{2,}/g,' ')
     return standardGET('search', `str=${searchStr}`)
 }
 
@@ -47,11 +36,30 @@ const getNameGuesses = (searchList, verbose) => {
     }
 }
 
-const getGame = () => standardGET('game')
-const getLeaderboard = () => standardGET('leaderboard')
-const getAttributions = () => standardGET('attributions')
-const getAllQuotes = () => standardGET('all')
+const getAllQuotes = (includeStats) => {
+    let query = undefined
+    if (includeStats) {
+        query = 'includeStats=true'
+    }
+    return standardGET('all', query)
+}
+
 const getWordMap = () => standardGET('words')
+
+const getAttributions = () => {
+    return new Promise((resolve, reject) => {
+        getAllQuotes()
+            .then(data => {
+                let quotes = JSON.parse(JSON.stringify(data.quotes))
+                quotes.sort((a, b) => a.id - b.id)
+                quotes = quotes.map(x => x.authors.split(','))
+                resolve({
+                    orderedAuthors: quotes
+                })
+            })
+            .catch(reject)
+    })
+}
 
 const standardPOST = (endpoint, body, query) => {
     if (query === undefined || typeof query != "string") {
@@ -59,7 +67,7 @@ const standardPOST = (endpoint, body, query) => {
     } else {
         query = `&${query}`
     }
-    const url = new URL(`http${USE_HTTPS? 's' : ''}://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
+    const url = new URL(`https://${gServer}/api/${endpoint}?pwd=${gPass}${query}`)
     return new Promise((resolve, reject) => {
         try {
             fetch(url, {

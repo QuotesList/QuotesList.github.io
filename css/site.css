@@ -56,6 +56,15 @@ nav {
         background-color: var(--gold) !important;
         color: var(--white) !important;
     }
+    .requires-touch {
+        display: none;
+    }
+}
+
+@media (hover: none) {
+    .requires-mouse {
+        display: none;
+    }
 }
 
 hr {
@@ -63,7 +72,7 @@ hr {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 h1 > a { 
@@ -71,10 +80,23 @@ h1 > a {
     text-decoration: inherit !important;
 }
 
-body.is-mobile .no-mobile {
+body.is-mobile .no-mobile,
+body:not(.is-mobile) .mobile-only,
+body:not(.logged-in) .requires-login,
+body:not(.is-admin) .requires-admin,
+body.logged-in .requires-logged-out,
+body:not(.explicity-logged-out) .requires-logged-out-explicit {
     display: none;
 }
 
-body:not(.is-mobile) .mobile-only {
-    display: none;
+@media only screen and (orientation: landscape) {
+    .portrait-only {
+        display: none;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    .landscape-only {
+        display: none;
+    }
 }

@@ -1,0 +1,125 @@
+div.row {
+    margin-inline: 0;
+}
+
+.modal {
+    margin-top: 90px;
+    margin-right: 5px;
+}
+
+.modal * {
+    color: var(--black);
+    cursor: text;
+}
+
+.modal div.modal-header,
+.modal div.modal-header * {
+    background-color: var(--dark-pink);
+}
+
+.modal div.modal-body,
+.modal div.modal-body * {
+    background-color: #e1e1e1;
+}
+
+div.modal-body {
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+span.close-btn {
+    color: black;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+i.fa-ellipsis-vertical {
+    padding: 0px 15px;
+}
+
+h5 {
+    word-wrap: normal;
+}
+
+tbody tr,
+i.order-by-icon,
+a.extra-order-by,
+a.original-order-by {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    th {
+        font-size: 1.5rem;
+    }
+
+    tr {
+        font-size: 1.25rem;
+    }
+}
+
+i.order-by-icon:hover:not(hover:hover) {
+    color: black;
+}
+
+.gold {
+    color: gold;
+}
+  
+.silver {
+    color: silver;
+}
+  
+.bronze {
+    color: #cd7f32;
+}
+
+.order-chosen {
+    text-shadow: #FFF 0px 0 3px;
+}
+
+td.extra-data {
+    padding-top: 1em;
+    font-size: 0.65em;
+}
+
+i.fa-medal {
+    color: var(--dark-blue);
+    font-size: 0.5em;
+    position: absolute;
+    margin-top: 11px;
+}
+
+span.nice-text {
+    font-size: 0.3em;
+}
+
+td.extra-data span.nice-text {
+    position: absolute;
+    margin: 3em 1em;
+    transform: scale(1.35);
+}
+
+i.fa-comment {
+    cursor: pointer;
+    color: var(--black);
+    border: 2px outset var(--black);
+    padding: 6px;
+    padding-top: 10px;
+    margin-right: 10px;
+    border-radius: 3px;
+    line-height: 20px;
+    &:hover {
+        color: black;
+        border: 2px inset var(--black);
+        background-color: rgba(0, 0, 0, 0.2);
+        .text-small {
+            background-color: #0000;
+        }
+    }
+}
+
+em.text-small {
+    font-size: 0.5rem;
+    align-content: between;
+}

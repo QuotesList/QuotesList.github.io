@@ -27,7 +27,7 @@ const editClicked = (id) => {
     }
     document.getElementById('quoteId').innerHTML = `#${id}`
     document.getElementById('qtext').value = quote.quote
-    $('#editModal').show()
+    $('#edit-modal').show()
 }
 
 const submitQuoteForm = () => {
@@ -35,7 +35,7 @@ const submitQuoteForm = () => {
     let qEl = document.getElementById('qtext')
     postEdit(qEl.value, gLastEditId)
         .then(() => {
-            $('#editModal').hide()
+            $('#edit-modal').hide()
             document.getElementById(`quote-${gLastEditId}`).innerHTML = escapeText(qEl.value).replaceAll('\n', '<br>')
             qEl.value = ""
             alert('Quote edit submitted.')

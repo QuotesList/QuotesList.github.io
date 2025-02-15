@@ -22,31 +22,7 @@ const copyObject = (obj) => {
     return JSON.parse(JSON.stringify(obj))
 }
 
-var getUserAgent = function() {
-    return navigator.userAgent;
-}
-
-var isTablet = function () {
-    return /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(getUserAgent());
-}
-
-var isMobile = function () {
-    return /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(getUserAgent());
-}
-
-var isDesktop = function () {
-    return !isTablet() && !isMobile();
-}
-
-const logOut = () => {
-    deleteAuth()
-    gLevel = 0
-    if (typeof populatePage !== 'undefined') {
-        populatePage(gLevel)
-    } else {
-        window.location.href = '/'
-    }
-}
+var isDesktop = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches
 
 const randomArrayItem = (arr) => {
     if (arr === undefined || !Array.isArray(arr) || arr.length <= 1) {

@@ -4,9 +4,6 @@ const LEVEL_HACKER = 0
 
 const MAX_AUTH_LEVELS = 3
 
-// For dev purposes
-var USE_HTTPS = true
-
 const MAIN_SITE_URL = 'thequoteslist.com'
 
 var gPass = 'X'
@@ -15,6 +12,32 @@ var gLevel = LEVEL_HACKER
 
 const SERVER_KEY = 'server'
 const PASS_KEY = 'password'
+
+const assignBodyClasses = (level) => {
+    if (level === undefined) {
+        level = gLevel
+    }
+    
+    if (level === LEVEL_ADMIN || level === LEVEL_GENERAL) {
+        while (Array.from(document.body.classList).includes('explicity-logged-out')) {
+            document.body.classList.remove('explicity-logged-out')
+        }
+        document.body.classList.add('logged-in')
+    } else {
+        while (Array.from(document.body.classList).includes('logged-in')) {
+            document.body.classList.remove('logged-in')
+        }
+        document.body.classList.add('explicity-logged-out')
+    }
+
+    if (level === LEVEL_ADMIN) {
+        document.body.classList.add('is-admin')
+    } else {
+        while (Array.from(document.body.classList).includes('is-admin')) {
+            document.body.classList.remove('is-admin')
+        }
+    }
+}
 
 var getCookieItem = function (key) {
     let value = `${document.cookie} `
@@ -77,7 +100,7 @@ const tryAuth = (pass, server) => {
     gLevel = LEVEL_HACKER
     encodeCookie()
     return new Promise((resolve, reject) => {
-        fetch(`http${USE_HTTPS? 's' : ''}://${gServer}/perms?pwd=${gPass}`)
+        fetch(`https://${gServer}/perms?pwd=${gPass}`)
             .then(async (data) => {
                 if (data === undefined || data.json === undefined) {
                     reject({
@@ -134,6 +157,12 @@ const backToHome = () => {
     }
 }
 
+const logOut = () => {
+    deleteAuth()
+    gLevel = 0
+    window.location.href = '/'
+}
+
 const requiresHigherAuth = () => {
     let pages = ['submit', 'edit'].filter(x => window.location.href.toLowerCase().includes(x.toLowerCase()))
     return (pages.length > 0)
@@ -143,60 +172,32 @@ const isRealSite = () => {
     return (window.location.href.includes(MAIN_SITE_URL))
 }
 
-const onLoaded = (level) => {
-    if (level === undefined) {
-        level = gLevel
-    }
-    Array.from(document.getElementsByClassName('onload-no-auth')).forEach(el => {
-        if (level <= LEVEL_HACKER) {
-            el.classList.remove('hidden')
-        } else if (!Array.from(el.classList).includes('hidden')) {
-            el.classList.add('hidden')
-        }
-    })
-    Array.from(document.getElementsByClassName('onload-needs-auth')).forEach(el => {
-        if (level === LEVEL_GENERAL || level === LEVEL_ADMIN) {
-            el.classList.remove('hidden')
-        } else if (!Array.from(el.classList).includes('hidden')) {
-            el.classList.add('hidden')
-        }
-    })
-    Array.from(document.getElementsByClassName('onload-needs-admin')).forEach(el => {
-        if (level === LEVEL_ADMIN) {
-            el.classList.remove('hidden')
-        } else if (!Array.from(el.classList).includes('hidden')) {
-            el.classList.add('hidden')
-        }
-    })
-    if (typeof onLoadCallback == 'function') {
-        onLoadCallback(level)
-    }
-}
-
 let initAuth = decodeCookie()
 if (initAuth === undefined || initAuth.pass === undefined || initAuth.server === undefined) {
     console.log('No cookie data!')
     backToHome()
     $(document).ready(() => {
-        onLoaded(gLevel)
+        assignBodyClasses(LEVEL_HACKER)
     })
 }
 else {
     tryAuth(initAuth.pass, initAuth.server)
         .then(data => {
-            if (data !== undefined) {
-                console.log(`Permission level at ${initAuth.server}: ${data.level}`)
-                if (data.level <= LEVEL_HACKER || data.level >= MAX_AUTH_LEVELS) {
-                    backToHome()
-                }
-                else if (requiresHigherAuth() && data.level !== LEVEL_ADMIN) {
-                    backToHome()
-                }
-                else {
-                    onLoaded(gLevel)
-                    $(document).ready(() => {
-                        onLoaded(gLevel)
-                    })
+            if (data === undefined) {
+                alert('Could not access server?')
+                data = { level: LEVEL_HACKER }
+            }
+            console.log(`Permission level at ${initAuth.server}: ${data.level}`)
+            if (data.level <= LEVEL_HACKER || data.level >= MAX_AUTH_LEVELS) {
+                backToHome()
+            }
+            else if (requiresHigherAuth() && data.level !== LEVEL_ADMIN) {
+                backToHome()
+            }
+            else {
+                assignBodyClasses(gLevel)
+                if (typeof onLoadCallback == 'function') {
+                    onLoadCallback(gLevel)
                 }
             }
         })
