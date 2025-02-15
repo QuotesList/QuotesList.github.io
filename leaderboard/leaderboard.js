@@ -198,7 +198,7 @@ getAllQuotes(true)
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <i class="fa fa-comment float-right" data-name="${person}" aria-hidden="true"></i>
+                                    <i class="fa fa-comment float-right" data-name="${person}" aria-hidden="true" title="View ${person}'s Quotes"></i>
                                     <h5>Number of Quotes: ${stats.numQuotes}</h5>
                                     <h5 class="mobile-only">Numer of Solo Quotes: ${stats.numSolo}</h5>
                                     <h5>Number of Words Spoken: ${numTotalWords}</h5>
