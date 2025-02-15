@@ -7,10 +7,12 @@ const submitCredentials = () => {
     }
     tryAuth(pass, server)
         .then(() => {
-            assignBodyClasses()
-            if (typeof onLoadCallback == 'function') {
-                onLoadCallback(gLevel)
-            }
+            $(document).ready(() => {
+                assignBodyClasses()
+                if (typeof onLoadCallback == 'function') {
+                    onLoadCallback(gLevel)
+                }
+            })
         })
         .catch(err => {
             console.error(err)
