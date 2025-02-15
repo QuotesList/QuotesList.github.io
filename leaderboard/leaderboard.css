@@ -103,13 +103,23 @@ td.extra-data span.nice-text {
 i.fa-comment {
     cursor: pointer;
     color: var(--black);
-    border: 1px outset var(--black);
+    border: 2px outset var(--black);
     padding: 6px;
+    padding-top: 10px;
     margin-right: 10px;
     border-radius: 3px;
+    line-height: 20px;
     &:hover {
         color: black;
-        border: 1px inset var(--black);
+        border: 2px inset var(--black);
         background-color: rgba(0, 0, 0, 0.2);
+        .text-small {
+            background-color: #0000;
+        }
     }
+}
+
+em.text-small {
+    font-size: 0.5rem;
+    align-content: between;
 }
