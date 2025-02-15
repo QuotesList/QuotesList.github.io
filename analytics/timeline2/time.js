@@ -1,10 +1,12 @@
 // TODO There are a lot of constants in here (For demonstration purposes)
 
-const startYear = 1,//1960,
-    endYear = 1520,//2022,
+var startYear = 1,
+    endYear = 1520,
     btn = document.getElementById('play-pause-button'),
     input = document.getElementById('play-range'),
     nbr = 15;
+
+var numTotalQuotes = endYear
 
 let dataset, chart;
 
@@ -113,7 +115,7 @@ function getSubtitle() {
     return `<span style="font-size: 80px">${input.value}</span>
         <br>
         <span style="font-size: 22px">
-            of <b>1520</b>
+            of <b id="total-quote-blurb">${numTotalQuotes}</b>
         </span>`;
 }
 
@@ -148,6 +150,9 @@ const getInfo = () => {
             }
         }
         getAttributions().then(attrs => {
+            numTotalQuotes = attrs.orderedAuthors.length
+            endYear = numTotalQuotes
+            document.getElementById('play-range').max = numTotalQuotes
             attrs.orderedAuthors.forEach(author => {
                 addToMap(author)
             })
