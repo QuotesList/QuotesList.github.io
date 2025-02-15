@@ -31,7 +31,15 @@
                 name = decodeURI(name.slice(name.indexOf('?') + 1)).trim()
                 getAllQuotes()
                     .then(data => {
-                        let quotes = copyObject(data.quotes).filter(quote => quote.authors.toLowerCase().includes(name.toLowerCase()))
+                        let quotes = copyObject(data.quotes).filter(quote => {
+                            let authors = quote.authors.toLowerCase()
+                            if (quote.isGroup) {
+                                authors = authors.split(',').map(x => x.trim())
+                            } else {
+                                authors = [authors.trim()]
+                            }
+                            return authors.includes(name.toLowerCase())
+                        })
                         quotes.sort((a, b) => b.id - a.id)
                         $(document).ready(() => {
                             $('div#results-wrapper').html(quotes.map(x => x.quote.trim().replaceAll('\n', '<br>')).join('<br><br>'))
