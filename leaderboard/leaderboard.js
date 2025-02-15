@@ -311,5 +311,6 @@ getAllQuotes(true)
                 addModalClicks()
                 $('td.extra-data').text('')
             })
+            $("span.nice-text").attr('title', 'This is nice.');
         })
     })
