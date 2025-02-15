@@ -216,10 +216,7 @@ getAllQuotes(true)
             })
             addModalClicks()
             Array.from(['gold', 'silver', 'bronze']).forEach((color, n) => {
-                let el = $(`#leaderboard-pos-${n + 1}`)
-                if (el.length > 0) {
-                    el.append(`&ensp;<i class="fa-solid fa-trophy ${color}"></i>`)
-                }
+                $(`#leaderboard-pos-${n + 1}`).append(`&ensp;<i class="fa-solid fa-trophy ${color}"></i>`)
             })
             /*for (let i = (MEDALS_INCLUDE_TROPHIED? 1 : 4); i <= NUM_MEDAL_SPOTS; i++) {
                 let el = $('#leaderboard-pos-' + i)
