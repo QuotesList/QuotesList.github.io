@@ -198,6 +198,7 @@ getAllQuotes(true)
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <i class="fa fa-comment float-right" data-name="${person}" aria-hidden="true"></i>
                                     <h5>Number of Quotes: ${stats.numQuotes}</h5>
                                     <h5 class="mobile-only">Numer of Solo Quotes: ${stats.numSolo}</h5>
                                     <h5>Number of Words Spoken: ${numTotalWords}</h5>
@@ -308,6 +309,9 @@ getAllQuotes(true)
                 addModalClicks()
                 $('td.extra-data').text('')
             })
-            $("span.nice-text").attr('title', 'This is nice.');
+            $("span.nice-text").attr('title', 'This is nice.')
+            $('i.fa-comment').click((evt) => {
+                window.location.assign(`/person/?${$(evt.target).data('name')}`)
+            })
         })
     })

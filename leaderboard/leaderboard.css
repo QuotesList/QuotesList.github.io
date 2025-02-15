@@ -99,3 +99,17 @@ td.extra-data span.nice-text {
     margin: 3em 1em;
     transform: scale(1.35);
 }
+
+i.fa-comment {
+    cursor: pointer;
+    color: var(--black);
+    border: 1px outset var(--black);
+    padding: 6px;
+    margin-right: 10px;
+    border-radius: 3px;
+    &:hover {
+        color: black;
+        border: 1px inset var(--black);
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+}
