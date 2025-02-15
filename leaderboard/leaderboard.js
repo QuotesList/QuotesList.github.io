@@ -198,7 +198,7 @@ getAllQuotes(true)
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <i class="text-center fa fa-comment float-right" data-name="${person}" aria-hidden="true" title="View ${person}'s Quotes">
+                                    <i class="text-center fa fa-comment float-right" aria-hidden="true" title="View ${person}'s Quotes" onclick="window.location.assign('/person/?${person}')">
                                         <br><em class="text-small">View Quotes</em>
                                     </i>
                                     <!--<p><div class="float-right pr-2 text-small"><em>View Quotes</em></div></p>-->
@@ -313,8 +313,5 @@ getAllQuotes(true)
                 $('td.extra-data').text('')
             })
             $("span.nice-text").attr('title', 'This is nice.')
-            $('i.fa-comment').click((evt) => {
-                window.location.assign(`/person/?${$(evt.target).data('name')}`)
-            })
         })
     })
