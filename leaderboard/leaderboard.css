@@ -78,16 +78,13 @@ i.order-by-icon:hover:not(hover:hover) {
     text-shadow: #FFF 0px 0 3px;
 }
 
+span.top-medal {
+    cursor: default;
+}
+
 td.extra-data {
     padding-top: 1em;
     font-size: 0.65em;
-}
-
-i.fa-medal {
-    color: var(--dark-blue);
-    font-size: 0.5em;
-    position: absolute;
-    margin-top: 11px;
 }
 
 span.nice-text {
@@ -98,6 +95,11 @@ td.extra-data span.nice-text {
     position: absolute;
     margin: 3em 1em;
     transform: scale(1.35);
+}
+
+h5.check-nice span.nice-text {
+    margin-left: 0.25em;
+    font-size: 0.375em;
 }
 
 i.fa-comment {

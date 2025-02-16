@@ -35,8 +35,14 @@ const setUpVote = () => {
             }
             gId1 = quote1.id
             gId2 = quote2.id
-            document.getElementById('quote-card-1').innerHTML = escapeText(quote1.quote).replaceAll('\n', '<br>')
-            document.getElementById('quote-card-2').innerHTML = escapeText(quote2.quote).replaceAll('\n', '<br>')
+
+            $('span#quote-card-1').each((n, el) => {
+                $(el).html(escapeText(quote1.quote).replaceAll('\n', '<br>'))
+            })
+            $('span#quote-card-2').each((n, el) => {
+                $(el).html(escapeText(quote2.quote).replaceAll('\n', '<br>'))
+            })
+            
             Array.from(document.getElementsByClassName(('voteButton'))).forEach(x => {
                 x.disabled = false
             })
