@@ -193,7 +193,7 @@ getAllQuotes(true)
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h3 class="modal-title"><span id="key_${modalId}">${person.trim()}</span>'s Stats</h3>
-                                    ${(n < 10)? '&nbsp;🎖️' : ''}
+                                    ${(n < 10)? '&nbsp;<span class="top-medal" title="Top Ten Contributor">🎖️</span>' : ''}
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
                                         <span aria-hidden="true" class="close-btn">&times;&nbsp;</span>
                                     </button>

@@ -78,6 +78,10 @@ i.order-by-icon:hover:not(hover:hover) {
     text-shadow: #FFF 0px 0 3px;
 }
 
+span.top-medal {
+    cursor: default;
+}
+
 td.extra-data {
     padding-top: 1em;
     font-size: 0.65em;
