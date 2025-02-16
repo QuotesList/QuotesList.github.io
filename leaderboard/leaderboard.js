@@ -143,6 +143,7 @@ var kebabSortFunctions = {
     avgEloDesc: (a, b) => sortByElo(true, b, a),
     totalEloAsc: (a, b) => sortByElo(false, a, b),
     totalEloDesc: (a, b) => sortByElo(false, b, a),
+    soloQuotes: (a, b) => b.numSolo - a.numSolo,
     groupQuotes: (a, b) => b.numGroup - a.numGroup,
     velocityFine: (a, b) => sortByVelocity(a, b, 100),
     velocityMed: (a, b) => sortByVelocity(a, b, 200),
