@@ -12,13 +12,6 @@ div.row {
     cursor: text;
 }
 
-.modal i.fa-medal {
-    font-size: 0.85em;
-    margin-left: 0.6em;
-    margin-top: 0.2em;
-    color: var(--dark-blue);
-}
-
 .modal div.modal-header,
 .modal div.modal-header * {
     background-color: var(--dark-pink);

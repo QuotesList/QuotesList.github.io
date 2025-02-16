@@ -193,7 +193,7 @@ getAllQuotes(true)
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h3 class="modal-title"><span id="key_${modalId}">${person.trim()}</span>'s Stats</h3>
-                                    ${(n < 10)? `<i class="fa-solid fa-medal no-mobile"></i>` : ''}
+                                    ${(n < 10)? '&nbsp;🎖️' : ''}
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
                                         <span aria-hidden="true" class="close-btn">&times;&nbsp;</span>
                                     </button>
@@ -203,7 +203,7 @@ getAllQuotes(true)
                                         <br><em class="text-small">View Quotes</em>
                                     </i>
                                     <h5 class="check-nice">Number of Quotes: ${stats.numQuotes}</h5>
-                                    <h5 class="mobile-only">Numer of Solo Quotes: ${stats.numSolo}</h5>
+                                    <h5 class="mobile-only check-nice">Numer of Solo Quotes: ${stats.numSolo}</h5>
                                     <h5 class="check-nice">Number of Words Spoken: ${numTotalWords}</h5>
                                     <h5 class="check-nice">Number of Unique Words Spoken: ${Object.keys(stats.wordsSpoken).length}</h5>
                                     <!--h5 class="check-nice">Most Spoken Word: "${mostSpokenWord}"</h5-->
