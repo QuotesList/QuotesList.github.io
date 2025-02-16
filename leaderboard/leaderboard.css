@@ -12,6 +12,13 @@ div.row {
     cursor: text;
 }
 
+.modal i.fa-medal {
+    font-size: 0.85em;
+    margin-left: 0.6em;
+    margin-top: 0.2em;
+    color: var(--dark-blue);
+}
+
 .modal div.modal-header,
 .modal div.modal-header * {
     background-color: var(--dark-pink);
@@ -83,13 +90,6 @@ td.extra-data {
     font-size: 0.65em;
 }
 
-i.fa-medal {
-    color: var(--dark-blue);
-    font-size: 0.5em;
-    position: absolute;
-    margin-top: 11px;
-}
-
 span.nice-text {
     font-size: 0.3em;
 }
@@ -98,6 +98,11 @@ td.extra-data span.nice-text {
     position: absolute;
     margin: 3em 1em;
     transform: scale(1.35);
+}
+
+h5.check-nice span.nice-text {
+    margin-left: 0.25em;
+    font-size: 0.375em;
 }
 
 i.fa-comment {

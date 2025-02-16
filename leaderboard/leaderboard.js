@@ -5,8 +5,7 @@ var eloMap = {}
 var attributions = []
 var attributionCache = {}
 
-const MEDALS_INCLUDE_TROPHIED = true
-const NUM_MEDAL_SPOTS = 10 // Top Ten People
+const TROPHY_COLORS = ['gold', 'silver', 'bronze']
 
 const updateMostUniqueWord = (id) => {
     let uniqueWord = $(`span#unique_word_${id}`).text()
@@ -194,6 +193,7 @@ getAllQuotes(true)
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h3 class="modal-title"><span id="key_${modalId}">${person.trim()}</span>'s Stats</h3>
+                                    ${(n < 10)? `<i class="fa-solid fa-medal no-mobile"></i>` : ''}
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
                                         <span aria-hidden="true" class="close-btn">&times;&nbsp;</span>
                                     </button>
@@ -202,15 +202,15 @@ getAllQuotes(true)
                                     <i class="text-center fa fa-comment float-right" aria-hidden="true" title="View ${person}'s Quotes" onclick="window.location.assign('/person/?${person}')">
                                         <br><em class="text-small">View Quotes</em>
                                     </i>
-                                    <h5>Number of Quotes: ${stats.numQuotes}</h5>
+                                    <h5 class="check-nice">Number of Quotes: ${stats.numQuotes}</h5>
                                     <h5 class="mobile-only">Numer of Solo Quotes: ${stats.numSolo}</h5>
-                                    <h5>Number of Words Spoken: ${numTotalWords}</h5>
-                                    <h5>Number of Unique Words Spoken: ${Object.keys(stats.wordsSpoken).length}</h5>
-                                    <!--h5>Most Spoken Word: "${mostSpokenWord}"</h5-->
-                                    <h5>First Quote Number: ${stats.firstQuoteId}</h5>
-                                    <h5>Most Recent Quote Number: ${stats.lastQuoteId}</h5>
-                                    <h5>Highest Leaderboard Position: ${stats.highestLeaderboardPosition}</h5>
-                                    <h5>Current Leaderboard Position: ${stats.currentLeaderboardPosition}</h5>
+                                    <h5 class="check-nice">Number of Words Spoken: ${numTotalWords}</h5>
+                                    <h5 class="check-nice">Number of Unique Words Spoken: ${Object.keys(stats.wordsSpoken).length}</h5>
+                                    <!--h5 class="check-nice">Most Spoken Word: "${mostSpokenWord}"</h5-->
+                                    <h5 class="check-nice">First Quote Number: ${stats.firstQuoteId}</h5>
+                                    <h5 class="check-nice">Most Recent Quote Number: ${stats.lastQuoteId}</h5>
+                                    <h5 class="check-nice">Highest Leaderboard Position: ${stats.highestLeaderboardPosition}</h5>
+                                    <h5 class="check-nice">Current Leaderboard Position: ${stats.currentLeaderboardPosition}</h5>
                                     <h5 id="unique_word_${modalId}"></h5>
                                 </div>
                             </div>
@@ -219,15 +219,9 @@ getAllQuotes(true)
                 )
             })
             addModalClicks()
-            Array.from(['gold', 'silver', 'bronze']).forEach((color, n) => {
+            Array.from(TROPHY_COLORS).forEach((color, n) => {
                 $(`#leaderboard-pos-${n + 1}`).append(`&ensp;<i class="fa-solid fa-trophy ${color}"></i>`)
             })
-            /*for (let i = (MEDALS_INCLUDE_TROPHIED? 1 : 4); i <= NUM_MEDAL_SPOTS; i++) {
-                let el = $('#leaderboard-pos-' + i)
-                if (el.length > 0) {
-                    el.next().append('&nbsp;<i class="fa-solid fa-medal"></i>')
-                }
-            }*/
             $('#leaderboard-pos-69').append('<span class="nice-text">&nbsp;Nice.</span>')
 
             Array.from(document.getElementsByClassName('modal-content')).forEach(modal => {
@@ -238,7 +232,12 @@ getAllQuotes(true)
             $('body').click(() => {
                 closeModal()
             })
-            
+            $('h5.check-nice').each((n, el) => {
+                console.log($(el).text())
+                if ($(el).text().endsWith(' 69')) {
+                    $(el).append('<span class="nice-text">&nbsp;Nice.</span>')
+                }
+            })
             $('.extra-order-by').click((evt) => {
                 let el = $(evt.target)
                 $('.order-by-icon').toggleClass('order-chosen', false)
