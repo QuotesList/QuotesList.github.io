@@ -24,7 +24,7 @@ const updateMostUniqueWord = (id) => {
         if (extraWords.length > 0) {
             let word = extraWords.reduce((longest, word) => 
                 !word.endsWith('s') && word.length > (longest?.length || 0) ? word : longest, undefined
-            ).toLowerCase()
+            )?.toLowerCase()
             if (word && !candidates.includes(word.toLowerCase())) {
                 candidates.push(word.toLowerCase())
             }
@@ -233,7 +233,6 @@ getAllQuotes(true)
                 closeModal()
             })
             $('h5.check-nice').each((n, el) => {
-                console.log($(el).text())
                 if ($(el).text().endsWith(' 69')) {
                     $(el).append('<span class="nice-text">&nbsp;Nice.</span>')
                 }
