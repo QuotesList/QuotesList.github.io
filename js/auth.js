@@ -17,26 +17,12 @@ const assignBodyClasses = (level) => {
     if (level === undefined) {
         level = gLevel
     }
-    
-    if (level === LEVEL_ADMIN || level === LEVEL_GENERAL) {
-        while (Array.from(document.body.classList).includes('explicity-logged-out')) {
-            document.body.classList.remove('explicity-logged-out')
-        }
-        document.body.classList.add('logged-in')
-    } else {
-        while (Array.from(document.body.classList).includes('logged-in')) {
-            document.body.classList.remove('logged-in')
-        }
-        document.body.classList.add('explicity-logged-out')
-    }
-
-    if (level === LEVEL_ADMIN) {
-        document.body.classList.add('is-admin')
-    } else {
-        while (Array.from(document.body.classList).includes('is-admin')) {
-            document.body.classList.remove('is-admin')
-        }
-    }
+    $(document).ready(() => {
+        let bodyEl = $('body')
+        bodyEl.toggleClass('explicitly-logged-out', (level !== LEVEL_ADMIN && level !== LEVEL_GENERAL))
+        bodyEl.toggleClass('logged-in', (level === LEVEL_ADMIN || level === LEVEL_GENERAL))
+        bodyEl.toggleClass('is-admin', level === LEVEL_ADMIN)
+    })
 }
 
 var getCookieItem = function (key) {
