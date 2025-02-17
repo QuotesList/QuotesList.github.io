@@ -233,7 +233,6 @@ getAllQuotes(true)
                 closeModal()
             })
             $('h5.check-nice').each((n, el) => {
-                console.log($(el).text())
                 if ($(el).text().endsWith(' 69')) {
                     $(el).append('<span class="nice-text">&nbsp;Nice.</span>')
                 }
