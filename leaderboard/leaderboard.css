@@ -124,4 +124,5 @@ i.fa-comment {
 em.text-small {
     font-size: 0.5rem;
     align-content: between;
+    cursor: pointer;
 }
