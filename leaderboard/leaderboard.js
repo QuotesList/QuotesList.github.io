@@ -6,6 +6,7 @@ var attributions = []
 var attributionCache = {}
 
 const TROPHY_COLORS = ['gold', 'silver', 'bronze']
+const BEST_NOUN_TEXT = 'Best/Most Common Noun'
 
 const updateMostUniqueWord = (id) => {
     let uniqueWord = $(`span#unique_word_${id}`).text()
@@ -212,6 +213,7 @@ getAllQuotes(true)
                                     <h5 class="check-nice">Highest Leaderboard Position: ${stats.highestLeaderboardPosition}</h5>
                                     <h5 class="check-nice">Current Leaderboard Position: ${stats.currentLeaderboardPosition}</h5>
                                     <h5 id="unique_word_${modalId}"></h5>
+                                    <h5 id="common_noun_${modalId}">${BEST_NOUN_TEXT}: (Still searching...)</h5>
                                 </div>
                             </div>
                         </div>
@@ -311,5 +313,31 @@ getAllQuotes(true)
                 $('td.extra-data').text('')
             })
             $("span.nice-text").attr('title', 'This is nice.')
+        })
+    })
+    .then(() => {
+        $(document).ready(() => {
+            Object.keys(stats).forEach(person => {
+                let wordMap = {}
+                stats[person].sentences
+                    .map(sentence => sentence.toLowerCase().trim()
+                        .replace(/~.*/, '').replace(/.*?:/, '').replace(/-.*/, '')
+                        .replace(/\b\w*['’]\w*\b|\(.*?\)|["'“”‘’]/g, '').replace(/\s+|[.,?!;]\s*/g, ' ').trim()
+                    )
+                    .forEach(sentence =>
+                        sentence.split(' ').forEach(word => {
+                            if (word.length > 1 && /[a-zA-Z0-9]/.test(word)) {
+                                let pos = tagPOS(word)[Object.keys(tagPOS(word))[0]]
+                                if (Array.isArray(pos) && pos.join('|').startsWith('Noun|Singular') && !pos.join('|').includes('Name')) {
+                                    wordMap[word] = (wordMap[word] || 0) + 1
+                                }
+                            }
+                        })
+                    )
+                let keys = Object.keys(wordMap).sort((a, b) => wordMap[b] - wordMap[a])
+                    .slice(0, 3).sort().map(x => `"${x.charAt(0).toUpperCase()}${x.slice(1)}"`)
+                $(`#common_noun_modal_${person.toLowerCase().trim().replaceAll(' ', '_')}`)
+                    .text(`${BEST_NOUN_TEXT}${keys.length ? (keys.length > 1 ? 's' : '') + `: ${keys.join(', ')}` : 's: (None Found!)'}`)
+            })
         })
     })
