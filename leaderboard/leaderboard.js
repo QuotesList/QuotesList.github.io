@@ -15,12 +15,10 @@ const updateMostUniqueWord = (id) => {
         let extraWords = Object.keys(stats[person].wordsSpoken).map(x => x.trim().toLowerCase())
         extraWords = extraWords.filter(word => /^[a-zA-Z]+$/.test(word) && !reverseWordFrequencySet.has(word))
         let candidates = []
-
         let longestWord = Object.keys(stats[person].wordsSpoken).reduce((longest, word) => word.length > longest.length ? word : longest, "")
         if (longestWord !== undefined && longestWord.length > 0) {
             candidates.push(longestWord.toLowerCase())
         }
-
         let bestWord = undefined
         if (extraWords.length > 0) {
             let word = extraWords.reduce((longest, word) => 
@@ -45,8 +43,7 @@ const updateMostUniqueWord = (id) => {
             candidates.push(bestWord.toLowerCase().trim())
         }
         if (candidates.length > 0) {
-            candidates.sort()
-            candidates = candidates.map(x => x.slice(0, 1).toUpperCase() + x.slice(1)).join('", "')
+            candidates = candidates.sort().map(x => x.slice(0, 1).toUpperCase() + x.slice(1)).join('", "')
             $(`#unique_word_${id}`).text(`Most Unique Words: "${candidates}"`)
         } else {
             $(`#unique_word_${id}`).text('Most Unique Words: None Found!')
@@ -191,7 +188,8 @@ getAllQuotes(true)
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <i class="text-center fa fa-comment float-right" aria-hidden="true" title="View ${person}'s Quotes" onclick="window.location.assign('/person/?${person}')">
+                                    <i class="text-center fa fa-comment float-right" aria-hidden="true" title="View ${person}'s Quotes" 
+                                            onclick="window.location.assign('/person/?${person}')">
                                         <br><em class="text-small">View Quotes</em>
                                     </i>
                                     <h5 class="check-nice">Number of Quotes: ${stats.numQuotes}</h5>
@@ -313,12 +311,10 @@ getAllQuotes(true)
                         .replace(/\b\w*['’]\w*\b|\(.*?\)|["'“”‘’]/g, '').replace(/\s+|[.,?!;]\s*/g, ' ').trim()
                     )
                     .forEach(sentence =>
-                        sentence.split(' ').forEach(word => {
-                            if (word.length > 1 && /[a-zA-Z0-9]/.test(word)) {
-                                let pos = tagPOS(word)[Object.keys(tagPOS(word))[0]]
-                                if (Array.isArray(pos) && pos.join('|').startsWith('Noun|Singular') && !pos.join('|').includes('Name')) {
-                                    wordMap[word] = (wordMap[word] || 0) + 1
-                                }
+                        sentence.split(' ').filter(x => x.length > 1 && /[a-zA-Z0-9]/.test(x)).forEach(word => {
+                            let pos = tagPOS(word)[Object.keys(tagPOS(word))[0]] || []
+                            if (pos.join('|').startsWith('Noun|Singular') && !pos.join('|').includes('Name')) {
+                                wordMap[word] = (wordMap[word] || 0) + 1
                             }
                         })
                     )
