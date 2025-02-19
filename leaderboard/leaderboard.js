@@ -168,16 +168,7 @@ getAllQuotes(true)
             people.forEach((person, n) => {
                 let stats = data.stats[person]
                 let modalId = `modal_${person.toLowerCase().trim().replaceAll(' ', '_')}`
-                let numTotalWords = 0
-                let mostSpokenWord = ''
-                let timesSpoken = -1
-                Object.keys(stats.wordsSpoken).forEach(word => {
-                    numTotalWords += stats.wordsSpoken[word]
-                    if (stats.wordsSpoken[word] > timesSpoken) {
-                        timesSpoken = stats.wordsSpoken[word]
-                        mostSpokenWord = word.slice(0, 1).toUpperCase() + word.slice(1)
-                    }
-                })
+                let numTotalWords = Object.values(stats.wordsSpoken).reduce((sum, val) => sum + val, 0)
                 $('#leaderboard-content').append(`
                     <tr id="open_${modalId}" data-rank="${n + 1}" data-name="${person}" class="leaderboard-person">
                         <td id="leaderboard-pos-${n + 1}">${n + 1}</td>
@@ -207,7 +198,6 @@ getAllQuotes(true)
                                     <h5 class="mobile-only check-nice">Numer of Solo Quotes: ${stats.numSolo}</h5>
                                     <h5 class="check-nice">Number of Words Spoken: ${numTotalWords}</h5>
                                     <h5 class="check-nice">Number of Unique Words Spoken: ${Object.keys(stats.wordsSpoken).length}</h5>
-                                    <!--h5 class="check-nice">Most Spoken Word: "${mostSpokenWord}"</h5-->
                                     <h5 class="check-nice">First Quote Number: ${stats.firstQuoteId}</h5>
                                     <h5 class="check-nice">Most Recent Quote Number: ${stats.lastQuoteId}</h5>
                                     <h5 class="check-nice">Highest Leaderboard Position: ${stats.highestLeaderboardPosition}</h5>
@@ -231,9 +221,7 @@ getAllQuotes(true)
                     evt.stopPropagation()
                 })
             })
-            $('body').click(() => {
-                closeModal()
-            })
+            $('body').click(closeModal)
             $('h5.check-nice').each((n, el) => {
                 if ($(el).text().endsWith(' 69')) {
                     $(el).append('<span class="nice-text">&nbsp;Nice.</span>')
