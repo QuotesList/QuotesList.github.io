@@ -26,21 +26,15 @@ var chart = new Chart(ctx, {
     options: {
         indexAxis: 'y',
         elements: {
-            bar: {
-                borderWidth: 2
-            }
+            bar: { borderWidth: 2 }
         },
         responsive: true,
         plugins: {
-            legend: {
-                position: 'right'
-            },
+            legend: { position: 'right' },
             title: {
                 display: true,
                 text: 'Top 20 of Quotes List Over Time',
-                font: {
-                    size: 20
-                }
+                font: { size: 20 }
             }
         }
     }
