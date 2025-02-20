@@ -54,15 +54,14 @@ const updateMap = (arr) => {
 }
 
 slider.oninput = () => {
-    if (outputData.orderedAuthors === undefined) {
-        return
+    if (outputData.orderedAuthors) {
+        numQuotes.innerHTML = slider.value
+        map = {}
+        for (let i = 0; i < slider.value; i++) {
+            updateMap(outputData.orderedAuthors[i])
+        }
+        updateChart()
     }
-    numQuotes.innerHTML = slider.value
-    map = {}
-    for (let i = 0; i < slider.value; i++) {
-        updateMap(outputData.orderedAuthors[i])
-    }
-    updateChart()
 }
 
 getAttributions()
@@ -73,7 +72,7 @@ getAttributions()
         numQuotes.innerHTML = maxQuotes
         slider.max = maxQuotes
         slider.value = maxQuotes
-        data.orderedAuthors.forEach(x => updateMap(x))
+        data.orderedAuthors.forEach(updateMap)
         updateChart()
     })
     .catch(err => {
