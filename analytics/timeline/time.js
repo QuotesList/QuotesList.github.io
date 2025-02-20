@@ -37,11 +37,7 @@ var chart = new Chart(document.getElementById('myChart'), {
 })
 
 const updateChart = () => {
-    let leaderboard = Object.keys(map)
-    leaderboard.sort((a, b) => map[b] - map[a])
-    if (leaderboard.length > 20) {
-        leaderboard = leaderboard.slice(0, 20)
-    }
+    let leaderboard = Object.keys(map).sort((a, b) => map[b] - map[a]).slice(0, 20)
     chart.data.labels = leaderboard
     chart.data.datasets[0].data = leaderboard.map(x => map[x])
     chart.update()
