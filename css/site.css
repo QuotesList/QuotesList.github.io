@@ -111,3 +111,11 @@ div#hamburger-menu {
         font-family: sans-serif;
     }
 }
+
+nav button.nav-button {
+    width: 12.2vw;
+}
+
+body.is-admin nav button.nav-button {
+    width: 9.7vw;
+}
