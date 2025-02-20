@@ -9,8 +9,7 @@ const TROPHY_COLORS = ['gold', 'silver', 'bronze']
 const BEST_NOUN_TEXT = 'Best/Most Common Noun'
 
 const updateMostUniqueWord = (id) => {
-    let uniqueWord = $(`span#unique_word_${id}`).text()
-    if (uniqueWord.trim().length < 1) {
+    if ($(`span#unique_word_${id}`).text().trim().length < 1) {
         let person = $(`span#key_${id}`).text()
         let extraWords = Object.keys(stats[person].wordsSpoken).map(x => x.trim().toLowerCase())
         extraWords = extraWords.filter(word => /^[a-zA-Z]+$/.test(word) && !reverseWordFrequencySet.has(word))
@@ -42,34 +41,34 @@ const updateMostUniqueWord = (id) => {
         } else if (!candidates.includes(bestWord.toLowerCase().trim())) {
             candidates.push(bestWord.toLowerCase().trim())
         }
-        if (candidates.length > 0) {
-            candidates = candidates.sort().map(x => x.slice(0, 1).toUpperCase() + x.slice(1)).join('", "')
-            $(`#unique_word_${id}`).text(`Most Unique Words: "${candidates}"`)
-        } else {
-            $(`#unique_word_${id}`).text('Most Unique Words: None Found!')
-        }
+        $(`#unique_word_${id}`).text(
+            `Most Unique Words: ${
+                (candidates.length > 0)?
+                    `"${candidates.sort().map(x => x.slice(0, 1).toUpperCase() + x.slice(1)).join('", "')}"`
+                    : '(None Found!)'
+            }`)
     }
 }
 
 function disableScrolling() {
-    window.addEventListener('wheel', preventScroll, { passive: false });
-    window.addEventListener('touchmove', preventScroll, { passive: false });
-    window.addEventListener('keydown', preventArrowKeys, { passive: false });
+    window.addEventListener('wheel', preventScroll, { passive: false })
+    window.addEventListener('touchmove', preventScroll, { passive: false })
+    window.addEventListener('keydown', preventArrowKeys, { passive: false })
 }
 
 function enableScrolling() {
-    window.removeEventListener('wheel', preventScroll);
-    window.removeEventListener('touchmove', preventScroll);
-    window.removeEventListener('keydown', preventArrowKeys);
+    window.removeEventListener('wheel', preventScroll)
+    window.removeEventListener('touchmove', preventScroll)
+    window.removeEventListener('keydown', preventArrowKeys)
 }
 
 function preventScroll(event) {
-    event.preventDefault();
+    event.preventDefault()
 }
 
 function preventArrowKeys(event) {
     if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", "Space"].includes(event.key)) {
-        event.preventDefault();
+        event.preventDefault()
     }
 }
 
@@ -115,12 +114,7 @@ const sortByVelocity = (a, b, granularity) => {
         }
         return numRecentQuotes
     }
-    let velocityA = getVelocity(a)
-    let velocityB = getVelocity(b)
-    if (velocityA === velocityB) {
-        return b.lastQuoteId - a.lastQuoteId
-    }
-    return velocityB - velocityA
+    return (getVelocity(b) - getVelocity(a)) || (b.lastQuoteId - a.lastQuoteId)
 }
 
 const sortByQuoteElo = (a, b, first) => {
@@ -130,12 +124,7 @@ const sortByQuoteElo = (a, b, first) => {
 }
 
 var kebabSortFunctions = {
-    bestRank: (a, b) => {
-        if (a.highestLeaderboardPosition === b.highestLeaderboardPosition) {
-            return b.firstQuoteId - a.firstQuoteId
-        }
-        return a.highestLeaderboardPosition - b.highestLeaderboardPosition
-    },
+    bestRank: (a, b) => (a.highestLeaderboardPosition - b.highestLeaderboardPosition) || (b.firstQuoteId - a.firstQuoteId),
     avgEloAsc: (a, b) => sortByElo(true, a, b),
     avgEloDesc: (a, b) => sortByElo(true, b, a),
     totalEloAsc: (a, b) => sortByElo(false, a, b),
