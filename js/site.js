@@ -37,7 +37,6 @@ $(document).ready(() => {
             <button type="button" onclick="logOut()">Log Out</button>
         </nav>
     `)
-    $('div#content:not([class])').attr('class', 'col-10 col-lg-8 offset-lg-2 justify-content-center')
     let length = navItems.filter(x => x.requiresPriveleges !== true).length + 1
     let buttonWidth = ($(document).width() / length) - 20
     $('nav button').css('width', `${buttonWidth}px`)
