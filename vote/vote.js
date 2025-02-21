@@ -5,9 +5,7 @@ const filterHighQuotes = (quotes) => {
     if (quotes.length < 40) {
         return quotes
     }
-    quotes = copyObject(quotes).sort((a, b) => {
-        return (a.numVotes - b.numVotes)
-    })
+    quotes = copyObject(quotes).sort((a, b) => a.numVotes - b.numVotes)
     return quotes.slice(0, Math.ceil(quotes.length / 10))
 }
 
@@ -42,8 +40,8 @@ const setUpVote = () => {
             $('span#quote-card-2').each((n, el) => {
                 $(el).html(escapeText(quote2.quote).replaceAll('\n', '<br>'))
             })
-            
-            Array.from(document.getElementsByClassName(('voteButton'))).forEach(x => {
+
+            Array.from(document.getElementsByClassName(('vote-button'))).forEach(x => {
                 x.disabled = false
             })
         })
@@ -53,7 +51,7 @@ const setUpVote = () => {
         })
 }
 
-setUpVote()
+$(document).ready(setUpVote)
 
 const vote = (idx) => {
     Array.from(document.getElementsByClassName('voteButton')).forEach(x => {

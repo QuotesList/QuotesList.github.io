@@ -12,15 +12,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../../js/lib/jquery.min.js"></script>
     <script src="../../js/utils.js"></script>
     <script src="../../js/auth.js"></script>
     <script src="../../js/quotes.js"></script>
-    <!-- <script src="../../js/charts/chart.js"></script> -->
     <script src="../../js/charts/highcharts.js"></script>
+    <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div>
-        <figure class="highcharts-figure">
+        <figure class="highcharts-figure mt-4">
             <div id="parent-container">
                 <div id="container"></div>
                 <div id="play-controls">
@@ -28,23 +29,10 @@
                     <input id="play-range" type="range" value="1" min="1" max="1520" />
                 </div>
             </div>
-            <!-- <p class="highcharts-description">
-                Bar chart showing the world population by countries from 1960 to 2022.
-            </p> -->
         </figure>
     </div>
-    <!-- Old stuff from original timeline -->
-    <!-- <div class="col-12 col-lg-8 offset-lg-2 justify-content-center mt-2" id="content">
-        <div id="canvasPane">
-            <canvas id="myChart"></canvas>
-        </div>
-        <br>
-        <div class="slidecontainer">
-            <input type="range" min="1" max="2" value="1" class="slider" id="myRange">
-            <p>Quotes: <span id="numQuotesText">0</span>/<span id="totalQuotesText">0</span></p>
-          </div>
-    </div> -->
-    <script src="../../js/bootstrap/bootstrap.js"></script>
+    <script src="../../js/bootstrap/popper.min.js"></script>
+    <script src="../../js/bootstrap/bootstrap.min.js"></script>
     <script src="./time.js"></script>
     <script src="../../js/site.js"></script>
 </body>

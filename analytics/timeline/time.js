@@ -1,9 +1,5 @@
-const ctx = document.getElementById('myChart');
-
 Chart.defaults.color = '#000'
 Chart.defaults.font.size = 14
-
-const UPDATE_TIME = 50
 
 var slider = document.getElementById("myRange")
 var numQuotes = document.getElementById('numQuotesText')
@@ -12,7 +8,7 @@ var totalQuotes = document.getElementById('totalQuotesText')
 var map = {}
 var outputData = {}
 
-var chart = new Chart(ctx, {
+var chart = new Chart(document.getElementById('myChart'), {
     type: 'bar',
     data: {
         labels: [''],
@@ -26,62 +22,42 @@ var chart = new Chart(ctx, {
     options: {
         indexAxis: 'y',
         elements: {
-            bar: {
-                borderWidth: 2
-            }
+            bar: { borderWidth: 2 }
         },
         responsive: true,
         plugins: {
-            legend: {
-                position: 'right'
-            },
+            legend: { position: 'right' },
             title: {
                 display: true,
                 text: 'Top 20 of Quotes List Over Time',
-                font: {
-                    size: 20
-                }
+                font: { size: 20 }
             }
         }
     }
 })
 
 const updateChart = () => {
-    let leaderboard = Object.keys(map)
-    leaderboard.sort((a, b) => {
-        return (map[b] - map[a])
-    })
-    if (leaderboard.length > 20) {
-        leaderboard = leaderboard.slice(0, 20)
-    }
+    let leaderboard = Object.keys(map).sort((a, b) => map[b] - map[a]).slice(0, 20)
     chart.data.labels = leaderboard
-    let values = leaderboard.map(x => map[x])
-    chart.data.datasets[0].data = values
+    chart.data.datasets[0].data = leaderboard.map(x => map[x])
     chart.update()
 }
 
 const updateMap = (arr) => {
-    if (!Array.isArray) {
-        return
+    if (Array.isArray(arr)) {
+        arr.forEach(x => map[x] = (map[x] || 0) + 1)
     }
-    arr.forEach(x => {
-        if (map[x] === undefined) {
-            map[x] = 0
-        }
-        map[x] += 1
-    })
 }
 
 slider.oninput = () => {
-    if (outputData.orderedAuthors === undefined) {
-        return
+    if (outputData.orderedAuthors) {
+        numQuotes.innerHTML = slider.value
+        map = {}
+        for (let i = 0; i < slider.value; i++) {
+            updateMap(outputData.orderedAuthors[i])
+        }
+        updateChart()
     }
-    numQuotes.innerHTML = slider.value
-    map = {}
-    for (let i = 0; i < slider.value; i++) {
-        updateMap(outputData.orderedAuthors[i])
-    }
-    updateChart()
 }
 
 getAttributions()
@@ -92,9 +68,7 @@ getAttributions()
         numQuotes.innerHTML = maxQuotes
         slider.max = maxQuotes
         slider.value = maxQuotes
-        data.orderedAuthors.forEach(x => {
-            updateMap(x)
-        })
+        data.orderedAuthors.forEach(updateMap)
         updateChart()
     })
     .catch(err => {
