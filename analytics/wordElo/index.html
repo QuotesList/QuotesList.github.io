@@ -15,15 +15,55 @@
     <script src="../../js/auth.js"></script>
     <script src="../../js/quotes.js"></script>
     <script src="../../js/utils.js"></script>
+    <script>
+        getAllQuotes()
+            .then(({ quotes }) => {
+                let wordMap = {}, sentences = []
+                quotes.forEach(({ isGroup, quote, elo }) => {
+                    let parts = isGroup ? quote.split('\n') : [quote]
+                    parts.forEach(x => {
+                        if (x.includes(':')) {
+                            sentences.push([x.slice(x.indexOf(':') + 1), elo])
+                        } else {
+                            let splitChar = x.includes('~') ? '~' : (!isGroup && x.includes('-') ? '-' : null)
+                            sentences.push([splitChar ? x.slice(0, x.indexOf(splitChar)) : x, elo])
+                        }
+                    })
+                })
+                sentences.map(x => [x[0].replace(/["?]/g, ' ').replace(/'/g, '').replace(/[^\x20-\x7E]/g, '')
+                        .replace(/\s*\(.*?\)\s*/g, ' ').replace(/\s*\*.*?\*\s*/g, ' ').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+                        .replace(/\s{2,}/g, ' ').trim().toLowerCase(), x[1]])
+                    .forEach(([text, elo]) => {
+                        text.split(' ').forEach(word => {
+                            wordMap[word] ??= { totalElo: 0, numTimes: 0 }
+                            wordMap[word].totalElo += elo
+                            wordMap[word].numTimes++
+                        })
+                    })
+                Object.keys(wordMap).forEach(key => wordMap[key].averageElo = (wordMap[key].totalElo / wordMap[key].numTimes))
+                $(document).ready(() => {
+                    $('#word-leaderboard').html(
+                        Object.keys(wordMap).filter(x => wordMap[x].numTimes >= 3)
+                            .sort((a, b) => wordMap[b].averageElo - wordMap[a].averageElo)
+                            .map((x, n) => `${n + 1}. ${x.slice(0, 1).toUpperCase()}${x.slice(1)} (${Math.round(wordMap[x].averageElo * 100) / 100})`)
+                        .join('<br>')
+                    )
+                })
+            })
+    </script>
+    <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="content">
-        <h1 class="text-center mt-4">Popular Word Leaderboard By Average Elo from Originating Fact</h1>
-        <hr>
-        <div id="word-leaderboard" class="text-center mt-3"></div>
+    <div class="row justify-content-center">
+        <div class="col-10 col-lg-8">
+            <h1 class="text-center mt-4">Popular Word Leaderboard By Average Elo from Originating Fact</h1>
+            <hr>
+            <div id="word-leaderboard" class="text-center mt-3"></div>
+        </div>
     </div>
+    <script src="../../js/bootstrap/popper.min.js"></script>
     <script src="../../js/bootstrap/bootstrap.min.js"></script>
     <script src="../../js/site.js"></script>
-    <script src="./wordelo.js"></script>
+    <!-- <script src="./wordelo.js"></script> -->
 </body>
 </html>

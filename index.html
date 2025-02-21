@@ -19,11 +19,14 @@
     <script src="./js/auth.js"></script>
     <script src="./js/quotes.js"></script>
     <script src="./js/utils.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js" defer></script>
+    <script src="./js/site.js" defer></script>
+    <script src="./home.js" defer></script>
 </head>
 <body>
     <div class="row text-center">
         <div class="col-md-6 col-12">
-            <div id="content" class="justify-content-center">
+            <div class="justify-content-center">
                 <div id="password-wrapper" class="requires-logged-out-explicit">
                     <input id="serverInput" name="serverInput" placeholder="Enter Server URL..."><br id="input-break">
                     <input id="passwordInput" name="passwordInput" type="password" placeholder="Enter Password..." onkeypress="return keyWrapper(event, submitCredentials)"><br>
@@ -46,9 +49,6 @@
                     <button type="button" id="logoutBtn" onclick="logOut()">Log Out</button>
                 </div>
             </div>
-            <script src="./js/bootstrap/bootstrap.min.js"></script>
-            <script src="./js/site.js"></script>
-            <script src="./home.js"></script>
         </div>
     </div>
 </body>

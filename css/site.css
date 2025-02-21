@@ -85,7 +85,7 @@ body:not(.is-mobile) .mobile-only,
 body:not(.logged-in) .requires-login,
 body:not(.is-admin) .requires-admin,
 body.logged-in .requires-logged-out,
-body:not(.explicity-logged-out) .requires-logged-out-explicit {
+body:not(.explicitly-logged-out) .requires-logged-out-explicit {
     display: none;
 }
 
@@ -99,4 +99,23 @@ body:not(.explicity-logged-out) .requires-logged-out-explicit {
     .landscape-only {
         display: none;
     }
+}
+
+div#hamburger-menu {
+    position: absolute;
+    left: 20px;
+    top: 14px;
+    font-size: 0.8em;
+    .dropdown-item {
+        font-size: 1.75em;
+        font-family: sans-serif;
+    }
+}
+
+nav button.nav-button {
+    width: 12.2vw;
+}
+
+body.is-admin nav button.nav-button {
+    width: 9.7vw;
 }

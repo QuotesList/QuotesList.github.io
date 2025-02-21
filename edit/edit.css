@@ -1,0 +1,17 @@
+button.edit-btn {
+    margin-bottom: 0;
+}
+
+i.filter-menu {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px outset black;
+    border-radius: 3px;
+}
+
+i.filter-menu:hover,
+i.filter-menu.pressed {
+    color: black;
+    border: 1px inset black;
+    background-color: #0002;
+}

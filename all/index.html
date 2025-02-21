@@ -16,18 +16,18 @@
     <script src="../js/utils.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/quotes.js"></script>
+    <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="row justify-content-center">
         <div class="col-10 col-lg-8">
             <h1 id="num-results" class="mt-3 font-weight-bold"></h1><hr>
-            <div id="results-wrapper" class="mt-4">
-                <!-- Results get populated here. -->
-            </div>
+            <div id="results-wrapper" class="mt-4"></div>
         </div>
+        <script src="../js/bootstrap/popper.min.js"></script>
         <script src="../js/bootstrap/bootstrap.min.js"></script>
-        <script src="../js/site.js"></script>
-        <script>
+        <script src="../js/site.js" defer></script>
+        <script defer>
             getAllQuotes()
                 .then(data => {
                     let str = ""
@@ -36,7 +36,7 @@
                         str += `${x.quote.trim().replaceAll('\n', '<br>')}<br><br>`
                     })
                     document.getElementById('results-wrapper').innerHTML = str
-                    document.getElementById('num-results').innerHTML = `${data.quotes.length} Quote${(data.quotes.length === 1) ? '' : 's'}`
+                    document.getElementById('num-results').innerHTML = `${data.quotes.length} ${pluralize(data.quotes.length, 'Quote')}`
                 })
         </script>
     </div>

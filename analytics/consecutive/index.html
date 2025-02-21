@@ -15,14 +15,40 @@
     <script src="../../js/auth.js"></script>
     <script src="../../js/quotes.js"></script>
     <script src="../../js/utils.js"></script>
-    <script src="./consecutive.js"></script>
+    <script>
+        getAllQuotes()
+            .then(data => {
+                let authorMap = {}, currentPeople = {}, idxMap = {}, rank = 1
+                data.quotes.sort((a, b) => a.id - b.id).forEach(({ authors, isGroup }) => {
+                    let authorList = isGroup ? authors.split(',').map(x => x.trim()) : [authors.trim()]
+                    authorList.forEach(author => {
+                        authorMap[author] = Math.max((currentPeople[author] = (currentPeople[author] || 0) + 1), authorMap[author] || 0)
+                    })
+                    Object.keys(currentPeople).forEach(person => !authorList.includes(person) && delete currentPeople[person])
+                })
+                let builder = Object.keys(authorMap).filter(x => authorMap[x] > 1).sort((a, b) => authorMap[b] - authorMap[a] || a.localeCompare(b))
+                builder.forEach((x, i) => {
+                    if (i > 0 && authorMap[x] < authorMap[builder[i - 1]]) {
+                        rank = i + 1
+                    }
+                    idxMap[authorMap[x]] = rank
+                })
+                $(document).ready(() => {
+                    $('#leaderboard').html(builder.map(x => `${idxMap[authorMap[x]]}. ${x} (${authorMap[x]} quotes)`).join('<br>'))
+                })
+            })
+    </script>
+    <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="content">
-        <h1 class="text-center mt-2">Consecutive Quotes Leaderboard</h1>
-        <hr>
-        <div id="leaderboard" class="text-center"></div>
+    <div class="row justify-content-center">
+        <div class="col-10 col-lg-8">
+            <h1 class="text-center mt-2">Consecutive Quotes Leaderboard</h1>
+            <hr>
+            <div id="leaderboard" class="text-center"></div>
+        </div>
     </div>
+    <script src="../../js/bootstrap/popper.min.js"></script>
     <script src="../../js/bootstrap/bootstrap.min.js"></script>
     <script src="../../js/site.js"></script>
 </body>

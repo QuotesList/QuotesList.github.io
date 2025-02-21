@@ -19,29 +19,39 @@
     <script src="../js/auth.js"></script>
     <script src="../js/quotes.js"></script>
     <script src="./vote.js"></script>
+    <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row text-center no-mobile">
+    <div class="container no-mobile">
+        <div class="row text-center">
             <div class="col-12">
                 <h1 class="mt-4 mb-2">Vote!</h1>
             </div>
         </div>
-        <div class="row justify-content-center" id="content">
+        <div class="row justify-content-center">
             <a class="quote-card col-lg-5" href="#" onclick="vote(1)">
                 <span id="quote-card-1">Quote 1</span>
             </a>
-            <div class="mobile-only">
-                <br>
-                <span>OR</span>
-                <br>
-            </div>
             <a class="quote-card col-lg-5" href="#" onclick="vote(2)">
                 <span id="quote-card-2">Quote 2</span>
             </a>
         </div>
-        <script src="../js/bootstrap/bootstrap.min.js"></script>
-        <script src="../js/site.js"></script>
     </div>
+    <div class="col-10 col-lg-8 offset-lg-2 justify-content-center mobile-only">
+        <div class="quote-card mt-4">
+            <span id="quote-card-1"></span>
+            <br>
+            <button type="button" class="vote-button" onclick="vote(1)">Vote</button>
+        </div>
+        <br>
+        <div class="quote-card mt-4">
+            <span id="quote-card-2"></span>
+            <br>
+            <button type="button" class="vote-button" onclick="vote(2)">Vote</button>
+        </div>
+    </div>
+    <script src="../js/bootstrap/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/site.js"></script>
 </body>
 </html>

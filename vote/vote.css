@@ -1,4 +1,4 @@
-.quote-card {
+a.quote-card {
     background-color: var(--light-yellow) !important;
     color: var(--dark-blue);
     margin: 10px;
@@ -17,6 +17,6 @@
     }
 }
 
-body {
+body:not(.is-mobile) {
     overflow-y: hidden;
 }

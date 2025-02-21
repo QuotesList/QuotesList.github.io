@@ -10,12 +10,13 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./leaderboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../js/lib/compromise.js" defer></script>
     <script src="../js/lib/jquery.min.js"></script>
-    <script src="../js/data/wordfreqs.js"></script>
     <script src="../js/utils.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/quotes.js"></script>
     <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous"></script>
+    <script src="../js/data/wordfreqs.js" defer></script>
 </head>
 <body>
     <div class="row justify-content-center">
@@ -36,6 +37,7 @@
                                 <i class="fa-solid fa-ellipsis-vertical order-by-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                 <div class="dropdown-menu dropdown-menu-left dropleft" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item bold extra-order-by" data-sort-type="bestRank">&nbsp;Sort by Best Rank</a>
+                                    <a class="dropdown-item bold extra-order-by" data-sort-type="soloQuotes">&nbsp;Sort by # of Solo Quotes</a>
                                     <a class="dropdown-item bold extra-order-by" data-sort-type="groupQuotes">&nbsp;Sort by # of Group Quotes</a>
                                     <h6 class="dropdown-header">Sort by Elo</h6>
                                     <a class="dropdown-item bold extra-order-by" data-sort-type="avgEloDesc">&ensp;&ensp;Average</a>
@@ -72,7 +74,7 @@
             <span id="leaderboard-modals"></span>
         </div>
         <script src="./leaderboard.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="../js/bootstrap/popper.min.js"></script>
         <script src="../js/bootstrap/bootstrap.min.js"></script>
         <script src="../js/site.js"></script>
     </div>
