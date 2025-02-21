@@ -119,3 +119,21 @@ nav button.nav-button {
 body.is-admin nav button.nav-button {
     width: 9.7vw;
 }
+
+@media only screen and (max-width: 1500px) {
+    nav button.nav-button {
+        font-size: 1.475rem;
+    }
+}
+
+@media only screen and (max-width: 1175px) {
+    nav button.nav-button {
+        width: 24.4vw;
+        margin-top: 5px;
+        font-size: 1.85rem;
+    }
+
+    body.is-admin nav button.nav-button {
+        width: 19.4vw;
+    }
+}

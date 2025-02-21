@@ -49,3 +49,7 @@ body:not(.is-mobile) {
         }
     }
 }
+
+#password-wrapper {
+    padding-top: 33vh;
+}
