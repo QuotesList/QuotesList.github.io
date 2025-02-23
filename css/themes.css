@@ -1,0 +1,52 @@
+:root {
+    --white: #F5F5F5;
+    --light-blue: #6F7FA6;
+    --dark-blue: #242C52;
+    --light-yellow: #E2912F;
+    --gold: #B26720;
+    --light-pink: #D65F6B;
+    --dark-pink: #AA3A45;
+    --black: #1B1B1b;
+}
+
+body {
+    --main-buttons: var(--light-yellow);
+    --button-border: var(--black);
+    --main-button-hover: var(--gold);
+    --hover-button-text: var(--white);
+    --title-bar: var(--light-pink);
+    --main-background: var(--light-blue);
+    --main-text-color: var(--white);
+    --nav-button-text: var(--dark-blue);
+    --main-nav-hover: var(--dark-pink);
+    --hr-color: var(--dark-blue);
+    --settings-modal-text: var(--black);
+    --quote-card: var(--light-yellow);
+    --quote-card-text: var(--dark-blue);
+    --quote-card-hover: var(--gold);
+    --quote-card-hover-text: var(--white);
+    --leaderboard-modal-text: var(--black);
+    --leaderboard-modal-header: var(--dark-pink);
+    --view-quotes-btn-primary: var(--black);
+}
+
+body.coolBlue {
+    --main-buttons: #c2e7d9;
+    --button-border: var(--black);
+    --main-button-hover: #a6cfd5;
+    --hover-button-text: #F5F5F5;
+    --title-bar: #0f084b;
+    --main-background: #26408b88;
+    --main-text-color: #F5F5F5;
+    --nav-button-text: #c2e7d9;
+    --main-nav-hover: #0d0221;
+    --hr-color: #26408b;
+    --settings-modal-text: var(--black);
+    --quote-card: #c2e7d9;
+    --quote-card-text: #26408b;
+    --quote-card-hover: #a6cfd5;
+    --quote-card-hover-text: #F5F5F5;
+    --leaderboard-modal-text: var(--black);
+    --leaderboard-modal-header: #0d0221;
+    --view-quotes-btn-primary: var(--black);
+}

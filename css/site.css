@@ -1,17 +1,6 @@
-:root {
-    --white: #F5F5F5;
-    --light-blue: #6F7FA6;
-    --dark-blue: #242C52;
-    --light-yellow: #E2912F;
-    --gold: #B26720;
-    --light-pink: #D65F6B;
-    --dark-pink: #AA3A45;
-    --black: #1B1B1b;
-}
-
 body {
-    background-color: var(--light-blue) !important;
-    color: var(--white) !important;
+    background-color: var(--main-background) !important;
+    color: var(--main-text-color) !important;
     font-family: "Atma", serif !important;
     font-weight: 300;
     font-size: 1.85rem !important;
@@ -23,7 +12,7 @@ body {
 }
 
 .header {
-    background-color: var(--light-pink);
+    background-color: var(--title-bar);
 }
 
 nav {
@@ -33,19 +22,19 @@ nav {
         margin-left: 0;
     }
     button {
-        color: var(--dark-blue);
-        background-color: var(--light-pink);
+        color: var(--nav-button-text);
+        background-color: var(--title-bar);
         border: none;
         &:hover {
-            color: var(--white);
-            background-color: var(--dark-pink);
+            color: var(--main-text-color);
+            background-color: var(--main-nav-hover);
             transition: 0.35s;
         }
     }
 }
 
 .btn {
-    background-color: var(--light-yellow) !important;
+    background-color: var(--main-buttons) !important;
     margin-bottom: 20px;
     font-size: 1.25rem !important;
 }
@@ -53,8 +42,8 @@ nav {
 @media (hover: hover) {
     .btn:hover:not(:disabled) {
         /* Prevent buttons from having the sticky effect on mobile */
-        background-color: var(--gold) !important;
-        color: var(--white) !important;
+        background-color: var(--main-button-hover) !important;
+        color: var(--hover-button-text) !important;
     }
     .requires-touch {
         display: none;
@@ -68,7 +57,7 @@ nav {
 }
 
 hr {
-    border: 1px solid var(--dark-blue) !important;
+    border: 1px solid var(--hr-color) !important;
 }
 
 .hidden {
@@ -136,4 +125,32 @@ body.is-admin nav button.nav-button {
     body.is-admin nav button.nav-button {
         width: 19.4vw;
     }
+}
+
+i.cog-icon {
+    position: absolute;
+    right: 0.6em;
+    top: 0.6em;
+    opacity: 0.75;
+    cursor: pointer;
+    font-size: 0.8em;
+    &:hover {
+        opacity: 1.0;
+    }
+}
+
+div#settings-modal {
+    background-color: #0000;
+    transition: background-color 0.1s linear;
+    line-height: 1;
+    &.settings-open {
+        background-color: #000a;
+    }
+    > * {
+        color: var(--settings-modal-text);
+    }
+}
+
+#settings-modal label {
+    font-size: 1.2rem;
 }
