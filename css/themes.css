@@ -50,3 +50,45 @@ body.coolBlue {
     --leaderboard-modal-header: #0d0221;
     --view-quotes-btn-primary: var(--black);
 }
+
+body.ualbany {
+    --main-buttons: #EEB211;
+    --button-border: var(--black);
+    --main-button-hover: #977732;
+    --hover-button-text: var(--white);
+    --title-bar: #8E40C9;
+    --main-background: #85848F;
+    --main-text-color: var(--white);
+    --nav-button-text: #383131;
+    --main-nav-hover: #5C2883;
+    --hr-color: #383131;
+    --settings-modal-text: var(--black);
+    --quote-card: #EEB211;
+    --quote-card-text: #383131;
+    --quote-card-hover: #977732;
+    --quote-card-hover-text: var(--white);
+    --leaderboard-modal-text: var(--black);
+    --leaderboard-modal-header: #5C2883;
+    --view-quotes-btn-primary: var(--black);
+}
+
+body.zachkrasne {
+    --main-buttons: #3BA99C;
+    --button-border: var(--black);
+    --main-button-hover: #2a8177;
+    --hover-button-text: var(--white);
+    --title-bar: #1779D5;
+    --main-background: #31353A;
+    --main-text-color: var(--white);
+    --nav-button-text: #DDD32F;
+    --main-nav-hover: #145ea3;
+    --hr-color: #DDD32F;
+    --settings-modal-text: var(--black);
+    --quote-card: #3BA99C;
+    --quote-card-text: #DDD32F;
+    --quote-card-hover: #2a8177;
+    --quote-card-hover-text: var(--white);
+    --leaderboard-modal-text: var(--black);
+    --leaderboard-modal-header: #145ea3;
+    --view-quotes-btn-primary: var(--black);
+}
