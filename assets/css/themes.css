@@ -50,3 +50,24 @@ body.coolBlue {
     --leaderboard-modal-header: #0d0221;
     --view-quotes-btn-primary: var(--black);
 }
+
+body.template {
+    --main-buttons: #000000;
+    --button-border: #000000;
+    --main-button-hover: #000000;
+    --hover-button-text: #000000;
+    --title-bar: #000000;
+    --main-background: #000000;
+    --main-text-color: #000000;
+    --nav-button-text: #000000;
+    --main-nav-hover: #000000;
+    --hr-color: #000000;
+    --settings-modal-text: #000000;
+    --quote-card: #000000;
+    --quote-card-text: #000000;
+    --quote-card-hover: #000000;
+    --quote-card-hover-text: #000000;
+    --leaderboard-modal-text: #000000;
+    --leaderboard-modal-header: #000000;
+    --view-quotes-btn-primary: #000000;
+}

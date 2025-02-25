@@ -321,4 +321,4 @@ getAllQuotes(true)
     })
 
 
-    $.loadScript('../js/data/wordfreqs.js', () => {})
+    $.loadScript('../assets/js/data/wordfreqs.js', () => {})
