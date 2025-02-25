@@ -18,6 +18,7 @@ body {
     --main-background: var(--light-blue);
     --main-text-color: var(--white);
     --nav-button-text: var(--dark-blue);
+    --nav-text-hover: var(--white);
     --main-nav-hover: var(--dark-pink);
     --hr-color: var(--dark-blue);
     --settings-modal-text: var(--black);
@@ -47,6 +48,7 @@ body.coolBlue {
     --main-background: var(--blue);
     --main-text-color: var(--light-white);
     --nav-button-text: var(--light-aqua);
+    --nav-text-hover: var(--light-white);
     --main-nav-hover: var(--dark-purple);
     --hr-color: var(--darker-blue);
     --settings-modal-text: var(--black);
@@ -75,6 +77,7 @@ body.uAlbany {
     --main-background: var(--bluish-gray);
     --main-text-color: var(--white);
     --nav-button-text: var(--dark-maroon);
+    --nav-text-hover: var(--white);
     --main-nav-hover: #030303;
     --hr-color: var(--dark-maroon);
     --settings-modal-text: var(--black);
@@ -103,6 +106,7 @@ body.krasne {
     --main-background: var(--darkest-blue);
     --main-text-color: var(--white);
     --nav-button-text: var(--yellow);
+    --nav-text-hover: var(--white);
     --main-nav-hover: var(--darker-blue);
     --hr-color: var(--yellow);
     --settings-modal-text: var(--black);
@@ -124,6 +128,7 @@ body.grayscale {
     --main-background: #7f7f7f;
     --main-text-color: #000000;
     --nav-button-text: #000000;
+    --nav-text-hover: #000000;
     --main-nav-hover: #222222;
     --hr-color: #000000;
     --settings-modal-text: #000000;
@@ -136,6 +141,35 @@ body.grayscale {
     --view-quotes-btn-primary: #252525;
 }
 
+body.njTransit {
+    --nj-purple: #bc228c;
+    --darker-purple: #831560;
+    --nj-blue: #04529c;
+    --nj-white: #f4f2f4;
+    --nj-orange: #f4823c;
+    --nj-dark-orange: #ec764c;
+
+    --main-buttons: var(--nj-orange);
+    --button-border: var(--black);
+    --main-button-hover: var(--nj-dark-orange);
+    --hover-button-text: var(--nj-white);
+    --title-bar: var(--nj-purple);
+    --main-background: var(--nj-blue);
+    --main-text-color: var(--black);
+    --nav-button-text: var(--black);
+    --nav-text-hover: var(--nj-white);
+    --main-nav-hover: var(--darker-purple);
+    --hr-color: var(--nj-white);
+    --settings-modal-text: var(--black);
+    --quote-card: var(--nj-orange);
+    --quote-card-text: var(--black);
+    --quote-card-hover: var(--nj-dark-orange);
+    --quote-card-hover-text: var(--black);
+    --leaderboard-modal-text: var(--black);
+    --leaderboard-modal-header: var(--nj-dark-orange);
+    --view-quotes-btn-primary: var(--black);
+}
+
 body.template {
     --main-buttons: #000000;
     --button-border: #000000;
@@ -145,6 +179,7 @@ body.template {
     --main-background: #000000;
     --main-text-color: #000000;
     --nav-button-text: #000000;
+    --nav-text-hover: #000000;
     --main-nav-hover: #000000;
     --hr-color: #000000;
     --settings-modal-text: #000000;
