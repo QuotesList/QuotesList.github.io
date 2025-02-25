@@ -154,3 +154,7 @@ div#settings-modal {
 #settings-modal label {
     font-size: 1.2rem;
 }
+
+.pointable {
+    cursor: pointer !important;
+}

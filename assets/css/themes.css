@@ -114,3 +114,45 @@ body.krasne {
     --leaderboard-modal-header: var(--darker-blue);
     --view-quotes-btn-primary: var(--black);
 }
+
+body.grayscale {
+    --main-buttons: #6f6f6f;
+    --button-border: #000000;
+    --main-button-hover: #000000;
+    --hover-button-text: #000000;
+    --title-bar: #3f3f3f;
+    --main-background: #7f7f7f;
+    --main-text-color: #000000;
+    --nav-button-text: #000000;
+    --main-nav-hover: #222222;
+    --hr-color: #000000;
+    --settings-modal-text: #000000;
+    --quote-card: #bbbbbb;
+    --quote-card-text: #000000;
+    --quote-card-hover: #888888;
+    --quote-card-hover-text: #000000;
+    --leaderboard-modal-text: #000000;
+    --leaderboard-modal-header: #bbbbbb;
+    --view-quotes-btn-primary: #252525;
+}
+
+body.template {
+    --main-buttons: #000000;
+    --button-border: #000000;
+    --main-button-hover: #000000;
+    --hover-button-text: #000000;
+    --title-bar: #000000;
+    --main-background: #000000;
+    --main-text-color: #000000;
+    --nav-button-text: #000000;
+    --main-nav-hover: #000000;
+    --hr-color: #000000;
+    --settings-modal-text: #000000;
+    --quote-card: #000000;
+    --quote-card-text: #000000;
+    --quote-card-hover: #000000;
+    --quote-card-hover-text: #000000;
+    --leaderboard-modal-text: #000000;
+    --leaderboard-modal-header: #000000;
+    --view-quotes-btn-primary: #000000;
+}

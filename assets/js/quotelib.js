@@ -359,8 +359,8 @@ $(document).ready(() => {
                 <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">Settings</h2>
-                    <button type="button" class="close" onClick="closeSettingsModal()" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close pointable" onClick="closeSettingsModal()" aria-label="Close">
+                        <span aria-hidden="true" class="pointable">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
