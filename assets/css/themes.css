@@ -60,23 +60,30 @@ body.coolBlue {
 }
 
 body.uAlbany {
-    --main-buttons: #EEB211;
+    --yellow: #EEB211;
+    --dark-gold: #977732;
+    --bluish-gray: #85848F;
+    --purple: #8E40C9;
+    --dark-purple: #5C2883;
+    --dark-maroon: #383131;
+
+    --main-buttons: var(--yellow);
     --button-border: var(--black);
-    --main-button-hover: #977732;
+    --main-button-hover: var(--dark-gold);
     --hover-button-text: var(--white);
-    --title-bar: #8E40C9;
-    --main-background: #85848F;
+    --title-bar: var(--purple);
+    --main-background: var(--bluish-gray);
     --main-text-color: var(--white);
-    --nav-button-text: #383131;
-    --main-nav-hover: #5C2883;
-    --hr-color: #383131;
+    --nav-button-text: var(--dark-maroon);
+    --main-nav-hover: #030303;
+    --hr-color: var(--dark-maroon);
     --settings-modal-text: var(--black);
-    --quote-card: #EEB211;
-    --quote-card-text: #383131;
-    --quote-card-hover: #977732;
+    --quote-card: var(--yellow);
+    --quote-card-text: var(--dark-maroon);
+    --quote-card-hover: var(--dark-gold);
     --quote-card-hover-text: var(--white);
     --leaderboard-modal-text: var(--black);
-    --leaderboard-modal-header: #5C2883;
+    --leaderboard-modal-header: var(--dark-purple);
     --view-quotes-btn-primary: var(--black);
 }
 
