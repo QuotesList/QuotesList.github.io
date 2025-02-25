@@ -331,10 +331,25 @@ const navItems = [
 function openSettingsModal() {
     $('#settings-modal').show()
     setTimeout(() => $('div#settings-modal').toggleClass('settings-open', true))
+
+    $('.color-btn').each((_, el) => {
+        let key = $(el).attr('id').split('-')[2]
+        $(el).attr('checked', key == currentColorTheme)
+    })
 }
-function closeSettingsModal() {
+function closeSettingsModal(apply) {
     $('#settings-modal').hide()
     $('div#settings-modal').toggleClass('settings-open', false)
+
+    if (apply) {
+        $('.color-btn').each((_, el) => {
+            if ($(el).is(':checked')) {
+                currentColorTheme = $(el).attr('id').split('-')[2]
+            }
+        })
+        setCookieItem(COLOR_KEY, currentColorTheme)
+        setColorTheme()
+    }
 }
 /* Make Nav and Title */
 $(document).ready(() => {
@@ -355,8 +370,7 @@ $(document).ready(() => {
                             ${Object.entries(colorThemeMap).map(([themeKey, text]) => `
                                 <div class="form-check">
                                     &ensp;
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio-color-${themeKey}"
-                                        ${(themeKey === currentColorTheme)? 'checked' : ''}>
+                                    <input class="form-check-input color-btn" type="radio" name="flexRadioDefault" id="radio-color-${themeKey}">
                                     <label class="form-check-label" for="radio-color-${themeKey}">
                                         ${text}
                                     </label>
@@ -372,7 +386,7 @@ $(document).ready(() => {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" onClick="closeSettingsModal()">Apply</button>
+                    <button type="button" class="btn" onClick="closeSettingsModal(true)">Apply</button>
                 </div>
                 </div>
             </div>

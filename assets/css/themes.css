@@ -31,27 +31,35 @@ body {
 }
 
 body.coolBlue {
-    --main-buttons: #c2e7d9;
+    --light-white: #F5F5F5;
+    --blue: #26408b88;
+    --darker-blue: #26408b;
+    --darkest-blue: #0f084b;
+    --light-aqua: #c2e7d9;
+    --aqua: #a6cfd5;
+    --dark-purple: #0d0221;
+
+    --main-buttons: var(--light-aqua);
     --button-border: var(--black);
-    --main-button-hover: #a6cfd5;
-    --hover-button-text: #F5F5F5;
-    --title-bar: #0f084b;
-    --main-background: #26408b88;
-    --main-text-color: #F5F5F5;
-    --nav-button-text: #c2e7d9;
-    --main-nav-hover: #0d0221;
-    --hr-color: #26408b;
+    --main-button-hover: var(--aqua);
+    --hover-button-text: var(--light-white);
+    --title-bar: var(--darkest-blue);
+    --main-background: var(--blue);
+    --main-text-color: var(--light-white);
+    --nav-button-text: var(--light-aqua);
+    --main-nav-hover: var(--dark-purple);
+    --hr-color: var(--darker-blue);
     --settings-modal-text: var(--black);
-    --quote-card: #c2e7d9;
-    --quote-card-text: #26408b;
-    --quote-card-hover: #a6cfd5;
-    --quote-card-hover-text: #F5F5F5;
+    --quote-card: var(--light-aqua);
+    --quote-card-text: var(--darker-blue);
+    --quote-card-hover: var(--aqua);
+    --quote-card-hover-text: var(--light-white);
     --leaderboard-modal-text: var(--black);
-    --leaderboard-modal-header: #0d0221;
+    --leaderboard-modal-header: var(--dark-purple);
     --view-quotes-btn-primary: var(--black);
 }
 
-body.ualbany {
+body.uAlbany {
     --main-buttons: #EEB211;
     --button-border: var(--black);
     --main-button-hover: #977732;
@@ -72,23 +80,30 @@ body.ualbany {
     --view-quotes-btn-primary: var(--black);
 }
 
-body.zachkrasne {
-    --main-buttons: #3BA99C;
+body.krasne {
+    --aqua: #3BA99C;
+    --dark-aqua: #2a8177;
+    --blue: #1779D5;
+    --darker-blue: #145ea3;
+    --darkest-blue: #31353A;
+    --yellow: #DDD32F;
+
+    --main-buttons: var(--aqua);
     --button-border: var(--black);
-    --main-button-hover: #2a8177;
+    --main-button-hover: var(--dark-aqua);
     --hover-button-text: var(--white);
-    --title-bar: #1779D5;
-    --main-background: #31353A;
+    --title-bar: var(--blue);
+    --main-background: var(--darkest-blue);
     --main-text-color: var(--white);
-    --nav-button-text: #DDD32F;
-    --main-nav-hover: #145ea3;
-    --hr-color: #DDD32F;
+    --nav-button-text: var(--yellow);
+    --main-nav-hover: var(--darker-blue);
+    --hr-color: var(--yellow);
     --settings-modal-text: var(--black);
-    --quote-card: #3BA99C;
-    --quote-card-text: #DDD32F;
-    --quote-card-hover: #2a8177;
+    --quote-card: var(--aqua);
+    --quote-card-text: var(--yellow);
+    --quote-card-hover: var(--dark-aqua);
     --quote-card-hover-text: var(--white);
     --leaderboard-modal-text: var(--black);
-    --leaderboard-modal-header: #145ea3;
+    --leaderboard-modal-header: var(--darker-blue);
     --view-quotes-btn-primary: var(--black);
 }
