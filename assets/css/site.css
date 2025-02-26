@@ -143,6 +143,7 @@ div#settings-modal {
     background-color: #0000;
     transition: background-color 0.1s linear;
     line-height: 1;
+    margin: 0;
     &.settings-open {
         background-color: #000a;
     }
