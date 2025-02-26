@@ -91,7 +91,7 @@ getAllQuotes()
             quote.count = count
         })
         $(document).ready(() => {
-            if (window.location.href.includes('quotes')) {
+            if ((window.location.href.split('analytics')[1] || '').includes('quotes')) {
                 loadQuotes(quotes)
             } else {
                 loadGraph(stats, numQuotes)
