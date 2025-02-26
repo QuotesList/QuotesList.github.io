@@ -1,6 +1,6 @@
 /* Utilities */
 function keyWrapper(evt, fn) {
-    if (event.keyCode == 13) {
+    if (evt.keyCode == 13) {
         fn()
         return false
     }
