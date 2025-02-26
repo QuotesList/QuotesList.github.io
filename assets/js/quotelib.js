@@ -351,8 +351,9 @@ function closeSettingsModal(apply) {
         setColorTheme()
     }
 }
-/* Make Nav and Title */
+/* Nav, mobile, and color items. */
 $(document).ready(() => {
+    /* Make Nav and Title */
     $('body').prepend(`
         <div class="modal" id="settings-modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -416,13 +417,11 @@ $(document).ready(() => {
             <button type="button" onclick="logOut()" class="nav-button">Log Out</button>
         </nav>
     `)
-})
-/* Add Mobile Tag to body, if needed */
-if (!isDesktop()) {
-    document.body.classList.add('is-mobile')
-}
-/* Add color theme dropdown items and body */
-$(document).ready(() => {
+
+    /* Add Mobile Tag to body, if needed */
+    $('body').toggleClass('is-mobile', !isDesktop())
+
+    /* Add color theme dropdown items and body */
     $('#color-theme-dropdown').append(
         Object.entries(colorThemeMap)
             .map(([themeKey, text]) => `<a class="dropdown-item color-theme-item${
