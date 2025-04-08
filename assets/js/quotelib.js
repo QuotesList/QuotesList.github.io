@@ -92,20 +92,16 @@ function deleteCookie() {
 function tryAuth(pass, server) {
     if (typeof pass != 'string' || typeof server != 'string') {
         gLevel = LEVEL_HACKER
-        return new Promise(resolve => {
-            resolve({
-                level: LEVEL_HACKER,
-                err: "Internal Error"
-            })
+        return Promise.resolve({
+            level: LEVEL_HACKER,
+            err: "Internal Error"
         })
     }
     if (`${pass}${server}`.includes(';') || `${pass}${server}`.includes('=')) {
         gLevel = LEVEL_HACKER
-        return new Promise(resolve => {
-            resolve({
-                level: LEVEL_HACKER,
-                err: "Cannot use ';' or '=' in your password."
-            })
+        return Promise.resolve({
+            level: LEVEL_HACKER,
+            err: "Cannot use ';' or '=' in your password."
         })
     }
     gServer = server
@@ -379,7 +375,7 @@ $(document).ready(() => {
                             `).join('')}
                         </div>
                         <div class="col-6">
-                            <div class="custom-control custom-switch">
+                            <div class="custom-control custom-switch hidden">
                                 <input type="checkbox" class="custom-control-input" id="customSwitch2">
                                 <label class="custom-control-label" for="customSwitch2">Show "Nice"-ness</label>
                             </div>
