@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes List</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" type="text/css" href="/assets/css/site.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/themes.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="/assets/js/lib/jquery.min.js"></script>
+    <script src="/assets/js/quotelib.js"></script>
+    <script src="/assets/js/bootstrap/popper.min.js" defer></script>
+    <script src="/assets/js/bootstrap/bootstrap.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous" defer></script>
+    <script defer>
+        getAllQuotes()
+            .then(({ quotes }) => {
+                let scores = {}, sentences = []
+                quotes.forEach(({ isGroup, quote, elo }) => {
+                    let parts = isGroup ? quote.split('\n') : [quote]
+                    parts.forEach(x => {
+                        let sentence = ''
+                        if (x.includes(':')) {
+                            sentence = x.slice(x.indexOf(':') + 1)
+                        } else {
+                            let splitChar = x.includes('~') ? '~' : (!isGroup && x.includes('-') ? '-' : null)
+                            sentence = splitChar ? x.slice(0, x.indexOf(splitChar)) : x
+                        }
+                        if (sentence.length > 0) {
+                            sentences.push([sentence.replace(/[^a-zA-Z0-9]/g, ''), elo])
+                        }
+                    })
+                })
+                sentences.forEach(([sentence, elo]) => {
+                    for (const letter of sentence) {
+                        let l = `. ${letter}`
+                        if (!scores[l]) {
+                            scores[l] = {
+                                total: 0,
+                                num: 0,
+                                avg: 0
+                            }
+                        }
+                        scores[l].total += elo
+                        scores[l].num += 1
+                        scores[l].avg = Math.round((scores[l].total / scores[l].num) * 100) / 100
+                    }
+                })
+                let rankings = Object.keys(scores)
+                rankings = rankings.sort((a, b) => {
+                    return scores[b].avg - scores[a].avg
+                })
+                rankings = rankings.map((x, idx) => `${idx + 1}${x} (${scores[x].avg})`)
+                $('#letter-leaderboard').html(rankings.join('<br>'))
+            })
+    </script>
+</head>
+<body>
+    <div class="row justify-content-center">
+        <div class="col-10 col-lg-8">
+            <h1 class="text-center mt-4">Popular Letter Leaderboard By Average Elo from Originating Fact</h1>
+            <hr>
+            <div id="letter-leaderboard" class="text-center mt-3"></div>
+        </div>
+    </div>
+</body>
+</html>
