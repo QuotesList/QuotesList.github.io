@@ -37,15 +37,15 @@ body:not(.is-mobile) {
 #general-buttons {
     margin-top: 25px;
     button {
-        background-color: var(--light-yellow) !important;
+        background-color: var(--main-buttons) !important;
         font-size: 1.75rem !important;
         margin-bottom: 9px;
         width: 55%;
         border-radius: 5px;
-        border: 1px solid var(--black);
+        border: 1px solid var(--button-border);
         &:hover:not(:disabled) {
-            background-color: var(--gold) !important;
-            color: var(--white) !important;
+            background-color: var(--main-button-hover) !important;
+            color: var(--hover-button-text) !important;
         }
     }
 }

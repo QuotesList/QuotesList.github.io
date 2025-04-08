@@ -8,13 +8,13 @@ div.row {
 }
 
 .modal * {
-    color: var(--black);
+    color: var(--leaderboard-modal-text);
     cursor: text;
 }
 
 .modal div.modal-header,
 .modal div.modal-header * {
-    background-color: var(--dark-pink);
+    background-color: var(--leaderboard-modal-header);
 }
 
 .modal div.modal-body,
@@ -104,8 +104,8 @@ h5.check-nice span.nice-text {
 
 i.fa-comment {
     cursor: pointer;
-    color: var(--black);
-    border: 2px outset var(--black);
+    color: var(--view-quotes-btn-primary);
+    border: 2px outset var(--view-quotes-btn-primary);
     padding: 6px;
     padding-top: 10px;
     margin-right: 10px;
@@ -113,7 +113,7 @@ i.fa-comment {
     line-height: 20px;
     &:hover {
         color: black;
-        border: 2px inset var(--black);
+        border: 2px inset var(--view-quotes-btn-primary);
         background-color: rgba(0, 0, 0, 0.2);
         .text-small {
             background-color: #0000;

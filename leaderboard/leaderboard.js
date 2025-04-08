@@ -8,6 +8,15 @@ var attributionCache = {}
 const TROPHY_COLORS = ['gold', 'silver', 'bronze']
 const BEST_NOUN_TEXT = 'Best/Most Common Noun'
 
+jQuery.loadScript = function (url, callback) {
+    jQuery.ajax({
+        url: url,
+        dataType: 'script',
+        success: callback,
+        async: true
+    });
+}
+
 const updateMostUniqueWord = (id) => {
     if ($(`span#unique_word_${id}`).text().trim().length < 1) {
         let person = $(`span#key_${id}`).text()
@@ -252,7 +261,6 @@ getAllQuotes(true)
                 $('.dropdown-item').toggleClass('active', false)
                 $(evt.target).toggleClass('active')
             })
-
             $('#order-by-rank').click((evt) => {
                 $('.dropdown-item').toggleClass('active', false)
                 let el = $(evt.target)
@@ -288,14 +296,10 @@ getAllQuotes(true)
                 $('td.extra-data').text('')
             })
             $("span.nice-text").attr('title', 'This is nice.')
-        })
-    })
-    .then(() => {
-        $(document).ready(() => {
-            Object.keys(stats).forEach(person => {
-                let wordMap = {}
-                stats[person].sentences
-                    .map(sentence => sentence.toLowerCase().trim()
+            setTimeout(() => {
+                Object.entries(stats).forEach(([person, stat]) => {
+                    let wordMap = {}
+                    stat.sentences.map(sentence => sentence.toLowerCase().trim()
                         .replace(/~.*/, '').replace(/.*?:/, '').replace(/-.*/, '')
                         .replace(/\b\w*['’]\w*\b|\(.*?\)|["'“”‘’]/g, '').replace(/\s+|[.,?!;]\s*/g, ' ').trim()
                     )
@@ -307,10 +311,14 @@ getAllQuotes(true)
                             }
                         })
                     )
-                let keys = Object.keys(wordMap).sort((a, b) => wordMap[b] - wordMap[a])
-                    .slice(0, 3).sort().map(x => `"${x.charAt(0).toUpperCase()}${x.slice(1)}"`)
-                $(`#common_noun_modal_${person.toLowerCase().trim().replaceAll(' ', '_')}`)
-                    .text(`${BEST_NOUN_TEXT}${keys.length ? (keys.length > 1 ? 's' : '') + `: ${keys.join(', ')}` : 's: (None Found!)'}`)
-            })
+                    let keys = Object.keys(wordMap).sort((a, b) => wordMap[b] - wordMap[a])
+                        .slice(0, 3).sort().map(x => `"${x.charAt(0).toUpperCase()}${x.slice(1)}"`)
+                    $(`#common_noun_modal_${person.toLowerCase().trim().replaceAll(' ', '_')}`)
+                        .text(`${BEST_NOUN_TEXT}${keys.length ? (keys.length > 1 ? 's' : '') + `: ${keys.join(', ')}` : 's: (None Found!)'}`)
+                })
+            }, 100)
         })
     })
+
+
+    $.loadScript('../assets/js/data/wordfreqs.js', () => {})

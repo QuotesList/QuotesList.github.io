@@ -1,12 +1,12 @@
 a.quote-card {
-    background-color: var(--light-yellow) !important;
-    color: var(--dark-blue);
+    background-color: var(--quote-card) !important;
+    color: var(--quote-card-text);
     margin: 10px;
     padding: 10px;
     font-size: 2.25rem !important;
     &:hover:not(:disabled) {
-        background-color: var(--gold) !important;
-        color: var(--white) !important;
+        background-color: var(--quote-card-hover) !important;
+        color: var(--quote-card-hover-text) !important;
         text-decoration: none;
     }
     margin-bottom: 5px;
