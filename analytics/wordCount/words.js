@@ -79,7 +79,7 @@ function loadQuotes(quotes) {
     quotes = quotes.filter(quote => quote.count === numWords).sort((a, b) => b.id - a.id)
     $('#num-words-text').text(numWords)
     $('#num-found-text').text(quotes.length + ' found')
-    $('#quote-list').html(quotes.map(x => x.quote.replaceAll('\n', '<br>')).join('<br><br>'))
+    $('#quote-list').html(quotes.map(x => x.quote.trim().replaceAll('\n', '<br>')).join('<br><br>'))
 }
 
 getAllQuotes()
