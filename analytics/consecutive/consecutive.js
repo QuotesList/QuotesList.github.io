@@ -75,7 +75,6 @@ $(document).ready(() => {
                 })
                 Object.keys(currentPeople).forEach(person => !authorList.includes(person) && delete currentPeople[person])
             })
-            console.log(authorMap) // TODO remove
             if ((window.location.href.split('analytics')[1] || '').includes('quotes')) {
                 loadQuotePage(quotes)
             } else {
