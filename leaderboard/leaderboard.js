@@ -235,6 +235,7 @@ getAllQuotes(true)
                                     <h5 class="check-nice">Number of Unique Words Spoken: ${Object.keys(stats.wordsSpoken).length}</h5>
                                     <h5 class="check-nice">First Quote Number: ${stats.firstQuoteId}</h5>
                                     <h5 class="check-nice">Most Recent Quote Number: ${stats.lastQuoteId}</h5>
+                                    <h5 class="check-nice">Largest Quote Distance: ${(stats.numQuotes >= 2)? distanceStats[person].largest : 'N/a'}</h5>
                                     <h5 class="check-nice">Highest Leaderboard Position: ${stats.highestLeaderboardPosition}</h5>
                                     <h5 class="check-nice">Current Leaderboard Position: ${stats.currentLeaderboardPosition}</h5>
                                     <h5 id="unique_word_${modalId}"></h5>
