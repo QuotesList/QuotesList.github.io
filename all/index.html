@@ -23,18 +23,14 @@
     <div class="row justify-content-center">
         <div class="col-10 col-lg-8">
             <h1 id="num-results" class="mt-3 font-weight-bold"></h1><hr>
-            <div id="results-wrapper" class="mt-4"></div>
+            <div id="results-wrapper" class="mt-4 mb-5"></div>
         </div>
         <script defer>
             getAllQuotes()
-                .then(data => {
-                    let str = ""
-                    data.quotes.sort((a, b) => (b.id - a.id))
-                    data.quotes.forEach(x => {
-                        str += `${x.quote.trim().replaceAll('\n', '<br>')}<br><br>`
-                    })
-                    document.getElementById('results-wrapper').innerHTML = str
-                    document.getElementById('num-results').innerHTML = `${data.quotes.length} ${pluralize(data.quotes.length, 'Quote')}`
+                .then(({ quotes }) => {
+                    quotes = quotes.sort((a, b) => (b.id - a.id)).map(x => x.quote.trim().replaceAll('\n', '<br>'))
+                    $('#num-results').text(`${quotes.length} ${pluralize(quotes.length, 'Quote')}`)
+                    $('#results-wrapper').html(quotes.join('<br><br>'))
                 })
         </script>
     </div>

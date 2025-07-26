@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/site.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/themes.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/leaderboard/leaderboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,36 +18,22 @@
     <script src="/assets/js/bootstrap/popper.min.js" defer></script>
     <script src="/assets/js/bootstrap/bootstrap.min.js" defer></script>
     <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous" defer></script>
-    <script defer>
-        getAllQuotes()
-            .then(data => {
-                let authorMap = {}, currentPeople = {}, idxMap = {}, rank = 1
-                data.quotes.sort((a, b) => a.id - b.id).forEach(({ authors, isGroup }) => {
-                    let authorList = isGroup ? authors.split(',').map(x => x.trim()) : [authors.trim()]
-                    authorList.forEach(author => {
-                        authorMap[author] = Math.max((currentPeople[author] = (currentPeople[author] || 0) + 1), authorMap[author] || 0)
-                    })
-                    Object.keys(currentPeople).forEach(person => !authorList.includes(person) && delete currentPeople[person])
-                })
-                let builder = Object.keys(authorMap).filter(x => authorMap[x] > 1).sort((a, b) => authorMap[b] - authorMap[a] || a.localeCompare(b))
-                builder.forEach((x, i) => {
-                    if (i > 0 && authorMap[x] < authorMap[builder[i - 1]]) {
-                        rank = i + 1
-                    }
-                    idxMap[authorMap[x]] = rank
-                })
-                $(document).ready(() => {
-                    $('#leaderboard').html(builder.map(x => `${idxMap[authorMap[x]]}. ${x} (${authorMap[x]} quotes)`).join('<br>'))
-                })
-            })
-    </script>
+    <script src="./consecutive.js" defer></script>
 </head>
 <body>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-3">
         <div class="col-10 col-lg-8">
-            <h1 class="text-center mt-2">Consecutive Quotes Leaderboard</h1>
-            <hr>
-            <div id="leaderboard" class="text-center"></div>
+            <h1 class="mt-3 font-weight-bold text-center">Consecutive Quotes Leaderboard</h1>
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Streak</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-content"></tbody>
+            </table>
         </div>
     </div>
 </body>

@@ -4,6 +4,8 @@ var people = []
 var eloMap = {}
 var attributions = []
 var attributionCache = {}
+var distanceMap = {}
+var distanceStats = {}
 
 const TROPHY_COLORS = ['gold', 'silver', 'bronze']
 const BEST_NOUN_TEXT = 'Best/Most Common Noun'
@@ -132,6 +134,14 @@ const sortByQuoteElo = (a, b, first) => {
     return eloB - eloA
 }
 
+const sortByQuoteDistance = (a, b, total) => { // TODO combine stats and add to modal
+    let key = 'largest'
+    if (total) {
+        key = 'total'
+    }
+    return distanceStats[b.name][key] - distanceStats[a.name][key]
+}
+
 var kebabSortFunctions = {
     bestRank: (a, b) => (a.highestLeaderboardPosition - b.highestLeaderboardPosition) || (b.firstQuoteId - a.firstQuoteId),
     avgEloAsc: (a, b) => sortByElo(true, a, b),
@@ -145,7 +155,21 @@ var kebabSortFunctions = {
     velocityCoarse: (a, b) => sortByVelocity(a, b, 400),
     velocityExtra: (a, b) => sortByVelocity(a, b, 800),
     firstElo: (a, b) => sortByQuoteElo(a, b, true),
-    lastElo: (a, b) => sortByQuoteElo(a, b, false)
+    lastElo: (a, b) => sortByQuoteElo(a, b, false),
+    distTotal: (a, b) => sortByQuoteDistance(a, b, true),
+    distLargest: (a, b) => sortByQuoteDistance(a, b, false)
+}
+
+function maxDistance(arr) {
+    if (!Array.isArray(arr) || arr.length < 2) return 0
+    let maxGap = 0
+    for (let i = 1; i < arr.length; i++) {
+        const gap = arr[i] - arr[i - 1]
+        if (gap > maxGap) {
+            maxGap = gap
+        }
+    }
+    return maxGap
 }
 
 getAllQuotes(true)
@@ -157,6 +181,21 @@ getAllQuotes(true)
         attributions = attributions.map(x => x.authors.trim().split(',').map(y => y.trim()))
         data.quotes.forEach(quote => {
             eloMap[quote.id] = quote.elo
+            let names = quote.authors.split(',').map(x => x.trim())
+            names.forEach((name) => {
+                if (!Array.isArray(distanceMap[name])) {
+                    distanceMap[name] = []
+                }
+                distanceMap[name].push(0+(quote.id))
+            })
+        })
+        Object.keys(distanceMap).forEach(key => {
+            distanceMap[key].sort((a, b) => a - b)
+            let last = distanceMap[key].slice(-1).pop()
+            distanceStats[key] = {
+                total: last - distanceMap[key][0],
+                largest: maxDistance([...distanceMap[key], last])
+            }
         })
         people.sort((a, b) => (data.stats[a].currentLeaderboardPosition - data.stats[b].currentLeaderboardPosition))
         $(document).ready(() => {
@@ -196,6 +235,7 @@ getAllQuotes(true)
                                     <h5 class="check-nice">Number of Unique Words Spoken: ${Object.keys(stats.wordsSpoken).length}</h5>
                                     <h5 class="check-nice">First Quote Number: ${stats.firstQuoteId}</h5>
                                     <h5 class="check-nice">Most Recent Quote Number: ${stats.lastQuoteId}</h5>
+                                    <h5 class="check-nice">Largest Quote Distance: ${(stats.numQuotes >= 2)? distanceStats[person].largest : 'N/a'}</h5>
                                     <h5 class="check-nice">Highest Leaderboard Position: ${stats.highestLeaderboardPosition}</h5>
                                     <h5 class="check-nice">Current Leaderboard Position: ${stats.currentLeaderboardPosition}</h5>
                                     <h5 id="unique_word_${modalId}"></h5>

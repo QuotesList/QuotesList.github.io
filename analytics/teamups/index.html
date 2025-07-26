@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/site.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/themes.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/leaderboard/leaderboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,42 +18,23 @@
     <script src="/assets/js/bootstrap/popper.min.js" defer></script>
     <script src="/assets/js/bootstrap/bootstrap.min.js" defer></script>
     <script src="https://kit.fontawesome.com/a843fa2d6a.js" crossorigin="anonymous" defer></script>
-    <script defer>
-        getAllQuotes()
-            .then(data => {
-                let matchups = [], groupQuotes = data.quotes.filter(x => x.isGroup)
-                groupQuotes.forEach(quote => {
-                    let authors = quote.authors.split(',').map(x => x.trim()).sort()
-                    authors.flatMap((v, i) => authors.slice(i + 1).map(w => [v, w]))
-                        .forEach(match => matchups.push(match.join(', ')))
-                })
-                let map = {}, countedIndexes = [], indexCounts = {}
-                matchups.forEach(match => map[match] = (map[match] || 0) + 1)
-                $(document).ready(() => {
-                    $('#combo-leaderboard').html(
-                        Object.keys(map).sort((a, b) => map[b] - map[a]).map((x, i, arr) => {
-                            let count = map[x], sum = Object.values(indexCounts).reduce((a, b) => a + b, 0) || 0
-                            if (!countedIndexes.includes(count)) {
-                                countedIndexes.push(count)
-                                indexCounts[count] = 0
-                            } else {
-                                sum -= indexCounts[count]
-                            }
-                            indexCounts[count] += 1
-                            return `${sum + 1}. ${x} (${count} ${pluralize(count, 'quote')})`
-                        })
-                        .join('<br>\n')
-                    )
-                })
-            })
-    </script>
+    <script src="./teamups.js" defer></script>
 </head>
 <body>
     <div class="row justify-content-center mb-3">
         <div class="col-10 col-lg-8">
-            <h1 class="text-center mt-2">Team-up Leaderboard</h1>
-            <hr>
-            <div id="combo-leaderboard" class="text-center"></div>
+            <h1 class="mt-3 font-weight-bold text-center">Team-up Leaderboard</h1>
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Names</th>
+                        <th></th>
+                        <th>Quotes</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-content"></tbody>
+            </table>
         </div>
     </div>
 </body>
