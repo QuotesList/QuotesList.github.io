@@ -10,6 +10,8 @@ var distanceStats = {}
 const TROPHY_COLORS = ['gold', 'silver', 'bronze']
 const BEST_NOUN_TEXT = 'Best/Most Common Noun'
 
+const DO_MOST_UNIQUE_WORDS = false
+
 jQuery.loadScript = function (url, callback) {
     jQuery.ajax({
         url: url,
@@ -20,7 +22,7 @@ jQuery.loadScript = function (url, callback) {
 }
 
 const updateMostUniqueWord = (id) => {
-    if ($(`span#unique_word_${id}`).text().trim().length < 1) {
+    if (DO_MOST_UNIQUE_WORDS && $(`span#unique_word_${id}`).text().trim().length < 1) {
         let person = $(`span#key_${id}`).text()
         let extraWords = Object.keys(stats[person].wordsSpoken).map(x => x.trim().toLowerCase())
         extraWords = extraWords.filter(word => /^[a-zA-Z]+$/.test(word) && !reverseWordFrequencySet.has(word))
@@ -360,5 +362,6 @@ getAllQuotes(true)
         })
     })
 
-
+if (DO_MOST_UNIQUE_WORDS) {
     $.loadScript('../assets/js/data/wordfreqs.js', () => {})
+}
