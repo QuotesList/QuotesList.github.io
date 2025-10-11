@@ -5,7 +5,9 @@ const filterHighQuotes = (quotes) => {
     if (quotes.length < 40) {
         return quotes
     }
-    quotes = shuffleArray(copyObject(quotes)).sort((a, b) => a.numVotes - b.numVotes)
+    quotes = copyObject(quotes)
+    shuffleArray(quotes)
+    quotes = quotes.sort((a, b) => a.numVotes - b.numVotes)
     return quotes.slice(0, Math.ceil(quotes.length / 10))
 }
 
