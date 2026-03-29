@@ -237,8 +237,51 @@ function getNameGuesses(searchList, verbose='') {
     let searchStr = searchList.join(',').replaceAll('?', '').replaceAll('&', '').trim()
     return standardGET('guess', `names=${searchStr}${verbose && '&verbose=true'}`)
 }
+function fakeKorean(text) {
+    const initials = 19
+    const vowels = 21
+    const finals = 28
+
+    let seed = 0
+    for (let i = 0; i < text.length; i++) {
+        seed = (seed * 31 + text.charCodeAt(i)) & 0xffffffff
+    }
+
+    const nextRand = () => {
+        seed = (seed * 1664525 + 1013904223) & 0xffffffff
+        return (seed >>> 0)
+    }
+
+    return ([...text]).map((c) => {
+        if (!(/[A-Za-z]/.test(c))) return c
+
+        const i = nextRand() % initials
+        const v = nextRand() % vowels
+        const f = nextRand() % finals
+
+        return String.fromCharCode(0xAC00 + (i * vowels * finals) + (v * finals) + f)
+    }).join('')
+}
+async function getAllKoreanQuotes() {
+    const quotes = await standardGET('all')
+    quotes.quotes = quotes.quotes.map((quote) => {
+        quote.quote = fakeKorean(quote.quote)
+        return quote
+    })
+    return quotes
+}
+function isAprilFools() {
+    return true
+    const now = new Date()
+    return now.getMonth() === 3 && now.getDate() === 1
+}
 function getAllQuotes(includeStats) {
-    return standardGET('all', includeStats && 'includeStats=true')
+    if (includeStats) {
+        return standardGET('all', 'includeStats=true')
+    } else if (isAprilFools() && (gLevel < LEVEL_ADMIN)) {
+        return getAllKoreanQuotes()
+    }
+    return standardGET('all')
 }
 const getWordMap = () => standardGET('words')
 function getAttributions()  {
@@ -281,6 +324,10 @@ function postEdit(quote, id) {
     return standardPOST('edit', {quote, id})
 }
 function postVote(good, bad) {
+    if (gLevel < LEVEL_ADMIN) {
+        alert('Bruh.')
+        return
+    }
     standardPOST('vote', {
         yesId: good,
         noId: bad
