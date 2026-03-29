@@ -271,7 +271,6 @@ async function getAllKoreanQuotes() {
     return quotes
 }
 function isAprilFools() {
-    return true
     const now = new Date()
     return now.getMonth() === 3 && now.getDate() === 1
 }
