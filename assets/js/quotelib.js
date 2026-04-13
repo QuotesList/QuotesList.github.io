@@ -323,7 +323,7 @@ function postEdit(quote, id) {
     return standardPOST('edit', {quote, id})
 }
 function postVote(good, bad) {
-    if (gLevel < LEVEL_ADMIN) {
+    if (isAprilFools() && (gLevel < LEVEL_ADMIN)) {
         alert('Bruh.')
         return
     }
